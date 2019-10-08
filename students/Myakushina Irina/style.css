@@ -1,0 +1,34 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    background-color: #ccc;
+    padding: 50px 100px;
+}
+
+.cart-button {
+    margin-left: 50px;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 120px;
+    height: 50px;
+    font-size: 15px;
+    justify-items: center;
+}
+
+.goods-list {
+    margin-left: 150px;
+    justify-items: center;
+    margin-top: 20px;
+}
+.goods-item {
+    width: 230px;
+    height: 230px;
+    outline: #ccc solid 1px;
+    text-align: center;
+    display: inline-block;
+}
