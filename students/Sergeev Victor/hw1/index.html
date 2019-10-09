@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2Xsport</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="basket-button" type="button">Корзина ▶</button>
+            <div class="dropdown-menu dropdown-menu-right basket-panel">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Цена</th>
+                                <th scope="col">Количество</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" scope="row">Итого:</th>
+                                <td colspan="3">
+                                    <span class="total">0</span>
+                                    <i class="fas fa-ruble-sign"></i>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+            </div>
+        </header>
+        <main>
+            <div class="goods-list"></div>
+        </main>
+    </div>
+</body>
+<script src="js/shop.js"></script>
+</html>
