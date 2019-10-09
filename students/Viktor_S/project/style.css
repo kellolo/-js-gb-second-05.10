@@ -31,3 +31,18 @@
     border-radius: 6px;
     margin-left: 24%;
 }
+
+header {
+    height: 50px;
+    background-color: rgb(176, 226, 169);
+    border-radius: 10px;
+    text-align: right; 
+}
+
+.cart-button {
+    margin: 0.6% 5%;
+    height: 30px;
+    width: 80px;
+    border-radius: 6px;
+
+}
