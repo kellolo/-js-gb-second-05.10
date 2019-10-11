@@ -39,7 +39,11 @@ class Gamburger {
     }
 
     renderTotalInfo() {
-        this.statusBar.innerHTML = `<p> Цена выбранного гамбургера <span> ${this.gamburgerPrice.toFixed(2)} руб </span>, калорийность <span> ${this.gamburgerCalorific.toFixed(2)} ккал </span> </p>`;
+        this.statusBar.innerHTML = `<p> Цена выбранного 
+                        гамбургера <span> ${this.gamburgerPrice.toFixed(2)} 
+                        руб </span>, калорийность <span> 
+                        ${this.gamburgerCalorific.toFixed(2)} 
+                        ккал </span> </p>`;
     }
 
     updateAll() {
