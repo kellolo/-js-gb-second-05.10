@@ -1,37 +1,85 @@
-const goods = [
-    { title: 'Shirt', price: 150 },
-    { title: 'Socks', price: 50 },
-    { title: 'Jacket', price: 350 },
-    { title: 'Shoes', price: 250 },
-    { title: 'Hat', price: 100 },
-    { title: 'Cap', price: 75 },
-    { title: 'Gloves', price: 125 },
-    {},
-];
+//заглушки (имитация базы данных)
+const image = 'https://placehold.it/200x150';
+const cartImage = 'https://placehold.it/100x80';
+const items = ['Notebook', 'Display', 'Keyboard', 'Mouse', 'Phones', 'Router', 'USB-camera', 'Gamepad'];
+const prices = [1000, 200, 20, 10, 25, 30, 18, 24];
+const ids = [1, 2, 3, 4, 5, 6, 7, 8];
 
-//Добавьте значения по умолчанию для аргументов функции.
-const renderGoodsItem = (title = 'Cup', price = 25) => {
-    return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`;
-};
-
-/*
-//Причина появления запятых на странице состоит в том, что
-//свойство innerHTML добавляет в разметку весь массив goodsList - в виде строки.
-const renderGoodsList = (list) => {
-    let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
-    document.querySelector('.goods-list').innerHTML = goodsList;
-
-    //Как можно упростить или сократить запись функций?
-    document.querySelector('.goods-list').innerHTML = list.map(item => renderGoodsItem(item.title, item.price));
-    //Ничего другого не пришло в голову.
-};
-
-*/
-
-const renderGoodsList = (list) => {
-    for (let item of list) {
-        document.querySelector('.goods-list').insertAdjacentHTML( "beforeend", renderGoodsItem(item.title, item.price));
+class Product {
+    constructor(id, name, price, img = image) {
+        this.product_id = id;
+        this.product_name = name;
+        this.price = price;
+        this.img = img;
     }
-};
 
-renderGoodsList(goods);
+    render() {
+        return `<div class="product-item" data-id="${this.product_id}">
+                            <img src="${this.img}" alt="Some img">
+                            <div class="desc">
+                                <h3>${this.product_name}</h3>
+                                <p>${this.price}</p>
+                                <button class="buy-btn btn"
+                                data-id="${this.product_id}"
+                                data-name="${this.product_name}"
+                                data-image="${this.img}"
+                                data-price="${this.price}">Buy</button>
+                            </div>
+                        </div>`;
+    }
+}
+
+class Catalog {
+    constructor() {
+        this.products = [];
+        this._init();
+        console.log(this.products);
+    }
+
+    _init() {
+        this._fetchProducts();
+        this._render();
+    }
+
+    _fetchProducts() {
+        for (let i = 0; i < items.length; i++) {
+            this.products.push(new Product(ids[i], items[i], prices[i]))
+        }
+    }
+
+    _render() {
+        const block = document.querySelector('.catalog');
+        console.log(block);
+        let htmlString = "";
+        for (let item of this.products) {
+            htmlString += item.render();
+        }
+        block.innerHTML = htmlString;
+    }
+
+
+    totalPrice() {
+        let total = 0
+        const block = document.querySelector('.products')
+        //totalBlock=document.createElement()
+        this.products.forEach(product => {
+            total += product.price
+        })
+        totalDiv = document.createElement("DIV")
+        (block.parentNode).insertBefore(totalDiv,
+            totalDiv.innerHTML =
+                `<h4>Итого на сумму: ${total} $</h4>
+                 </div>
+                `)
+    }
+}
+
+let catalog = new Catalog();
+
+class Cart {
+
+}
+
+class CartItem {
+
+}
