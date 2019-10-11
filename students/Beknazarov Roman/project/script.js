@@ -33,7 +33,6 @@ class Catalog {
     constructor() {
         this.products = [];
         this._init();
-        console.log(this.products);
     }
 
     _init() {
@@ -49,37 +48,57 @@ class Catalog {
 
     _render() {
         const block = document.querySelector('.catalog');
-        console.log(block);
         let htmlString = "";
         for (let item of this.products) {
             htmlString += item.render();
         }
         block.innerHTML = htmlString;
+
+        this.countTotalPrice();
     }
 
-
-    totalPrice() {
-        let total = 0
-        const block = document.querySelector('.products')
-        //totalBlock=document.createElement()
-        this.products.forEach(product => {
-            total += product.price
-        })
-        totalDiv = document.createElement("DIV")
-        (block.parentNode).insertBefore(totalDiv,
-            totalDiv.innerHTML =
-                `<h4>Итого на сумму: ${total} $</h4>
-                 </div>
-                `)
+    countTotalPrice() {
+        let totalPrice = null;
+        this.products.forEach(item => {
+            totalPrice += item.price
+        });
+        console.log(totalPrice);
     }
+
 }
 
 let catalog = new Catalog();
 
 class Cart {
+    constructor() {
+        this.items = [];
+        this._init();
+    }
+
+    _init() {
+
+    }
+
+    render() {
+
+    }
+
+    addCartItem() {
+
+    }
+
+    removeCartItem() {
+
+    }
+
+    countTotal() {
+
+    }
 
 }
 
 class CartItem {
+    countItem() {
 
+    }
 }
