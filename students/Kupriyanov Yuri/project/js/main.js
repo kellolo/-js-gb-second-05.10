@@ -3,8 +3,6 @@ const items = ['Notebook', 'Display', 'Keyboard', 'Mouse', 'Phones', 'Microphone
 const prices = [1000, 200, 20, 10, 25, 10]
 const ids = [1, 2, 3, 4, 5, 6]
 
-// 1. Добавьте пустые классы для корзины товаров и элемента корзины товаров. 
-// Продумайте, какие методы понадобятся для работы с этими сущностями.
 class CartItem {
     constructor () {
         this.id = id
@@ -74,10 +72,17 @@ class Cart {
 
 class Product {
     constructor (id, name, price, img) {
-        this.id         = id;
-        this.name       = name;
-        this.price      = price;
-        this.img        = img;
+        if (arguments.length == 4) {
+            this.id         = id;
+            this.name       = name;
+            this.price      = price;
+            this.img        = img;
+        } else if(arguments.length == 1) {
+            this.id         = arguments[0].id;
+            this.name       = arguments[0].name;
+            this.price      = arguments[0].price;
+            this.img        = arguments[0].img;
+        }
     }
     render () {
         return `
@@ -101,12 +106,35 @@ class Catalog {
     }
     _init () {
         this._fetchProducts ()
-        this._render ()
+    }
+    async _apiGetJSON() {
+        let url = `https://raw.githubusercontent.com/ymksoft/-js-gb-second-05.10/HW/3/students/Kupriyanov%20Yuri/project/db/db.json`;
+        //let url = 'https://z.jcbrus.ru/test/test.php'
+        let response = await fetch(url, {
+            // method: 'GET',
+            // credentials: 'include',
+            // headers: {
+            //   'Content-Type': 'application/json',
+            //   'API-Key': 'secret',
+            //   'Access-Control-Allow-Origin': 'https://z.jcbrus.ru',
+            //   'Access-Control-Allow-Credentials': true
+            // }
+          })
+        let jsonData = []
+        if (response.ok) { 
+            jsonData = await response.json()
+        } else {
+            console.log("Ошибка HTTP: " + response.status)
+        }
+        return jsonData;
     }
     _fetchProducts () {
-        for( let i = 0; i < items.length; i++ ) {
-            this.products.push( new Product(ids [i], items [i], prices [i], imgCatalog))
-        }
+        this._apiGetJSON().then( (jsonData) => {
+            jsonData.forEach(el => {
+                    this.products.push( new Product(el))
+                }) 
+            this._render()
+        })
     }
     _render () {
         const block = document.querySelector ('.products')
