@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Бургерная</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="content">
+        <div class="first_block">
+            <p>Первый шаг</p>
+            <h3>Выберите размер гамбургера</h3>
+            <input type="radio" name="size" data-id="small" class = "radio-1">Маленький (50 рублей, 20 калорий)<br>
+            <input type="radio" name="size" data-id="big" class = "radio-1">Большой (100 рублей, 40 калорий)<br>
+        </div>
+        <div class="second_block">
+            <p>Второй шаг</p>
+            <h3>Выберите наполнение гамбургера</h3>
+            <input type="radio" name="inner" data-id="cheese" class = "radio-2">С сыром (+10 рублей, +20 калорий)<br>
+            <input type="radio" name="inner" data-id="salad" class = "radio-2">С салатом (+20 рублей, +5 калорий)<br>
+            <input type="radio" name="inner" data-id="potat" class = "radio-2">С картофелем (+15 рублей, +10 калорий)<br>
+        </div>
+        <div class="third_block">
+            <p>Третий шаг</p>
+            <h3>Выберите дополнительные опции гамбургера</h3>
+            <input type="checkbox" data-id="spice" class = "check">Приправа (+15 рублей, +0 калорий)<br>
+            <input type="checkbox" data-id="mayo" class = "check">Майонез (+20 рублей, +5 калорий)<br>
+        </div>
+        <input type="button" class="calc-result" value="Рассчитать">
+        <div class="result"></div>  
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
