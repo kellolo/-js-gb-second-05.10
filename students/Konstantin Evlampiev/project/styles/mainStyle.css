@@ -1,0 +1,207 @@
+@import "styleModificators.css";
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+.container {
+  max-width: 991px;
+  margin: 0 auto;
+  font-size: 14px;
+  font-family: "Myriad Pro", "Courier New", Courier, monospace;
+  color: #494949;
+}
+.header {
+  width: 100%;
+  min-height: 210px;
+}
+.header__linksBand {
+  width: 100%;
+  height: 70px;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+}
+.header__logo {
+  margin: 0 20px;
+  height: 70px;
+  width: 150px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.header__logo p {
+  text-transform: uppercase;
+  color: black;
+  font-weight: 800;
+  padding-top: 0;
+  margin: 16px 0;
+  font-size: 25px;
+}
+.header__logoImage {
+  height: 70px;
+}
+.header__info {
+  display: block;
+  padding: 10px 50px;
+}
+.header__socialIconsContainer {
+  padding-top: 27px;
+}
+.header__socialIcon {
+  color: inherit;
+}
+.header__socialIcon:hover {
+  color: black;
+}
+.userMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
+.userMenu li {
+  float: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  list-style-type: none;
+  height: 70px;
+}
+.userMenu__item {
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin: 0;
+  color: inherit;
+  height: 18px;
+  font-size: 14px;
+  padding: 26px 10px;
+}
+.userMenu__item:hover {
+  font-weight: 900;
+  color: black;
+}
+.userMenu__item:hover:after {
+  content: ">";
+}
+.goods-list {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.goods-item {
+  background-color: #d9d9d9;
+  margin-top: 25px;
+  padding: 10px;
+}
+.goods-item img {
+  width: 200px;
+  height: 200px;
+  filter: grayscale(100%) blur(1px);
+}
+.goods-item img:hover {
+  filter: grayscale(0%) blur(0px);
+}
+.goods-item p {
+  float: left;
+  margin: 15px 0 15px 15x;
+  font-size: 14px;
+  font-weight: 550;
+  border: 1px solid #333;
+  padding: 3px;
+}
+.goods-item p::before {
+  content: "$";
+  padding-right: 2px;
+  background-color: #777;
+  color: #ccc;
+}
+.goods-item .buiItBtn {
+  float: right;
+  margin: 15px;
+  width: 75px;
+  height: 25px;
+  border: none;
+  border-radius: 10px;
+}
+.goods-item .buiItBtn:hover {
+  background-color: #111;
+  color: #ccc;
+}
+h2 {
+  display: block;
+  width: 100%;
+  text-transform: uppercase;
+  text-align: left;
+}
+.searchForm {
+  margin: 27px 10px;
+  position: relative;
+  width: 200px;
+}
+.searchForm input {
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin-right: 0;
+  padding-right: 0;
+  font-size: 14px;
+  font-style: italic;
+  padding-left: 20px;
+}
+.searchForm button {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  padding-left: 0;
+  background-color: #fff;
+  color: gray;
+  border: none;
+  border-radius: 5px;
+}
+.footer {
+  width: 100%;
+}
+.footer__additional {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.footer__additional article {
+  margin: 10px;
+  width: 30%;
+}
+.footer__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.footer__contacts article {
+  width: 13%;
+  margin: 10px;
+  font-size: 16px;
+}
+.footer__contacts article h3 {
+  text-transform: uppercase;
+  min-height: 50px;
+}
+.footer__contacts article ul {
+  color: inherit;
+  list-style: none;
+  padding: 0;
+}
+.footer__contacts article a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+.footer__contacts article a:hover {
+  background-color: #333;
+  color: #fff;
+}
