@@ -2,31 +2,31 @@
   {
     "id_product": 1,
     "product_name": "Кофеварка",
-    "price": 2500,
+    "price": 50,
     "img": "img/coffee.jpg"
   },
   {
     "id_product": 2,
     "product_name": "Принтер",
-    "price": 4500,
+    "price": 90,
     "img": "img/printer.jpg"
   },
   {
     "id_product": 3,
     "product_name": "Роутер",
-    "price": 3000,
+    "price": 60,
     "img": "img/router.jpg"
   },
   {
     "id_product": 4,
     "product_name": "Тостер",
-    "price": 2700,
+    "price": 55,
     "img": "img/toster.jpg"
   },
   {
     "id_product": 5,
     "product_name": "Телевизор",
-    "price": 35000,
+    "price": 700,
     "img": "img/tv.jpg"
   }
 ]
