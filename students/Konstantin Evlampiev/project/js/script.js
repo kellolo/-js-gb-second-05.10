@@ -16,7 +16,7 @@ const imgs = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.
 const cartImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
 
 /**
- * Функция генерит массив объектов из массивов сверху
+ * Функция генерит массив объектов из массивов, приведенных сверху
  */
 function fetchProducts() {
     let arr = [];
@@ -46,7 +46,7 @@ class Product {
         this.price = price;
         this.img = image;
         this.certImg = certImage;
-        this.template = `<div class="goods-item">
+        this.template = `<div class="goods-item" data-id=${id}>
                 <img src="img/forGoodsList/${image}">
                 <h3>${name}</h3>
                 <p>${price.toFixed(2)}</p>
@@ -73,14 +73,7 @@ class Catalog {
         });
     }
 
-    //бессмысленное поле для каталога, в принципе
-    get totalPrice() {
-        let summ = 0;
-        for (let el of this.products) {
-            summ += el.price;
-        }
-        return summ;
-    }
+
 
 
 }
@@ -96,13 +89,64 @@ class CartItem {
     constructor(product) {
         this.product = product;
         this.quantity = 1; //Количество продуктов данного вида в корзине
-        this.template = ""; //html-код
+    }
+
+    get template() {
+        return `<div class="cartItem" data-id="${this.product.id}">
+                <img class="cartItem__img" 
+                    src="img/forGoodsList/${this.product.certImg}" 
+                    alt="Изображение">
+                <p class="cartItem__name"> ${this.product.title} </p>
+                <p class="cartItem__price"> ${this.product.price.toFixed(2)}</p>
+                <button class="cartItem__plusBnt">+</button>
+                <input class="cartItem__quantity" type="number" min="0" max="99" value="${this.quantity}">
+                <button class="cartItem__minusBnt">-</button>
+                <p class="cartItem__totalSum"> ${(Number(this.product.price)*Number(this.quantity)).toFixed(2)}</p>
+                </div>`
     }
 }
 
 class Cart {
     constructor() {
         this.cartItems = []; //list of cartItems
+        this.cartElement = document.querySelector('.basketWindow'); //может быть null
+        this.basketFooterElement = document.querySelector('.basketWindow__footer');
+        this._visible = false; //по умолчанию корзина не видна
+        if (this.cartElement == null) {
+            throw new Error('элемент с классом .basketWindow не найден на странице')
+        }
+        if (this.basketFooterElement == null) {
+            throw new Error('элемент с классом .basketWindow__footer не найден на странице')
+        }
+    }
+
+    get visible() {
+        return this._visible;
+    }
+
+    set visible(visibility) {
+        if (Boolean(visibility)) {
+            this.cartElement.classList.remove('hidden-form');
+        } else {
+            this.cartElement.classList.add('hidden-form');
+        }
+        this._visible = visibility;
+    }
+
+    /**
+     * Навигационная функция ищет по id продукта объект в корзине
+     * @param {Number} id идентификатор продукта
+     */
+    getCartItemById(id) {
+        return this.cartItems.find(el => el.product.id == id);
+    }
+
+    /**
+     * Навигационная функция ищет объект в корзине с заданным продуктом
+     * @param {*} product 
+     */
+    getCartItemByProduct(product) {
+        return this.cartItems.find(el => el.product === product);
     }
 
     /**
@@ -110,8 +154,31 @@ class Cart {
      * @param {Product} product 
      */
     addProduct(product) {
-
+        let productInBasket = this.cartItems.find(el => el.product === product);
+        if (productInBasket == null) {
+            this.cartItems.push(new CartItem(product));
+        } else {
+            this.incProductQuantity(productInBasket);
+        }
+        this.renderCart();
     }
+
+    /**
+     * Увеличивает количество продукта, который уже есть в корзине на 1
+     * @param {*} productInBasket 
+     */
+    incProductQuantity(productInBasket) {
+        productInBasket.quantity++;
+    }
+
+    /**
+     * Уменьшает количество продукта, который уже есть в корзине на 1
+     * @param {*} productInBasket 
+     */
+    decProductQuantity(productInBasket) {
+        productInBasket.quantity--;
+    }
+
     /**
      * Изменяет this.cartItems: или удаляет позицию или уменьшает соответствующее количестов в позиции
      * @param {*} product 
@@ -122,18 +189,118 @@ class Cart {
 
     //Общее количестов товаров в корзине
     get totalQuantity() {
-
+        let res = 0;
+        for (let position of this.cartItems) {
+            res += Number(position.quantity);
+        }
+        return res;
     }
 
     //Общая стоимость корзины
     get totalPrice() {
+        let res = 0;
+        for (let position of this.cartItems) {
+            res += Number(position.quantity) * Number(position.product.price);
+        }
+        return res;
 
     }
 
-    //Прорисова элементов корзины
+    /**
+     * Прорисока корзины и добавление обработчиков событий
+     */
     renderCart() {
+        //header of Cart
+        let htmlString = `<div class="basketWindow__refSquare">
+                        </div>
+                        <h2 class="basketWindow__header"> shopping list </h2>`;
+        //body
+        this.cartItems.forEach(el => {
+            htmlString += el.template;
+        });
+        //footer of Cart
+        htmlString += `<div class="basketWindow__footer"> Total: ${this.totalQuantity.toFixed(0)}
+         positions for ${this.totalPrice.toFixed(2)} $ </div>`;
+        this.cartElement.innerHTML = htmlString;
+
+        this.addPlusBtnListeners();
+        this.addMinusBtnListeners();
+        this.addInputListeners();
 
     }
+
+    /**
+     * Пересчет значений и вывод верных
+     */
+    recalc() {
+        let posElements = document.querySelectorAll('.cartItem');
+        try {
+            posElements.forEach(el => {
+                let price = Number(el.querySelector('.cartItem__price').innerHTML);
+                let quantity = Number(el.querySelector('.cartItem__quantity').value);
+                el.querySelector('.cartItem__totalSum').innerHTML = (price * quantity).toFixed(2).toString();
+
+            });
+        } finally {
+            this.cartElement.querySelector('.basketWindow__footer')
+                .innerHTML = `Total: ${this.totalQuantity.toFixed(0)}
+                positions for ${this.totalPrice.toFixed(2)} $`;
+        }
+
+    }
+    /**
+     * Навешивание обработчиков событий на кнопки +
+     */
+    addPlusBtnListeners() {
+        let plusBtns = this.cartElement.querySelectorAll('.cartItem__plusBnt');
+        plusBtns.forEach((el, key, parent) => {
+            el.addEventListener('click', (event) => {
+                let quantityInput = event.target.parentNode.querySelector('.cartItem__quantity');
+                let productId = Number(event.target.parentNode.getAttribute('data-id'));
+                let cartItm = this.getCartItemById(productId);
+                cartItm.quantity = ++quantityInput.value; // Принудительное согласование 
+                this.recalc();
+            })
+        })
+
+    }
+    /**
+     * Навешиваем обработчики событий на кнопки "-"
+     */
+    addMinusBtnListeners() {
+        let plusBtns = this.cartElement.querySelectorAll('.cartItem__minusBnt');
+        plusBtns.forEach((el, key, parent) => {
+            el.addEventListener('click', (event) => {
+                let quantityInput = event.target.parentNode.querySelector('.cartItem__quantity');
+                let productId = Number(event.target.parentNode.getAttribute('data-id'));
+                let cartItm = this.getCartItemById(productId);
+
+                if (quantityInput.value > 0) {
+                    quantityInput.value--;
+                } else {
+                    quantityInput.value = 0;
+                }
+                cartItm.quantity = quantityInput.value; // Принудительное согласование
+                this.recalc();
+            })
+        })
+    }
+
+    addInputListeners() {
+        let inputs = this.cartElement.querySelectorAll('.cartItem__quantity');
+        inputs.forEach(el => {
+            el.addEventListener('change', (event) => {
+                let productId = Number(event.target.parentNode.getAttribute('data-id'));
+                if (event.target.value < 0) {
+                    event.target.value = 0;
+                }
+                this.getCartItemById(productId).quantity = Number(event.target.value);
+                this.recalc();
+            })
+        })
+
+    }
+
 }
 
 
@@ -177,14 +344,43 @@ window.addEventListener('load', rGL);
 */
 
 
-
-let goodsList = new Catalog;
-goodsList.render();
-
-document.querySelectorAll('.buiItBtn').forEach(
-    el => {
-        el.addEventListener('click', (event) => {
-            alert('Have not been realiazed yet')
-        });
+class EShopApp {
+    constructor() {
+        this.catalog = new Catalog;
+        this.cart = new Cart;
+        this._init();
     }
-);
+
+    _init() {
+        this.catalog.render();
+        document.querySelectorAll('.buiItBtn').forEach(
+            el => {
+                el.addEventListener('click', (event) => {
+                    this.sendGoodToBasket(event);
+                });
+            }
+        );
+        document.querySelector('.userMenu:last-child')
+            .addEventListener('click', this.switchBasketVisibility.bind(this));
+
+
+    }
+
+    switchBasketVisibility() {
+        this.cart.visible = !this.cart.visible;
+    }
+
+    /**
+     * Ну, хрен его знает, как это делается. Решил в 2 этапа. Тут найдем объект товара и пробросим в корзину, а она там сама разберется 
+     * @param {Event} event объект события 
+     */
+    sendGoodToBasket(event) {
+        let goodId = event.target.parentNode.getAttribute('data-id');
+        let goodForBacket = this.catalog.products.find((el, index, arr) => (el.id == goodId));
+        this.cart.addProduct(goodForBacket);
+
+    }
+}
+
+
+const eShop = new EShopApp;

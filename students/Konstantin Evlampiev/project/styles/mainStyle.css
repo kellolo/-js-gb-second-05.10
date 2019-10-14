@@ -10,6 +10,7 @@ body {
   font-size: 14px;
   font-family: "Myriad Pro", "Courier New", Courier, monospace;
   color: #494949;
+  position: relative;
 }
 .header {
   width: 100%;
@@ -204,4 +205,75 @@ h2 {
 .footer__contacts article a:hover {
   background-color: #333;
   color: #fff;
+}
+.basketWindow {
+  position: absolute;
+  top: 55px;
+  right: 18px;
+  width: 550px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 8px 8px 19px 5px rgba(0, 0, 0, 0.43);
+  opacity: 0.9;
+  z-index: 17;
+}
+.basketWindow__refSquare {
+  background-color: #fff;
+  position: absolute;
+  top: -8px;
+  right: 4px;
+  width: 18px;
+  height: 20px;
+  transform: rotate(45deg);
+}
+.basketWindow__header {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  border-bottom: 1px solid grey;
+}
+.basketWindow__footer {
+  width: 100%;
+  text-align: right;
+  font-size: 16px;
+  border-top: 1px solid grey;
+  font-weight: 800;
+}
+.hidden-form {
+  visibility: hidden;
+}
+.cartItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cartItem__img {
+  width: 75px;
+  height: 75px;
+}
+.cartItem__name {
+  padding: 10px;
+  width: 150px;
+}
+.cartItem__price {
+  padding: 10px;
+  width: 50px;
+}
+.cartItem__plusBtn {
+  text-align: center;
+  background-color: inherit;
+}
+.cartItem__minusBtn {
+  text-align: center;
+  background-color: inherit;
+}
+.cartItem__quantity {
+  text-align: center;
+  width: 50px;
+}
+.cartItem__totalSum {
+  width: 50px;
+  padding: 10px;
+  font-weight: 800;
 }
