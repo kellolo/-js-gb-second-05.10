@@ -1,5 +1,4 @@
-// const products = createDTO ()
-// let cart = []
+const catalog = []
 
 class Product{
     constructor(item){
@@ -29,111 +28,118 @@ class Catalog{
         let htmlString = ''
         for (let i in this.catalog){
             let prod = new Product(this.catalog[i])
+            catalog.push(prod)
             htmlString += prod.renderProduct()
         }
         document.querySelector('.products').innerHTML = htmlString
     }
 }
 
+class GoodForCart{
+    constructor(item){
+        this.img = item.img
+        this.id = item.id
+        this.price = item.price
+        this.name = item.name
+        this.qty = 1,
+        this.ttlprc = ()=>{return(+this.price*+this.qty)}
+    }
+}
 
+class Cart{
+    constructor(){
+        this.goods = []
+        this._renderCart()
+    }
 
+    _renderCart() {
+        let htmlString = ''
+        this.goods.forEach(el => {
+            htmlString += 
+            `<div class = 'product-item-cart'>
+                <div class = "left-block">   
+                    <img src="img/${el.img}" >
+                    <h2>${el.name}</h2>
+                    <p>price: ${el.price}</p>
+                </div>    
+                <div class = "right-block">
+                    <button class="add-btn" data-id = "${el.id}">+</button>
+                    <p>${el.qty}</p>
+                    <button class="rem-btn" data-id = "${el.id}">-</button>
+                    <p>${el.ttlprc()}</p>
+                </div>
+            </div>`
+        })
+        if (this.goods.length > 0){
+            htmlString +=   `<div class="total-sum">
+                                Total sum:  ${this._calcSum ()} 
+                            </div>`
+        } 
+        document.querySelector('.cart-block').innerHTML = htmlString  
+    }
 
-// function renderCart() {
-//     htmlString = ''
-//     cart.forEach(el => {
-//         htmlString += 
-//         `<div class = 'product-item-cart'>
-//             <div class = "left-block">   
-//                 <img src="img/${el.img}" >
-//                 <h2>${el.name}</h2>
-//                 <p>price: ${el.price}</p>
-//             </div>    
-//             <div class = "right-block">
-//                 <button class="add-btn" data-id = "${el.id}">+</button>
-//                 <p>${el.qty}</p>
-//                 <button class="rem-btn" data-id = "${el.id}">-</button>
-//                 <p>${el.ttlprc()}</p>
-//             </div>
-//         </div>`
-//     })
-//     if (cart.length > 0){
-//         htmlString +=  `<div class="total-sum">
-//                         Total sum:  ${calcSum ()} 
-//                     </div>`
-//     } 
-//     document.querySelector('.cart-block').innerHTML = htmlString  
-// }
-
-// function calcSum () {
-//     let sum = 0
-//     cart.forEach(el => {
-//         sum += el.ttlprc()
-//     })
-//     return sum
-// }
-
-// function searcheProduct (index) {
-//     return prod = products.find(el => {
-//         if(el.id == index)return el
-//     })
-// }
-
-// function searcheProductInCart(index) {
-//     return prod = cart.find(el => {
-//         if(el.id == index)return el
-//         else return false
-//     })
-// }
-
-// function createProdForCart(prod) {
-//     return {
-//         id: prod.id,
-//         name: prod.name,
-//         price: prod.price,
-//         img: prod.img,
-//         qty: 1,
-//         ttlprc: function(){
-//             return(+this.price*+this.qty)
-//         }
-//     } 
-// }
-
-// function addProductToCart (index){
-//     let prod = searcheProduct(index)
-//     let finder = searcheProductInCart(prod.id)
-//     if (finder!=undefined){
-//         finder.qty ++
-//     }else{
-//         cart.push(createProdForCart(prod))
-//     }
-//     renderCart()
-// }
-
-// function removeProductFromCart (index){
-//     let finder = searcheProductInCart(index)
-//     if (finder.qty > 1){
-//         finder.qty --
-//     }else{
-//         cart.splice(cart.indexOf(finder), 1)
-//     }
-//     renderCart()
-// }
-
-// //всплытие и захват событий
-// document.querySelector('.btn-cart').addEventListener ('click', function () {
-//     document.querySelector ('.cart-block').classList.toggle ('invisible')})
+    addProductToCart (index){
+        let prod = this._searcheProduct(index)
+        let finder = this._searcheProductInCart(prod.id)
+        if (finder!=undefined){
+            finder.qty ++
+        }else{
+            this.goods.push(new GoodForCart(prod))
+        }
+        this._renderCart()
+    }
     
-// document.querySelector ('.products').addEventListener ('click', function (e) {
-//     if (e.target.classList.contains ('buy-btn')) {
-//         addProductToCart (+e.target.dataset ['id'])
-//     }
-// })
+    _searcheProduct (index) {
+        return catalog.find(el => {
+            if(el.id == index)return el
+        })
+    }
 
-// document.querySelector ('.cart-block').addEventListener ('click', function (e) {
-//     if (e.target.classList.contains ('add-btn')) {
-//         addProductToCart (+e.target.dataset ['id'])
-//     }
-//     if (e.target.classList.contains ('rem-btn')) {
-//         removeProductFromCart (+e.target.dataset ['id'])
-//     }
-// })
+    _searcheProductInCart(index) {
+        return this.goods.find(el => {
+            if(el.id == index)return el
+            else return false
+         })
+    }
+
+    _calcSum () {
+        let sum = 0
+        this.goods.forEach(el => {
+            sum += el.ttlprc()
+        })
+        return sum
+    }
+
+    removeProductFromCart (index){
+        let finder = this._searcheProductInCart(index)
+        if (finder.qty > 1){
+            finder.qty --
+        }else{
+            this.goods.splice(this.goods.indexOf(finder), 1)
+        }
+        this._renderCart()
+    }
+}
+
+let cart = new Cart()
+
+//всплытие и захват событий
+window.onload = () =>{
+    document.querySelector('.btn-cart').addEventListener ('click', function () {
+        document.querySelector ('.cart-block').classList.toggle ('invisible')})
+        
+    document.querySelector ('.products').addEventListener ('click', function (e) {
+        if (e.target.classList.contains ('buy-btn')) {
+            cart.addProductToCart (+e.target.dataset ['id'])
+        }
+    })
+
+    document.querySelector ('.cart-block').addEventListener ('click', function (e) {
+        if (e.target.classList.contains ('add-btn')) {
+            cart.addProductToCart (+e.target.dataset ['id'])
+        }
+        if (e.target.classList.contains ('rem-btn')) {
+            cart.removeProductFromCart (+e.target.dataset ['id'])
+        }
+    })
+}
