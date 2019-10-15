@@ -47,8 +47,8 @@ class GoodForCart{
 }
 
 class Cart{
-    constructor(){
-        this.goods = []
+    constructor(arr = []){
+        this.goods = arr
         this._renderCart()
     }
 

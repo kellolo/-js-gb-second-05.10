@@ -1,4 +1,6 @@
 let url = 'https://raw.githubusercontent.com/petr-sed/-js-gb-second-05.10/master/students/Sedukhin%20Petr/project/basa.JSON'
+let urlgetcart = 'https://raw.githubusercontent.com/petr-sed/-js-gb-second-05.10/master/students/Sedukhin%20Petr/project/cart.JSON' 
+let urlsendcart = 'https://github.com/petr-sed/-js-gb-second-05.10/edit/master/students/Sedukhin%20Petr/project/cart.JSON'
 
 //                             ОБЪЕКТ XMLHttpRequest
 // class getData{
@@ -46,17 +48,17 @@ let url = 'https://raw.githubusercontent.com/petr-sed/-js-gb-second-05.10/master
 //     _getPromise () {
 //         this._promiseAjax (this.url)
 //             .then ((data) => {
-//                 this.data = JSON.parse (data)
+//                 this.data = JSON.parse(data)
 //             })
 //             .catch ((err) => {
 //                 console.log (err)
 //             })
 //     }
 // }  
-// let goods = new getData(url)
+// let goods = new getData(urlgetcart)
 
 //                              FETCH
-class getData{
+class getDataFetch{
     constructor(url){
         this.url = url
         this._getdata()
@@ -70,4 +72,4 @@ class getData{
     }
 }
 
-let data = new getData(url)
+let data = new getDataFetch(url)
