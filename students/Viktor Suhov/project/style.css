@@ -1,0 +1,48 @@
+.goods-list {
+    border: 1px;
+    border-color: black;
+    height: 100px;
+    display: grid;
+    grid-template-columns: 200px repeat(6, auto);
+    gap: 5px;
+    float: left;
+}
+.productContainer {
+    display: grid;
+    grid-template-rows: 100px repeat(3, auto);
+    gap: 5px;
+}
+
+.productPicture {
+    height: 100px;
+    border: 1px;
+    border-color: black;
+    margin-left: 24%;
+}
+
+.productName {
+    text-align: center;
+    height: 20px;
+}
+
+.add {
+    height: 25px;
+    width: 100px;
+    border-radius: 6px;
+    margin-left: 24%;
+}
+
+header {
+    height: 50px;
+    background-color: rgb(176, 226, 169);
+    border-radius: 10px;
+    text-align: right; 
+}
+
+.cart-button {
+    margin: 0.6% 5%;
+    height: 30px;
+    width: 80px;
+    border-radius: 6px;
+
+}

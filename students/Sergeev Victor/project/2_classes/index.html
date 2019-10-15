@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2Xsport</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="basket-button" type="button">Корзина ▼</button>
+            <div class="title-2Xsport"><h2>2Xsport shop</h2></div>
+            <div class="dropdown-menu dropdown-menu-right basket-panel">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Имя</th>
+                                <th scope="col">Цена</th>
+                                <th scope="col">Количество</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody><!-- тут будут отрисованы товары, попавшие в корзину -->
+                        <tfoot>
+                            <tr>
+                                <th colspan="2" scope="row">Итого:</th>
+                                <td colspan="3">
+                                    <span class="total">0</span>
+                                    <i class="fas fa-ruble-sign"></i>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+            </div>
+        </header>
+        <main>
+            <div class="goods-list"></div>
+        </main>
+        <div class="blank"></div>
+        <footer>
+            <p class="copyright">© 2Xsport shop 2019</p>
+        </footer>
+    </div>
+</body>
+<script src="js/render_dropdown_menu.js"></script>
+<script src="js/goods.js"></script>
+<script src="js/basket.js"></script>
+</html>
