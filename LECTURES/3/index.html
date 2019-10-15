@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        // let a = 10
+        // let b // =undefined
+
+        // //delay
+        // setTimeout (() => {
+        //     b = 100500
+        //     //console.log (a + b)
+        // }, 0)
+
+        // console.log (a + b)
+        
+        // Способы передачи данных
+        // 1 - ХТМЛ - XML
+        // 2 - String - JSON
+        // 3 - бинарные данные (0. 1)
+
+        // jsonData =  [
+        //                 {
+        //                     "id_product": 123,
+        //                     "product_name": "Ноутбук",
+        //                     "price": 45600,
+        //                     "avaliable": true
+        //                 },
+        //                 {
+        //                     "id_product": 456,
+        //                     "product_name": "Мышка",
+        //                     "price": 1000,
+        //                     "avaliable": false
+        //                 }
+        //             ]
+
+        let jsonObj = '{"id_product": 123, "product_name": "Ноутбук", "price": 4560}'
+        let obj = JSON.parse (jsonObj) // >> data
+        let againJSON = JSON.stringify (obj) // >> JSON
+
+        let urlAPI = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/catalogData.json'
+
+        function request (url, callback) {
+            // нужно как-то послать запрос
+            let xhr = new XMLHttpRequest()
+
+            console.log (xhr)
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                callback(xhr.responseText)
+                }
+            }
+
+            xhr.open('GET', url, true)
+            xhr.send()
+        }
+
+        function handler (data) {
+            console.log (data)
+        }
+
+        // PROMISE
+
+        // function promiseAjax (url) {
+        //     return new Promise ((res, rej) => {
+        //         let xhr = new XMLHttpRequest()
+
+        //         xhr.onreadystatechange = function () {
+        //             if (xhr.readyState === 4) {
+        //                 if (xhr.status === 200) {
+        //                     res (xhr.responseText)
+        //                 } else {
+        //                     rej ('some error')
+        //                 }
+        //             }
+        //         }
+
+        //         xhr.open('GET', url, true)
+        //         xhr.send()
+        //     })
+        // }
+
+        // function getPromise () {
+        //     promiseAjax (urlAPI)
+        //         .then ((data) => {
+        //             console.log (JSON.parse (data))
+        //         })
+        //         .catch ((err) => {
+        //             console.log (err)
+        //         })
+        // }
+
+        let data = fetch ('https://jsonplaceholder.typicode.com/photos')
+                    .then ((data) => data.json ()).then (dataParsed => {console.log (dataParsed)})
+                    .catch ((err) => {
+                        console.log (err)
+                    })
+    </script>
+</body>
+</html>
