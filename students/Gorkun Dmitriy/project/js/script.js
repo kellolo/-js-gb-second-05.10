@@ -53,23 +53,18 @@ class Product {
 
 
 // HTMLHttpRequest
-function makeGETRequest(url, callback) {
-    let xhr
-
-    if (window.XMLHttpRequest) {
-        xhr = new XMLHttpRequest()
-    } else if (window.ActiveXObject) {
-        xhr = new ActiveXObject("Microsoft.XMLHTTP")
-    }
-
+const makeGETRequest = url => {
+    return new Promise((resolve, reject) => {
+    let xhr = new XMLHttpRequest()
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
-            callback(xhr.responseText)
+            resolve(getCatalog(xhr.responseText))
         }
     }
-
+    xhr.onerror = () => reject(xhr.statusText);
     xhr.open('GET', url, true)
     xhr.send()
+})
 }
 //__________________________________________________________________
 
