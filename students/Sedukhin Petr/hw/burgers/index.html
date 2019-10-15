@@ -8,29 +8,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="content">
-        <div class="first_block">
-            <p>Первый шаг</p>
-            <h3>Выберите размер гамбургера</h3>
-            <input type="radio" name="size" data-id="small" class = "radio-1">Маленький (50 рублей, 20 калорий)<br>
-            <input type="radio" name="size" data-id="big" class = "radio-1">Большой (100 рублей, 40 калорий)<br>
-        </div>
-        <div class="second_block">
-            <p>Второй шаг</p>
-            <h3>Выберите наполнение гамбургера</h3>
-            <input type="radio" name="inner" data-id="cheese" class = "radio-2">С сыром (+10 рублей, +20 калорий)<br>
-            <input type="radio" name="inner" data-id="salad" class = "radio-2">С салатом (+20 рублей, +5 калорий)<br>
-            <input type="radio" name="inner" data-id="potat" class = "radio-2">С картофелем (+15 рублей, +10 калорий)<br>
-        </div>
-        <div class="third_block">
-            <p>Третий шаг</p>
-            <h3>Выберите дополнительные опции гамбургера</h3>
-            <input type="checkbox" data-id="spice" class = "check">Приправа (+15 рублей, +0 калорий)<br>
-            <input type="checkbox" data-id="mayo" class = "check">Майонез (+20 рублей, +5 калорий)<br>
-        </div>
-        <input type="button" class="calc-result" value="Рассчитать">
-        <div class="result"></div>  
-    </div>
+    <form action="#" id="burger-form">
+        <fieldset>
+            <fieldset id="first_block">
+                <h3>Выберите размер гамбургера</h3>
+                <input type="radio" name="size" id="bigburger" value="Big" class="hamburger-input" data-price="100" data-calories="40" checked>
+                <label for="bigburger">Большой (100 рублей, 40 калорий)</label><br>
+                <input type="radio" name="size" id="smallburger" value="Small" class="hamburger-input" data-price="50" data-calories="20">
+                <label for="smallburger">Малый (50 рублей, 20 калорий)</label>
+            </fieldset>
+            <fieldset id="second_block">
+                <h3>Выберите начинку бургера:</h3>
+                <input type="radio" name="add" id="cheese" value="Cheese" class="hamburger-input" data-price="10" data-calories="20" data-mashas="2000" checked>
+                <label for="cheese">Сыр (10 рублей, 20 калорий)</label><br>
+                <input type="radio" name="add" id="salad" value="Salad" class="hamburger-input" data-price="20" data-calories="5">
+                <label for="salad">Салат (20 рублей, 5 калорий)</label><br>
+                <input type="radio" name="add" id="potato" value="Potato" class="hamburger-input" data-price="15" data-calories="10">
+                <label for="potato">Картофель (15 рублей, 10 калорий)</label><br>
+            </fieldset>   
+            <fieldset id="third_block">
+                <h3>Выберите доп. опцию:</h3>
+                <input type="checkbox" name="topings" id="seasoning" value="Spices" class="hamburger-input" data-price="15" data-calories="0">
+                <label for="seasoning">Посыпать приправой (15 рублей, 0 калорий)</label><br>
+                <input type="checkbox" name="topings" id="mayonnaise" value="Mayo" class="hamburger-input" data-price="20" data-calories="5">
+                <label for="mayonnaise">Полить майонезом (20 рублей, 5 калорий)</label><br>
+            </fieldset>
+        </fieldset>  
+    </form>
+    <button id="check">Собрать бургер</button>
+    <br>
+    <p id="result">
+        Итоговая стоимость: <span id="price">0</span> <br>
+        Кол-во калорий: <span id="calories">0</span>
+    </p>
     <script src="script.js"></script>
 </body>
 </html>
