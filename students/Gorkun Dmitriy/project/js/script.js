@@ -153,7 +153,7 @@ class Cart {
 // создаем корзину, новый каталог, заполняем товарами и выводим
 let cart = new Cart()
 let catalog = new Catalog()
-let jsonCatalog = makeGETRequest(url, getCatalog)
+let jsonCatalog = makeGETRequest(url)
 //__________________________________________________________________
 
 
