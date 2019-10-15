@@ -1,16 +1,12 @@
-const items = ['Notebook', 'Display', 'Keyboard', 'Mouse', 'Phones', 'Microphone', 'Camera']
-const prices = [1000, 200, 20, 10, 25, 10, 40]
-const imgs = ['notebook.jpg', 'display.jpg', 'keyboard.jpg', 'mouse.jpg', 'phones.jpg', 'microphone.jpg', 'camera.jpg']
-const ids = [45, 56, 67, 78, 89, 90, 101]
 // const products = createDTO ()
 // let cart = []
 
 class Product{
-    constructor(ind){
-        this.id = ids [ind],
-        this.name = items [ind],
-        this.price = prices [ind],
-        this.img = imgs [ind]
+    constructor(item){
+        this.id = item.id,
+        this.name = item.name,
+        this.price = item.price,
+        this.img = item.img
     }
 
     renderProduct(){
@@ -24,23 +20,22 @@ class Product{
 }
 
 class Catalog{
-    constructor(){
-        this.catalog = []
-        this.buildCatalog()
+    constructor(data){
+        this.catalog = data
+        this._buildCatalog()
     }
 
-    buildCatalog(){
+    _buildCatalog(){
         let htmlString = ''
-        for (let i in ids){
-            let prod = new Product(i)
-            this.catalog.push(prod)
+        for (let i in this.catalog){
+            let prod = new Product(this.catalog[i])
             htmlString += prod.renderProduct()
         }
         document.querySelector('.products').innerHTML = htmlString
     }
 }
 
-let catalog = new Catalog()
+
 
 
 // function renderCart() {
