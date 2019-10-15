@@ -18,6 +18,7 @@ class GoodsList {
   }
 
   fetchGoods() {
+    /*
     this.goods = [
       { id: 0, title: 'Перчатки', price: 150 },
       { id: 1, title: 'Скейтборд', price: 2000 },
@@ -32,7 +33,7 @@ class GoodsList {
       { id: 10, title: 'Скакалка', price: 400 },
       { id: 11, title: 'Детские&nbsp;лыжи', price: 1200 },
       { id: 12, title: 'Термос', price: 2200 }
-    ];
+    ];*/
   }
 
   render() {
