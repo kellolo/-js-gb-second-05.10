@@ -5,4 +5,12 @@
     "img": "notebook.jpg",
     "qty": 1,
     "ttlprc": "()=>{return(+this.price*+this.qty)"
+},
+{
+    "id": 45,
+    "name": "Notebook",
+    "price": 1000,
+    "img": "notebook.jpg",
+    "qty": 1,
+    "ttlprc": "()=>{return(+this.price*+this.qty)"
 }]
