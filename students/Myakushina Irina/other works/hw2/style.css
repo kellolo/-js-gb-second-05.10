@@ -1,0 +1,14 @@
+#buy{
+    width: 100px;
+    text-align: center;
+	font-size: 17px;
+	padding: 6px;
+	border: 1px solid #cecece;
+	border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin-top: 15px;
+}
+.pr{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
