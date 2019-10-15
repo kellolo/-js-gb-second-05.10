@@ -14,33 +14,41 @@ class GoodsList {
         this.goods = [];
     }
 
-    makeGETRequest(url, callback) {
-        let xhr;
+    makeGETRequest(url) {
+        return new Promise ((res, rej) => {
+            let xhr = new XMLHttpRequest();
 
-        if (window.XMLHttpRequest) {
-            xhr = new XMLHttpRequest();
-        } else if (window.ActiveXObject) {
-            xhr = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                callback(xhr.responseText);
-            }
-        };
-
-        xhr.open('GET', url, true);
-        xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        res(xhr.responseText);
+                    } else {
+                        rej('some error');
+                    }
+                }
+            };
+            xhr.open('GET', url, true);
+            xhr.send();
+        })
     }
 
-    fetchGoods(callback) {
-        const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+    fetchGoods() {
+        const API_URL = 'https://raw.githubusercontent.com/paradoxalyty/online-store-api-example/master';
 
-        this.makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
+        /*this.makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
             this.goods = JSON.parse(goods);
-            callback();
+            //callback();
             console.log(this.goods);
-        })
+        });*/
+
+        this.makeGETRequest(`${API_URL}/catalogData.json`)
+            .then((data) =>{
+                this.goods = JSON.parse(data);
+                this.render(this.goods);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
     render() {
@@ -54,6 +62,5 @@ class GoodsList {
 }
 
 const list = new GoodsList();
-list.fetchGoods(() => {
-    list.render();
-});
+
+list.fetchGoods(() => {});

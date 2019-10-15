@@ -64,6 +64,8 @@
     }
     getPromise();
 
+    //FETCH
+
     let data = fetch(urlAPI)
         .then((data) => data.json()).then(dataParsed => {console.log(dataParsed);})
         .catch((err) => {
