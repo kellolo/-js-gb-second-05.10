@@ -1,58 +1,99 @@
 'use strict';
 
-//исходники для сборки json или что-то подобное
-const names = ['leak detector',
-    'presence sensor',
-    'presence sensor',
-    'smoke sensor',
-    'gas sensor',
-    'open sensor',
-    'termometr',
-    'smth'
-];
-const prices = [12, 10.99, 7.50, 14.10, 15, 12, 8, 8];
-const ids = [1, 2, 3, 4, 5, 6, 7, 8];
-const imgs = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
-const cartImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
+// //исходники для сборки json или что-то подобное
+// const names = ['leak detector',
+//     'presence sensor',
+//     'presence sensor',
+//     'smoke sensor',
+//     'gas sensor',
+//     'open sensor',
+//     'termometr',
+//     'smth'
+// ];
+// const prices = [12, 10.99, 7.50, 14.10, 15, 12, 8, 8];
+// const ids = [1, 2, 3, 4, 5, 6, 7, 8];
+// const imgs = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
+// const cartImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
+
+// /**
+//  * Функция генерит массив объектов из массивов, приведенных сверху
+//  */
+// function fetchProducts() {
+//     let arr = [];
+//     for (let i = 0; i < ids.length; i++) {
+//         arr.push(new Product(ids[i],
+//             names[i],
+//             prices[i],
+//             imgs[i],
+//             cartImages[i]));
+//     }
+//     return arr;
+// }
 
 /**
- * Функция генерит массив объектов из массивов, приведенных сверху
+ * Произвольный get-запрос
+ * @param {String} url 
+ * @param {Function} callBackF 
  */
-function fetchProducts() {
-    let arr = [];
-    for (let i = 0; i < ids.length; i++) {
-        arr.push(new Product(ids[i],
-            names[i],
-            prices[i],
-            imgs[i],
-            cartImages[i]));
+function makeGetRequest(url, callBackF) {
+    let xmlReq = new XMLHttpRequest();
+    xmlReq.onreadystatechange = () => {
+        if (xmlReq.readyState === 4) {
+            callBackF(xmlReq.responseText);
+        }
     }
-    return arr;
+    xmlReq.open('GET', url, true);
+    xmlReq.send();
 }
+
+function promiseAJAX(url) {
+    return new Promise((result, reject) => {
+        let xmlReq = new XMLHttpRequest();
+        xmlReq.onreadystatechange = () => {
+            if (xmlReq.readyState === 4) {
+                if (xmlReq.status === 200) {
+                    result(xmlReq.responseText);
+                } else {
+                    reject("Error request...")
+                }
+            }
+        }
+        xmlReq.open('GET', url, true);
+        xmlReq.send();
+    })
+}
+
+//Строка get-запроса
+const API_URL = "https://raw.githubusercontent.com/kevlampiev/JSONdata/master/jsLessonsLvl2";
 
 
 class Product {
     /**
      * Конструктор, который получает кучу параметров для инициализации
      * @param {Number} id идентификатор 
-     * @param {String} name наименование
+     * @param {String} title наименование
      * @param {Number} price цена
      * @param {String} image имя файла с изображением
      * @param {String} certImage имя файла с уменьшенной картинкой
      */
-    constructor(id, name, price, image, certImage) {
+    constructor(id, title, price, image, certImage) {
         this.id = id;
-        this.title = name;
+        this.title = title;
         this.price = price;
         this.img = image;
         this.certImg = certImage;
-        this.template = `<div class="goods-item" data-id=${id}>
-                <img src="img/forGoodsList/${image}">
-                <h3>${name}</h3>
-                <p>${price.toFixed(2)}</p>
-                <button type="submit" class="buiItBtn orangeStyled">Buy it</button>
-                </div>`;
+    }
 
+    /**
+     * Отдельное свойство для template, чтобы не засорять данные на сервере
+     */
+    get template() {
+        return `<div class="goods-item" data-id=${this.id}>
+        <img src="img/forGoodsList/${this.img}">
+        <h3>${this.title}</h3>
+        <p>${this.price.toFixed(2)}</p>
+        <button type="submit" class="buiItBtn orangeStyled">Buy it</button>
+        </div>`;
     }
 }
 
@@ -64,17 +105,35 @@ class Catalog {
     }
 
     _init() {
-        this.products = fetchProducts();
+        //this.products = fetchProducts();
+        //this.fetchGoods1(this.render.bind(this));
+        //пришлось все снести отсюда к едрени-фене: асинхронность 
     }
 
+    /**
+     * Функция-транслятор, генерящая из простых данных данные с template
+     */
+    fillProducts(goods) {
+        this.products = [];
+        goods.forEach(el => {
+            this.products.push(new Product(el.id,
+                el.title,
+                el.price,
+                el.img,
+                el.certImg));
+        });
+
+    }
+
+
+    /**
+     * Отрисовка. Простая функция
+     */
     render() {
         this.products.forEach(product => {
             this.catalogContainer.innerHTML += product.template
         });
     }
-
-
-
 
 }
 
@@ -304,74 +363,102 @@ class Cart {
 }
 
 
-/*
-const goods = [{
-        title: 'Shirt',
-        price: 150
-    },
-    {
-        title: 'Socks',
-        price: 50
-    },
-    {
-        title: 'Jacket',
-        price: 350
-    },
-    {
-        title: 'Shoes',
-        price: 250
-    },
-];
-
-
-//Воспользовался свойством стрелочной функции чтобы не писать return, но код стал менее читаемым
-const renderGoodsItem = (title = "no name", price = 99.99) => `<div class="goods-item"><img src="img/forGoodsList/1.jpg"><h3>${title}</h3><p>${price.toFixed(2)}</p><button type="submit" class="buiItBtn orangeStyled">Buy it</button></div>`;
-
-//удалил запятую, она была из-за того что работали с массивом, преобразовал его .join() к строке явно через пробел 
-const renderGoodsList = (list) => {
-    let goodsList = list.map(item => renderGoodsItem(item.title, item.price)).join(" ");
-    document.querySelector('.goods-list').innerHTML = goodsList;
-}
-
-
-//Ну, это, чтобы гарантированно грузилось содержимое после перерисовки страницы и чтобы потом могли перересовать с другим массивом, сортированным, например или еще что 
-const rGL = () => {
-    renderGoodsList(goods);
-}
-
-window.addEventListener('load', rGL);
-
-*/
-
-
 class EShopApp {
     constructor() {
         this.catalog = new Catalog;
         this.cart = new Cart;
-        this._init();
+        this._init(); //Можно поменять на _init1 или _init2
     }
 
-    _init() {
-        this.catalog.render();
-        document.querySelectorAll('.buiItBtn').forEach(
-            el => {
-                el.addEventListener('click', (event) => {
-                    this.sendGoodToBasket(event);
-                });
-            }
-        );
+    /**
+     * Вариант 1. Просто создание класса XMLHttpRequest
+     * @param {Function} callBackF 
+     */
+    fetchGoods1(callBackF) {
+        makeGetRequest(API_URL + '/selectAll.json', (goods) => {
+            this.catalog.fillProducts(JSON.parse(goods));
+            callBackF();
+        })
+    }
+    /**
+     * init with a callback function
+     */
+    _init1() {
+
+        this.fetchGoods1(() => {
+            this.catalog.render();
+            document.querySelectorAll('.buiItBtn').forEach(
+                el => {
+                    el.addEventListener('click', (event) => {
+                        this.sendGoodToBasket(event);
+                    });
+                }
+            );
+        });
         document.querySelector('.userMenu:last-child')
             .addEventListener('click', this.switchBasketVisibility.bind(this));
-
-
     }
+
+
+
+    /**
+     * Вариант 2. Использование promise. Можно было просто в init
+     */
+    // fetchGoods2() {
+
+    // }
+
+    /**
+     * init with a promise
+     */
+    _init2() {
+        promiseAJAX(API_URL + '/selectAll.json')
+            .then((goods) => {
+                this.catalog.fillProducts(JSON.parse(goods));
+                this.catalog.render();
+                document.querySelectorAll('.buiItBtn').forEach(
+                    el => {
+                        el.addEventListener('click', (event) => {
+                            this.sendGoodToBasket(event);
+                        });
+                    }
+                );
+            })
+            .catch((err) => {
+                alert(error);
+                console.log(err);
+            });
+        document.querySelector('.userMenu:last-child')
+            .addEventListener('click', this.switchBasketVisibility.bind(this));
+    }
+
+    /**
+     * init with fetch()
+     */
+    _init() {
+        let data = fetch(API_URL + '/selectAll.json')
+            .then((data) => data.json()).then((goods) => {
+                this.catalog.fillProducts(goods)
+                this.catalog.render();
+                document.querySelectorAll('.buiItBtn').forEach(
+                    el => {
+                        el.addEventListener('click', (event) => {
+                            this.sendGoodToBasket(event);
+                        });
+                    }
+                );
+            });
+        document.querySelector('.userMenu:last-child')
+            .addEventListener('click', this.switchBasketVisibility.bind(this));
+    }
+
 
     switchBasketVisibility() {
         this.cart.visible = !this.cart.visible;
     }
 
     /**
-     * Ну, хрен его знает, как это делается. Решил в 2 этапа. Тут найдем объект товара и пробросим в корзину, а она там сама разберется 
+     * Проброс товара в корзину 
      * @param {Event} event объект события 
      */
     sendGoodToBasket(event) {
