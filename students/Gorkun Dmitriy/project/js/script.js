@@ -13,6 +13,7 @@ cartBlock.innerHTML = 'Корзина пуста'
 class Catalog {
     constructor() {
         this.products = []
+        this.init()
     }
     render() {
         let htmlString = ''
@@ -21,6 +22,9 @@ class Catalog {
     }
     getProduct(id) {
        return this.products.find(item => item.id == id)
+    }
+    init() {
+        makeGETRequest(url)
     }
 }
 //_____________________________________
@@ -153,7 +157,7 @@ class Cart {
 // создаем корзину, новый каталог, заполняем товарами и выводим
 let cart = new Cart()
 let catalog = new Catalog()
-let jsonCatalog = makeGETRequest(url)
+
 //__________________________________________________________________
 
 
