@@ -1,3 +1,5 @@
 .vs/slnx.sqlite
 .vs/ProjectSettings.json
 .DS_Store
+.idea
+.gitignore
