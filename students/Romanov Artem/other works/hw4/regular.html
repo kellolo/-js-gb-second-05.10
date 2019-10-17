@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <style type="text/css">
+        input[type="text"] {
+
+            border: 1px solid #D4E2F7;
+        }
+
+        input {
+            margin: 3px 0px 3px 15px;
+        }
+    </style>
+    <script type="text/javascript">
+        function createField() {
+            var members = new Array('required', 'regexp');
+            for (var i = 0; i < arguments.length; i++) {
+                this[members[i]] = arguments[i];
+            }
+        }
+        // absolute regexp
+        createField.prototype.regexp = /^[A-z0-9-_+. ,@]{1,}$/ig;
+        createField.prototype.valid = false;
+        createField.prototype.required = true;
+        createField.prototype.nullify = function () {
+            this.valid = false;
+
+            var single = new Array();
+single['name'] = new createField(true, /^[а-яА-ЯёЁ]+$/);
+single['phone'] = new createField(true, /^[0-9]{13,16}/); //Переделать, эти данные от кредитки
+single['email'] = new createField(true, /^[A-z0-9._-]+@[A-z0-9.-]+\.[A-z]{2,4}$/);
+single['text'] = new createField(true, /^[а-яА-ЯёЁ]+$/);
+        };
+    </script>
+</head>
+
+<body>
+    <form name="form" action="6.php" method="POST">
+        <input type="text" name="name" value="My name" /><br>
+        <input type="text" name="email" value="email@mail.com" /><br>
+        <input type="radio" name="sex" checked="checked" value="male" />male<br>
+        <input type="radio" name="sex" value="female" />female<br>
+        <input type="submit" value="Ok" />
+    </form>
+</body>
+
+</html>

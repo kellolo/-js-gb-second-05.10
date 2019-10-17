@@ -1,0 +1,55 @@
+body {
+    background: #f8f8f8;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/*Поля ввода на странице контакты*/
+input[type="text"] {
+    width: 340px;
+    height: 20px;
+    color: #4285b4;
+    font-size: 14px;
+    text-transform: capitalize;
+    border-radius: 4px;
+}
+
+/*Поле ввода обратной связи*/
+textarea[name="feedbackform"] {
+    color: #4285b4;
+    width: 340px;
+    height: 70px;
+    font-size: 14px;
+    text-transform: capitalize;
+    border-radius: 4px;
+}
+
+.feedbackform {
+    width: 100%;
+    height: 374px;
+    border-radius: 7px;
+    font-size: 15px;
+    color: #484d4f;
+    line-height: 1.6;
+}
+
+/*Изменение формы полей ввода*/
+input[type="submit"] {
+    border-radius: 4px;
+}
+
+input[type="reset"] {
+    border-radius: 4px;
+}
+
+/*Изменение цвета поля при вводе*/
+#mail:focus {
+    background-color: bisque;
+    color: #ec1646;
+}
+/*Замена шрифтов заголовков*/
+h1 {
+    color: #484d4f;
+    font-family: 'Comfortaa', cursive;
+    font-size: 24px;
+}
