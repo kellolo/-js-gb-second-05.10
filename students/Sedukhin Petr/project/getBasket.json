@@ -6,14 +6,14 @@
       "id": 45,
       "name": "Notebook",
       "price": 1000,
-      "img": "notebook.jpg" 
+      "img": "notebook.jpg", 
       "qty": 1
     },
     {
       "id": 56,
       "name": "Display",
       "price": 200,
-      "img": "display.jpg"
+      "img": "display.jpg",
       "qty": 1
     }
   ]
