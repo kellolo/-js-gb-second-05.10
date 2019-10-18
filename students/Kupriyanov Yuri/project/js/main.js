@@ -1,12 +1,5 @@
-const imgCatalog = 'https://placehold.it/200x150'
-const items = ['Notebook', 'Display', 'Keyboard', 'Mouse', 'Phones', 'Microphone']
-const prices = [1000, 200, 20, 10, 25, 10]
-const ids = [1, 2, 3, 4, 5, 6]
-
-// 1. Добавьте пустые классы для корзины товаров и элемента корзины товаров. 
-// Продумайте, какие методы понадобятся для работы с этими сущностями.
 class CartItem {
-    constructor () {
+    constructor (id, name, price, img, quantity) {
         this.id = id
         this.name = name
         this.price = price
@@ -50,7 +43,6 @@ class Cart {
         for (const item of this.userCart) {
             this.totalAmount += item.GetLineTotal()            
         }
-        console.log ( this.totalAmount )
     }
 
     render () {
@@ -59,25 +51,52 @@ class Cart {
         for (const item of this.userCart) {
             htmlString += item.render()
         }
+        htmlString += `<p>Total: ${this.totalAmount}</p>`
         block.innerHTML = htmlString;
     }
 
     addProduct (id) {
-        _UpdateCartSum ();
+
+        let find = this.userCart.find (el => el.id == id )
+
+        if (!find) {
+            let prod = catalog.products.find( el => el.id == id )
+            this.userCart.push ( new CartItem(id, prod.name, prod.price, prod.img, 1 ) )
+        } else {
+            find.quantity++
+        }
+        this._UpdateCartSum ();
+        this.render ()
     }
 
     removeProduct (id) {
-        _UpdateCartSum ();
+
+        let find = this.userCart.find (el => el.id == id )
+
+        if (find.quantity > 1) {
+            find.quantity--
+        } else {
+            this.userCart.splice (this.userCart.indexOf (find), 1)
+        }
+        this._UpdateCartSum ();
+        this.render ()
     }
 
 }
 
 class Product {
     constructor (id, name, price, img) {
-        this.id         = id;
-        this.name       = name;
-        this.price      = price;
-        this.img        = img;
+        if (arguments.length == 4) {
+            this.id         = id;
+            this.name       = name;
+            this.price      = price;
+            this.img        = img;
+        } else if(arguments.length == 1) {
+            this.id         = arguments[0].id;
+            this.name       = arguments[0].name;
+            this.price      = arguments[0].price;
+            this.img        = arguments[0].img;
+        }
     }
     render () {
         return `
@@ -101,12 +120,27 @@ class Catalog {
     }
     _init () {
         this._fetchProducts ()
-        this._render ()
+    }
+    async _apiGetJSON() {
+        
+        let jsonData = []
+        let url = `https://raw.githubusercontent.com/ymksoft/-js-gb-second-05.10/HW/3/students/Kupriyanov%20Yuri/project/db/db.json`
+        
+        let response = await fetch(url)
+        if (response.ok) { 
+            jsonData = await response.json()
+        } else {
+            console.log("Ошибка HTTP: " + response.status)
+        }
+
+        return jsonData;
     }
     _fetchProducts () {
-        for( let i = 0; i < items.length; i++ ) {
-            this.products.push( new Product(ids [i], items [i], prices [i], imgCatalog))
-        }
+        this._apiGetJSON()
+            .then( (jsonData) => {
+                jsonData.forEach( el => this.products.push ( new Product(el) ) ) 
+                this._render()
+            })
     }
     _render () {
         const block = document.querySelector ('.products')
@@ -117,12 +151,10 @@ class Catalog {
         block.innerHTML = htmlString;
     }
     GetProductsSum () {
-        // 2. Добавьте для Catalog метод, определяющий суммарную стоимость всех товаров.
         this.totalAmount = 0;
         for (const item of this.products) {
             this.totalAmount += item.price
         }
-        console.log ( this.totalAmount )
     }
 }
 
@@ -131,128 +163,19 @@ let cart = new Cart;
 
 catalog.GetProductsSum ()
 
-//let userCart = []
+let btnCart = document.querySelector ('.btn-cart')
+btnCart.addEventListener ('click', function () {
+    document.querySelector ('.cart-block').classList.toggle ('invisible')
+})
 
-//const products = createDTO () //заглушка пришедших данных
+document.querySelector ('.products').addEventListener ('click', function (e) {
+    if (e.target.classList.contains ('buy-btn')) {
+        cart.addProduct (e.target.dataset ['id'])
+    } 
+})
 
-// function createProduct (index) {
-//     return {
-//         id: index,
-//         name: items [index],
-//         price: prices [index],
-//         img: imgCatalog
-//     }
-// }
-
-// function createDTO () {
-//     let arr = []
-//     for (let i = 0; i < ids.length; i++) {
-//         arr.push (createProduct(i))
-//     }
-//     return arr
-// }
-
-// function calcSum (cart) {
-//     let sum = 0
-//     cart.forEach(el => {
-//         sum += el.price
-//     })
-//     return sum
-// }
-
-// let btnCart = document.querySelector ('.btn-cart')
-
-// btnCart.addEventListener ('click', function () {
-//     document.querySelector ('.cart-block').classList.toggle ('invisible')
-// })
-
-// function renderCatalog () {
-//     let htmlString = ''
-//     products.forEach (function (el) {
-//         htmlString += `
-//                     <div class="product-item">
-//                         <div class="desc">
-//                         <h3 class="cart-item">${el.name}</h3>
-//                         <img class="img" src="${el.img}">
-//                         </div>
-//                         <p>Цена: <span class="product-price">${el.price}</span>$</p>
-//                         <button class="buy-btn" type="button" data-id="${el.id}">В корзину</button>
-//                         <div class="prod-block invisible"></div>
-//                     </div>
-//                     `
-//     })
-//     document.querySelector ('.products').innerHTML = htmlString
-// }
-//data-аттрибуты
-// renderCatalog ()
-
-// function renderCart () {
-//     let htmlString = ''
-//     userCart.forEach (el => {
-//         htmlString += `
-//             <div class="cart-item" data-id="${el.id}">
-//                 <div class="product-bio">
-//                     <img src="${el.img}" alt="" style="width: 100px; height: 80px">
-//                     <div class="product-desc">
-//                         <p class="product-title">${el.name}</p>
-//                         <p class="product-quantity">${el.quantity}</p>
-//                         <p class="product-single-price">${el.price}</p>
-//                     </div>
-//                     <div class="right-block">
-//                         <button class="del-btn" data-id="${el.id}">&times;</button>
-//                     </div>
-//                 </div>
-//             </div>
-//         `
-//     })
-
-//     document.querySelector ('.cart-block').innerHTML = htmlString
-// }
-
-// function addProduct (index) {
-//     let prod = products [index]
-//     let find = userCart.find (el => el.id === index)
-
-//     if (!find) {
-//         userCart.push ({
-//             id: index,
-//             name: products [index].name,
-//             price: products [index].price,
-//             img: products [index].img,
-//             quantity: 1
-//         })
-//     } else {
-//         find.quantity++
-//     }
-//     renderCart ()
-//     //добавление в корзину
-//     //console.log ('Вы добавили в корзину ' + products [index].name)
-// }
-
-// function removeProduct (index) {
-//     let prod = products [index]
-//     let find = userCart.find (el => el.id === index)
-
-//     if (find.quantity > 1) {
-//         find.quantity--
-//     } else {
-//         userCart.splice (userCart.indexOf (find), 1)
-//     }
-//     renderCart ()
-//     //добавление в корзину
-//     //console.log ('Вы добавили в корзину ' + products [index].name)
-// }
-
-// //всплытие и захват событий
-// document.querySelector ('.products').addEventListener ('click', function (e) {
-//     if (e.target.classList.contains ('buy-btn')) {
-//         addProduct (+e.target.dataset ['id'])
-//     } 
-// })
-
-
-// document.querySelector ('.cart-block').addEventListener ('click', function (e) {
-//     if (e.target.classList.contains ('del-btn')) {
-//         removeProduct (+e.target.dataset ['id'])
-//     } 
-// })
+document.querySelector ('.cart-block').addEventListener ('click', function (e) {
+    if (e.target.classList.contains ('del-btn')) {
+        cart.removeProduct (e.target.dataset ['id'])
+    } 
+})

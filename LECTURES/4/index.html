@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let reg = new RegExp ('abc', 'ig')
+        let reg2 = /abc/g
+        
+        let str = 'Abc ABC abc cba aaa AbC'
+
+        reg.test (str) //true
+        reg2.test (str) //true
+
+        str.search (reg) //0
+        str.search (reg2) //8
+
+        str.match (reg) 
+        str.match (reg2) 
+
+        
+    </script>
+</body>
+</html>

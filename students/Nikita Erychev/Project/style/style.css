@@ -30,6 +30,10 @@ header {
   background-color: silver;
 }
 
+.invisible {
+  display: none;
+}
+
 .goods-list {
   display: flex;
   justify-content: space-around;
