@@ -94,3 +94,14 @@ function deleteItem(elToDelete) {
     // удаляем товар из дома
     elToDelete.parentElement.remove()
 }
+
+
+
+// class Cart {
+
+
+//createCart()
+//totalCart()
+//deleteItemCart()
+//addItemCart()
+//}

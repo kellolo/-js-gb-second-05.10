@@ -1,0 +1,14 @@
+body{
+    margin: 0 auto;
+}
+hr{
+    margin: 0;
+}
+main{
+    width: 1080px;
+    margin: 0 auto;
+    height: 100%;
+}
+header{
+    border-bottom: 1px solid black;
+}
