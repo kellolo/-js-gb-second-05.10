@@ -36,6 +36,7 @@ class List {
     }
     render () {
         const block = document.querySelector (this.container)
+        block.innderHTML = ''
         for (let product of this.goods) {
             const prod = new lists [this.constructor.name] (product)
             this.allProducts.push (prod)
@@ -139,6 +140,7 @@ class Cart extends List {
         }
     
         addProduct (element) {
+            
             this.getJson (API + '/addToBasket.json')
                 .then (response => {
                     if (response.result) {
@@ -152,11 +154,11 @@ class Cart extends List {
                                 id_product: prodId,
                                 price: +element.dataset['price'],
                                 product_name: element.dataset['name'],
-                                img: +element.dataset['image'],
+                                img: element.dataset['image'],
                                 quantity: 1
                             }
                             this.allProducts.push(product)
-                            this.render ()
+                            // this.render ()
                         }
                     }
                 })
