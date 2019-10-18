@@ -6,13 +6,15 @@
       "id_product": 4,
       "product_name": "Тостер",
       "price": 55,
-      "img": "img/toster.jpg"
+      "img": "img/toster.jpg",
+      "quantity": 1
     },
     {
       "id_product": 5,
       "product_name": "Телевизор",
       "price": 700,
-      "img": "img/tv.jpg"
+      "img": "img/tv.jpg",
+      "quantity": 1
     }
   ]
 }
