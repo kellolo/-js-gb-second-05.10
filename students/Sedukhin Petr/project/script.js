@@ -84,7 +84,7 @@ class Catalog extends List {
         super (url, container)
         this.cart = cart
         this.getJson ()
-            .then (data => this.handleData (data))
+            .then (data => this.handleData (data))  
     }
     _init () {
         document.querySelector (this.container).addEventListener ('click', event => {
@@ -107,7 +107,7 @@ class Cart extends List {
             .then (response => {
                 if (response.result)    {
                     let prodId = +element.dataset['id']
-                    let find = this.allProducts.find (item => item.id_product === prodId)
+                    let find = this.allProducts.find (item => item.id === prodId)
                     if (find) {
                         find.qty ++
                         this._updateCart (find)
@@ -119,7 +119,7 @@ class Cart extends List {
                             img: element.dataset['img'],
                             qty: 1
                         }
-                        this.allProducts.push(product)
+                        this.goods.push(product)
                         this.render ()
                     }
                 }
@@ -137,7 +137,7 @@ class Cart extends List {
         })
 
         document.querySelector (this.container).addEventListener ('click', event => {
-            if (event.target.classList.contains('del-btn')) {
+            if (event.target.classList.contains('rem-btn')) {
                 console.log (`Товар ${event.target.dataset.name} удален`)
             }
         })
