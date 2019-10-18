@@ -2,7 +2,7 @@
 let str = `'one'. 'two' isn't three. 'button'.four and 'five' aren't six.`
 let regexp = /^'|'(?=[\s.,])|(?<=\s)'/g       
 
-function change (str, regex){
+function change (str, regexp){
     return str.replace(regexp, `"`)
 }
 

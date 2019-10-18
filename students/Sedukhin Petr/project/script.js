@@ -26,6 +26,7 @@ class List {
     }
     render () {
         const block = document.querySelector (this.container)
+        block.innerHTML = ''
         for (let product of this.goods) {
             const prod = new lists [this.constructor.name] (product)
             this.allProducts.push (prod)
@@ -49,7 +50,7 @@ class Item {
             <button class="buy-btn" 
             data-id = "${this.id}"
             data-name = "${this.name}"
-            data-image="${this.img}"
+            data-img="${this.img}"
             data-price="${this.price}">Купить</button>
         </div>`
     }
@@ -65,7 +66,7 @@ class CartItem extends Item {
     render () {
         return `<div class="product-item-cart" data-id="${this.id}">
         <div class = "left-block">   
-            <img src="img/${this.img}" >
+            <img src="img/${this.img}" alt="img">
             <h2>${this.name}</h2>
             <p>price: ${this.price}</p>
         </div>    
@@ -107,7 +108,7 @@ class Cart extends List {
             .then (response => {
                 if (response.result)    {
                     let prodId = +element.dataset['id']
-                    let find = this.allProducts.find (item => item.id === prodId)
+                    let find = this.goods.find (item => item.id === prodId)
                     if (find) {
                         find.qty ++
                         this._updateCart (find)
@@ -120,13 +121,12 @@ class Cart extends List {
                             qty: 1
                         }
                         this.goods.push(product)
-                        this.render ()
+                        this.render (product)
                     }
                 }
             })
     }
     _updateCart (product) {
-        console.log (product)
         let block = document.querySelector (`.product-item-cart[data-id = "${product.id}"]`)
         block.querySelector('.product-quantity').textContent = `${product.qty}`
         block.querySelector('.product-price').textContent = `${product.qty * product.price}`
