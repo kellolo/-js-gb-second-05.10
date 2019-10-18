@@ -66,6 +66,53 @@ class Product {
 
 }
 
+
+    makeGETRequest(url) {
+            return new Promise ((resolve, reject) => {
+                let xhr = new XMLHttpRequest();
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            resolve(xhr.responseText);
+                        } else {
+                            reject('some error');
+                        }
+                    }
+                };
+                xhr.open('GET', url, true);
+                xhr.send();
+            })
+        }
+
+        fetchGoods() {
+            const API_URL = 'https://raw.githubusercontent.com/paradoxalyty/online-store-api-example/master';
+
+            this.makeGETRequest(`${API_URL}/catalogData.json`)
+                .then((data) =>{
+                    this.goods = JSON.parse(data);
+                    this.render(this.goods);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+
+        render() {
+            let listHtml = '';
+            this.goods.forEach(good => {
+                const goodItem = new GoodsItem(good.id, good.product_name, good.price, good.img);
+                listHtml += goodItem.render();
+            });
+            document.querySelector('.catalog').innerHTML = listHtml;
+        }
+    }
+
+    const list = new Catalog();
+
+    list.fetchGoods(() => {});
+
+
 class Catalog {
     constructor () {
         this.products = []
