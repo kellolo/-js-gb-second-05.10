@@ -1,19 +1,25 @@
 {
   "result": 1,
+<<<<<<< HEAD
   "amount": 46600,
+=======
+  "amount": 1200,
+>>>>>>> da5a26f578b351d1aa739796c247374cd67ce62f
   "countGoods": 2,
   "contents": [
     {
-      "id_product": 123,
-      "product_name": "Ноутбук",
-      "price": 45600,
-      "quantity": 1
+      "id": 45,
+      "name": "Notebook",
+      "price": 1000,
+      "img": "notebook.jpg", 
+      "qty": 1
     },
     {
-      "id_product": 456,
-      "product_name": "Мышка",
-      "price": 1000,
-      "quantity": 1
+      "id": 56,
+      "name": "Display",
+      "price": 200,
+      "img": "display.jpg",
+      "qty": 1
     }
   ]
 }
