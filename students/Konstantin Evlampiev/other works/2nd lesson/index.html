@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="style.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HW2</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Домашнее задание к уроку 2</h1>
+        </header>
+        <main>
+            <div class="chooseBox">
+                <form action="">
+                    <p><b>Размер гамбургера</b></p>
+                    <p><input name="size" type="radio" value="size_small" price="50" calorific="20"> Маленький (50
+                        рублей, 20 калорий).</p>
+                    <p><input name="size" type="radio" value="size_big" checked price="100" calorific="40"> Большой (100
+                        рублей, 40 калорий).
+                    </p>
+                </form>
+            </div>
+            <div class="chooseBox">
+                <form action="">
+                    <p><b>Обязательные доьбавки</b></p>
+                    <p><input name="mandatory_supp" type="radio" value="cheese" checked price="10" calorific="20"> С
+                        сыром (+10 рублей, +20
+                        калорий).
+                    </p>
+                    <p><input name="mandatory_supp" type="radio" value="salad" price="20" calorific="5"> С салатом (+20
+                        рублей, +5 калорий).
+                    </p>
+                    <p><input name="mandatory_supp" type="radio" value="potato" price="15" calorific="10"> С картофелем
+                        (+15 рублей, +10
+                        калорий).</p>
+                </form>
+            </div>
+            <div class="chooseBox">
+                <form action="">
+                    <p> <b>Дополнительные ингридиенты </b></p>
+                    <input type="checkbox" id="spice" name="spice" checked price="15" calorific="0">
+                    <label for="spice">посыпать приправой (+15 рублей, +0 калорий)</label>
+                    <input type="checkbox" id="mayo" name="mayo" checked price="20" calorific="5">
+                    <label for="mayo">полить майонезом (+20 рублей, +5 калорий)</label>
+                </form>
+            </div>
+        </main>
+        <footer>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate, illo.
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

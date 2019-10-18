@@ -1,0 +1,44 @@
+[
+    {
+        "id": 45,
+        "name": "Notebook",
+        "price": 1000,
+        "img": "notebook.jpg"
+    },
+    {
+        "id": 56,
+        "name": "Display",
+        "price": 200,
+        "img": "display.jpg"
+    },
+    {
+        "id": 67,
+        "name": "Keyboard",
+        "price": 20,
+        "img": "keyboard.jpg"
+    },
+    {
+        "id": 78,
+        "name": "Mouse",
+        "price": 10,
+        "img": "mouse.jpg"
+    },
+    {
+        "id": 89,
+        "name": "Phones",
+        "price": 25,
+        "img": "phones.jpg"
+    },
+    {
+        "id": 90,
+        "name": "Microphone",
+        "price": 10,
+        "img": "microphone.jpg"
+    },
+    {
+        "id": 101,
+        "name": "Camera",
+        "price": 40,
+        "img": "camera.jpg"
+    }
+]
