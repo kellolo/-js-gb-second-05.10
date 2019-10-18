@@ -1,0 +1,70 @@
+body {
+    background-color: #ccc;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+div {
+    margin: 25px;
+    outline: 1px dashed gray;
+    padding: 25px;
+}
+
+.task1 {
+    background-color: #ddd;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    border: none;
+}
+
+button {
+    margin: 10px;
+    height: 30px;
+    width: 250px;
+    border-radius: 15px;
+    font-size: 20px;
+    border: 1px solid gray;
+}
+
+form button:hover {
+    background-color: #777;
+    color: #fff;
+}
+
+
+textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 10x;
+
+}
+
+.task2 {
+    background-color: #dedede;
+}
+
+.task2 input[type="text"] {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 25px;
+}
+
+label {
+    width: 100%;
+    text-align: left;
+}
+
+.wrongData {
+    background-color: rgb(248, 196, 196);
+    color: red;
+}
