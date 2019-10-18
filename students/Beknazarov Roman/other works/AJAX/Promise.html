@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Promise</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+
+<script>
+    const async = (a) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (a) {
+                    const b = a + 1;
+                    resolve(b);
+                } else {
+                    reject('Error');
+                }
+            }, 200);
+        });
+    };
+
+    async(5).then((b) => {
+        console.log(b);      // Сработает первый колбэк и выведет в консоль 6
+    }, (error) => {
+        console.log(error)
+    });
+
+    async().then((b) => {
+        console.log(b);
+    }, (error) => {
+        console.log(error)   // Сработает второй колбэк и выведет в консоль 'Error'
+    });
+
+
+    const giveMeNumber = (number) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(number);
+            }, 200)
+        });
+    };
+
+    giveMeNumber(5)
+        .then((number) => { console.log(number); return number + 1; }) // В консоль выведется 5
+        .then((number) => { console.log(number); return number + 10; }) // В консоль выведется 6
+        .then((number) => { console.log(number) }); // В консоль выведется 16
+</script>
+</body>
+</html>
