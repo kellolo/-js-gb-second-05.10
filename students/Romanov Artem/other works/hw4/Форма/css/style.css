@@ -1,0 +1,84 @@
+input
+ {
+  box-sizing: border-box;
+  outline: none;
+  color: #484d4f;
+  font-family: 'Comfortaa', cursive;
+  font-size: 18px;
+  display: block;
+  margin: 10px auto;;
+  text-align: center;
+}
+label {
+  display: block;
+  margin: 30px auto;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  padding: 0 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"]
+ {
+  color: #4285b4;
+  height: 40px;
+  width: 100%;
+  max-width: 400px;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 7px;
+  border-width: 1px;
+  border-style: solid;
+  border-color:#c8c8c8;
+}
+
+fieldset {
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  padding: 0;
+  font-weight: inherit;
+}
+
+input[type="submit"]
+ {
+  height: 40px;
+  width: 100%;
+  max-width: 200px;
+  background-color: #b0e0e6;
+  padding: 8px;
+  cursor: pointer;
+  color:#282828;
+  font-weight: 700;
+  border-radius: 7px;
+  border-width: 1px;
+  border-style: solid;
+  border-color:#c8c8c8;
+  box-shadow: 1px 1px 5px 0px#cccccc;
+}
+
+input[type="submit"]:hover {
+  background-color: #4682b4;
+  color: #484d4f;
+}
+
+input:not([type="submit"]):valid {
+  border-color: #2ecc71;
+}
+
+input:not([type="submit"]) + .input-requirements {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 1s ease-out;  
+}
+
+input:not([type="submit"]):hover + .input-requirements,
+input:not([type="submit"]):focus + .input-requirements,
+input:not([type="submit"]):active + .input-requirements {
+  max-height: 1000px;
+  transition: max-height 1.5s ease-in;
+}
