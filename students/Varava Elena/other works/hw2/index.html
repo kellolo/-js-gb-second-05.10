@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Make Hamburgers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>Burger Club</h1>
+  <div class="wrapper">
+    <div class="img">
+    </div>
+    <form id="form">
+
+      <h2>Choose size your burger:</h2>
+
+      <label><input type="radio" name="size" value="S" checked> small</label><br>
+      <label><input type="radio" name="size" value="L"> large</label><br>
+
+      <h2>Choose stuffing your burger:</h2>
+      <label><input type="radio" name="stuffing" value="cheese" checked> cheese</label><br>
+      <label><input type="radio" name="stuffing" value="salad"> salad</label><br>
+      <label><input type="radio" name="stuffing" value="potato"> potato</label><br>
+
+      <h2>Choose topping your burger:</h2>
+      <label><input id="topping1" type="checkbox" name="topping" value="flavor"> flavor</label><br>
+      <label><input id="topping2" type="checkbox" name="topping" value="mayonnaise"> mayonnaise</label><br>
+
+    </form>
+
+    <div class="total">
+      <h3>Your choose:</h3>
+      <p class="total-desc">Size: <span id="size"></span></p>
+      <p class="total-desc">Stuffing: <span id="stuffing"></span> </p>
+      <p class="total-desc">Topping: <span id="topping"></span> </p>
+      <h3>Price: <span id="price"></span></h3>
+      <h3>Calories: <span id="calories"></span></h3>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
