@@ -1,0 +1,18 @@
+{
+  "amount": 46600,
+  "countGoods": 2,
+  "contents": [
+    {
+      "id_product": 4,
+      "product_name": "Тостер",
+      "price": 55,
+      "img": "img/toster.jpg"
+    },
+    {
+      "id_product": 5,
+      "product_name": "Телевизор",
+      "price": 700,
+      "img": "img/tv.jpg"
+    }
+  ]
+}
