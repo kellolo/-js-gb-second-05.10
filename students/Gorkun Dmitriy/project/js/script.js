@@ -3,8 +3,75 @@ let cartBlock = document.querySelector('.cart-block')
 let cartButton = document.querySelector('.btn-cart')
 let catalogBlock = document.querySelector('.products')
 
+const API = 'https://raw.githubusercontent.com/berryllium/-js-gb-second-05.10/gorkun/students/Gorkun%20Dmitriy/project/db'
+const CATALOG_URL = '/catalogData.json'
+const CART_URL = '/getBasket.json'
+
 cartBlock.innerHTML = 'Корзина пуста'
 
+
+// суперкласс списка
+
+class List {
+    constructor (url, container) {
+        this.container = container
+        this.url = url
+        this.goods = [] //то, что мы запрашиваем с сети
+        this.allProducts = [] //то, что мы сохраняем локально
+    }
+    _init () {
+        return false
+    }
+    getJson (url) {
+        return fetch (url ? url : `${API + this.url}`)
+            .then (result => result.json())
+            .catch (err => {
+                console.log (err)
+            })
+    }
+    handleData (data) {
+        this.goods = [...data]
+        this.render ()
+        this._init ()
+    }
+    render () {
+        const block = document.querySelector (this.container)
+        for (let product of this.goods) {
+            const prod = new lists [this.constructor.name] (product)
+            this.allProducts.push (prod)
+            block.insertAdjacentHTML ('beforeend', prod.render ())
+        }
+    }
+}
+
+//__________________________________________________________
+
+// класс товара 
+
+class Item {
+    constructor (el, img = image) {
+        this.product_name = el.product_name
+        this.price = el.price
+        this.id_product = el.id_product
+        this.img = el.img
+    }
+    render () {
+        return `<div class="product-item" data-id="${this.id_product}">
+            <img src="${this.img}" alt="Some img">
+            <div class="desc">
+                <h3>${this.product_name}</h3>
+                <p>${this.price} $</p>
+                <button class="buy-btn" 
+                data-id="${this.id_product}"
+                data-name="${this.product_name}"
+                data-image="${this.img}"
+                data-price="${this.price}">Купить</button>
+            </div>
+        </div>`
+    }
+}
+
+//_____________________________________________________________
 
 // класс каталога
 class Catalog {
