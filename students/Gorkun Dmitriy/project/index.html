@@ -37,7 +37,7 @@
         </div>
     </header>
     <main>
-        <div class="products">
+        <div class="products" v-if="products.length">
             <div class="product-item" v-for="product in products">
                 <img :src="product.img" alt="Some img">
                 <div class="desc">
@@ -47,6 +47,7 @@
                 </div>
             </div>
         </div>
+        <div class="no-data" v-else>Нет данных</div>
     </main>
 </div>
 

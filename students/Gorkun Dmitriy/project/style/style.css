@@ -58,6 +58,11 @@ p {
     overflow: hidden;
     margin: 20px 0;
 }
+.no-data {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 50px;
+}
 img {
     max-width: 100%;
     height: auto
