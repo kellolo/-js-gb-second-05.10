@@ -68,5 +68,40 @@
       "id_product": 13,
       "product_name": "Ракетка",
       "price": 1100
+    },
+    {
+      "id_product": 14,
+      "product_name": "Санки",
+      "price": 1700
+    },
+    {
+      "id_product": 15,
+      "product_name": "Шнурки",
+      "price": 50
+    },
+    {
+      "id_product": 16,
+      "product_name": "Бейсбольная&nbsp;бита",
+      "price": 3000
+    },
+    {
+      "id_product": 17,
+      "product_name": "Тросс",
+      "price": 400
+    },
+    {
+      "id_product": 18,
+      "product_name": "Солнцезащитные&nbsp;очки",
+      "price": 900
+    },
+    {
+      "id_product": 19,
+      "product_name": "Спортивные&nbsp;часы",
+      "price": 10000
+    },
+    {
+      "id_product": 20,
+      "product_name": "Гетры",
+      "price": 300
     }
 ]
