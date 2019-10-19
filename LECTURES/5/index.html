@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            margin: 0 auto
+        }
+        .post {
+            border-radius: 5px;
+            border: 2px solid grey;
+            padding: 15px;
+            margin-bottom: 10px
+        }
+        .post-footer {
+            text-align: right
+        }
+        .font-it {
+            font-style: italic
+        }
+        .red {
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <div id="lol">
+        <div class="container">
+            <div>
+                <input type="text" v-model.lazy="limit">
+                <br> <p>Количество постов загружено: <b>{{ limit }}</b></p>
+                <button @click="loadPosts()">reload</button>
+            </div>
+            <div class="post" v-for="comment of comments">
+                <div class="user">
+                    <h4>{{ comment.name }}</h4>
+                </div>
+                <button @click="show = !show">Show text</button>
+                <div class="post-body" v-show="show">
+                    <p v-bind:class="textClass">{{ comment.body }}</p>
+                    <br>
+                    <button v-on:click="textClass === '' ? textClass = 'red' : textClass = ''">
+                        Make post {{ textClass === '' ?  'red' : 'black' }}
+                    </button>
+                </div>
+                <div class="post-footer">
+                    <a href="#">{{ comment.email }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        let appLol = new Vue ({
+            el: '#lol',
+            data: {
+                //данные, создаваемые внутри компонента.
+                comments: [],
+                    textClass: '',
+                    show: true,
+                    limit: 1
+            },
+            computed: {
+                getPosts () {
+                    return fetch ('https://jsonplaceholder.typicode.com/comments?_limit=' + this.limit)
+                    .then (data => data.json ())
+                }
+                //динамические данные
+                //функции, возвращающие значения
+            },
+            methods: {
+                //функции внутри приложения
+                async loadPosts () {
+                    this.comments = await this.getPosts
+                }
+
+            },
+            //ХУКИ жизненного цикла
+            async mounted () {
+                //жизненное событие - элемент "смонтирован"
+                this.comments = await this.getPosts
+            }
+        })
+    </script>
+</body>
+</html>
