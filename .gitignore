@@ -2,12 +2,10 @@
 .vs/ProjectSettings.json
 .DS_Store
 
-.gitignore
-=======
-
 .vs/VSWorkspaceState.json
 .vs/-js-gb-second-05.10/v16/.suo
 LECTURES/2.zip
 PROJECT/PROJECT.zip
 
+students/Sergeev Victor/project/3/node_modules
 
