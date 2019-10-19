@@ -9,7 +9,8 @@ let app = new Vue({
         getProducts: [],
         getcartProducts: [],
         products: [],
-        cartProducts: []
+        cartProducts: [],
+        search: ''
     },
     methods: {
         getJson(url) {
@@ -18,6 +19,12 @@ let app = new Vue({
                 .catch(err => {
                     console.log(err)
                 })
+        },
+        find() {
+            const reg = new RegExp(`${this.search}`,'i')
+            this.products = this.getProducts.filter((product) => {
+                return reg.test(product.product_name)
+            })
         },
         addProduct(product) {
             console.log(`Куплен ${product.product_name}`)
