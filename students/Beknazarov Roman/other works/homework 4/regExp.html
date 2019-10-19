@@ -25,6 +25,10 @@
     let text3 = text2.replace(/(\b"\b)/g, `\'`);
     console.log(text3);
 
+    let regexp = /\B'|'\B/g;
+    let text4 = string.replace(regexp, `\"`);
+    console.log(text4);
+
 </script>
 </body>
 </html>
