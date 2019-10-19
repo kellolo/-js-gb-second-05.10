@@ -1,41 +1,40 @@
-//Вчера косяк был в том, что дважды вызывался метод _init () - отсюда навешивалось по два event Listener на клик по каждой кнопке
-// устранено
-
-// так же был косяк здесь:
-// _updateCart (product) {
-//     console.log (product)
-//     let block = document.querySelector (`.cart-item[data-id = "${product.id_product}"]`)
-// не тот селектор был прокинут в определение блока. надо было искать по дата-атрибуту id - иначе невозможно было определить нужный блок
-// устранено
-
-const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
-//const image = ;
-const cartImage = 'https://placehold.it/100x80';
-//const CATALOG_URL = 
-const CART_URL = '/getBasket.json'
-
-let app = new Vue ({
+let app = new Vue({
     el: '#app',
     data: {
+        API: 'https://raw.githubusercontent.com/berryllium/-js-gb-second-05.10/gorkun/students/Gorkun%20Dmitriy/project/db',
         catalogUrl: '/catalogData.json',
+        cartUrl: '/getBasket.json',
         imgCatalog: 'https://placehold.it/200x150',
-        products: []
+        imgCart: 'https://placehold.it/100x80',
+        products: [],
+        cartProducts: []
     },
     methods: {
-        getJson (url) {
-            return fetch (`${API + url}`)
-            .then (result => result.json())
-            .catch (err => {
-                console.log (err)
-            })
+        getJson(url) {
+            return fetch(`${this.API + url}`)
+                .then(result => result.json())
+                .catch(err => {
+                    console.log(err)
+                })
         },
-        addProduct (product) {
-            console.log (`Куплен ${product.product_name}`)
+        addProduct(product) {
+            console.log(`Куплен ${product.product_name}`)
+            const find = this.cartProducts.find((item) => item.id_product === product.id_product)
+            if(find) find.quantity++
+            else {
+                product.quantity = 1
+                this.cartProducts.push(product)
+            }
+        },
+        removeProduct(product) {
+            console.log(`Удален ${product.product_name}`)
         }
     },
-    mounted () {
-        this.getJson (this.catalogUrl)
-            .then (data => this.products = data)
+    mounted() {
+        this.getJson(this.catalogUrl)
+            .then(data => this.products = data)
+        this.getJson(this.cartUrl)
+            .then(data => this.cartProducts = data.contents)
     }
 })
 
@@ -103,20 +102,20 @@ let app = new Vue ({
 //     }
 //     render () {
 //         return `
-//             <div class="cart-item" data-id="${this.id_product}">
-//                 <div class="product-bio">
-//                     <img src="${this.img}" alt="Some image">
-//                     <div class="product-desc">
-//                         <p class="product-title">${this.product_name}</p>
-//                         <p class="product-quantity">Quantity: ${this.quantity}</p>
-//                         <p class="product-single-price">$${this.price} each</p>
-//                     </div>
-//                 </div>
-//                 <div class="right-block">
-//                     <p class="product-price">${this.quantity * this.price}</p>
-//                     <button class="del-btn" data-id="${this.id_product}">&times;</button>
-//                 </div>
-//             </div>
+            // <div class="cart-item" data-id="${this.id_product}">
+            //     <div class="product-bio">
+            //         <img src="${this.img}" alt="Some image">
+            //         <div class="product-desc">
+            //             <p class="product-title">${this.product_name}</p>
+            //             <p class="product-quantity">Quantity: ${this.quantity}</p>
+            //             <p class="product-single-price">$${this.price} each</p>
+            //         </div>
+            //     </div>
+            //     <div class="right-block">
+            //         <p class="product-price">${this.quantity * this.price}</p>
+            //         <button class="del-btn" data-id="${this.id_product}">&times;</button>
+            //     </div>
+            // </div>
 //         `
 //     }
 // }
@@ -182,7 +181,7 @@ let app = new Vue ({
 //                         find.quantity --
 //                         this._updateCart (find)
 //                     } else {
-                        
+
 //                         this.allProducts.splice(this.allProducts.indexOf(find), 1)
 //                         let block = document.querySelector (`.cart-item[data-id = "${find.id_product}"]`)
 //                         block.remove ()
