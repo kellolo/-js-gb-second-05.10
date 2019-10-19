@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Vue-example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+<div id="root">
+    <div>
+        <label> Write your name
+            <input type="text" v-model="name1">
+        </label>
+        <p v-if="name1.length != 0" style="display: inline; color: red;">Hi, my name is {{ upperCaseName }}</p>
+    </div>
+    <ul>
+        <li v-for="name in names" @click="clickHandler">{{ name }}</li>
+    </ul>
+
+</div>
+
+<!--suppress JSUnresolvedLibraryURL -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
