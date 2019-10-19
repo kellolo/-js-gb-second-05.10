@@ -15,6 +15,13 @@
       "price": 700,
       "img": "img/small/tv.jpg",
       "quantity": 1
+    },
+    {
+      "id_product": 1,
+      "product_name": "Кофеварка",
+      "price": 50,
+      "img": "img/coffee.jpg",
+      "quantity": 1
     }
   ]
 }
