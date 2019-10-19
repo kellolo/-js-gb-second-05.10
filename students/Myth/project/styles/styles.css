@@ -1,0 +1,51 @@
+header {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    height: 45px;
+    background-color: black;
+    font-size: large;
+    color: white;
+    align-items: center;
+}
+.logo{
+    margin-left: 20px;
+}
+
+.basket{
+    margin-right: 20px;
+    justify-self: flex-end;
+}
+
+.products{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr );
+    grid-template-rows: auto;
+    grid-gap: 10px;
+    justify-items: center;
+}
+.product-item{
+    background-color: silver;
+    max-width: 160px;
+}
+
+.basketWrap{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.62);
+    border-radius: 5px;
+    right: 5px;
+    top: 50px;
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    color: black;
+    width: 300px;
+}
+.basketInvisibleItem{
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.5fr 0.5fr;
+    align-items: center;
+    justify-items: center;
+}
+.invisible{
+    display: none;
+}
