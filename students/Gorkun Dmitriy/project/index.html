@@ -12,13 +12,13 @@
         <div class="logo">E-shop</div>
         <div class="cart">
             <form action="#" class="search-form">
-                <input type="text" class="search-field" v-model="search" @keyup="find">
-                <button class="btn-search" @click="find()">
+                <input type="text" class="search-field" v-model="searchLine" @keyup="filterGoods">
+                <button class="btn-search" @click="filterGoods">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <button class="btn-cart" type="button">Корзина</button>
-            <div class="cart-block">
+            <button class="btn-cart" type="button" v-on:click="isVisibleCart === true ? isVisibleCart = false : isVisibleCart = true">Корзина</button>
+            <div class="cart-block" v-if="isVisibleCart">
                 <div class="cart-item" v-for="product in cartProducts">
                     <div class="product-bio">
                         <img :src="product.img" alt="Some image">

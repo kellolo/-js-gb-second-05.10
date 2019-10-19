@@ -10,7 +10,8 @@ let app = new Vue({
         getcartProducts: [],
         products: [],
         cartProducts: [],
-        search: ''
+        searchLine: '',
+        isVisibleCart: true
     },
     methods: {
         getJson(url) {
@@ -20,8 +21,8 @@ let app = new Vue({
                     console.log(err)
                 })
         },
-        find() {
-            const reg = new RegExp(`${this.search}`,'i')
+        filterGoods() {
+            const reg = new RegExp(`${this.searchLine}`,'i')
             this.products = this.getProducts.filter((product) => {
                 return reg.test(product.product_name)
             })
@@ -55,9 +56,6 @@ let app = new Vue({
         this.getJson(this.catalogUrl)
             .then(data => this.products = this.getProducts = data)
         this.getJson(this.cartUrl)
-            .then(data => this.cartProducts = this.getCartProducts = data.contents);
-        document.querySelector('.btn-cart').addEventListener('click', () => {
-            document.querySelector('.cart-block').classList.toggle('invisible')
-        })
+            .then(data => this.cartProducts = this.getCartProducts = data.contents)
     }
 })
