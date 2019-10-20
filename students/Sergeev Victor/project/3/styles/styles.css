@@ -2,6 +2,7 @@ body {
     padding: 0;
     margin: 0;
     font-family:"Tahoma";
+	height: 100%
 }
 
 header {
@@ -11,17 +12,24 @@ header {
     padding: 30px 70px;
 }
 
-footer{
-    height:70px;
-    display: flex;
-    color: #fafafa;
-    background-color: #2f2a2d;
+.wrapper{
+    margin: 0 auto;
+    position: relative;
+	min-height: 100%;
 }
 
-.container{
-    margin: 0 auto;
-    box-sizing: border-box;
-	min-height: 100%;
+main{
+    padding-bottom: 90px;
+}
+
+footer{
+    position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 80px;
+    color: #fafafa;
+    background-color: #2f2a2d;
 }
 
 .blank{
@@ -70,6 +78,7 @@ header .search-container{
     border:none;
     background-color: #2f2a2d;
     border-bottom: 2px solid #fafafa;
+    font-family: 'Mandali', sans-serif;
 }
 
 .goods-search:focus{
@@ -89,6 +98,10 @@ header .search-container{
     font-size: 30px;
 }
 
+.basket-button:hover {
+    color: #fafafa;
+}
+
 .go-back-btn{
     margin-top:3px;
     padding: 5px 20px;
@@ -100,10 +113,6 @@ header .search-container{
 }
 
 .go-back-btn:hover{
-    color: #fafafa;
-}
-
-.basket-button:hover {
     color: #fafafa;
 }
 

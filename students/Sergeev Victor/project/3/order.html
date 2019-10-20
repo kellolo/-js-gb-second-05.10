@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
   <link rel="stylesheet" href="styles/styles.css">
-  <link rel="stylesheet" href="styles/order.css">
+  <link rel="stylesheet" href="styles/order-form.css">
 </head>
 <body>
     <div class="container">
@@ -15,19 +15,20 @@
         </header>
 
         <main>
-            <section class="input-container">
-                <p>Ваша сумма составляет <span class="totalSumOfOrder">0</span><i class="fas fa-ruble-sign"></i></p>
-                <p>Заполните форму чтобы оформить заказ на покупку выбранных товаров.</p> 
-                <form action="#" method="POST" class="contacts-form">
-                    <div class="flex-form">
-                        <input type="first_name" name="first_name" placeholder="Your Name ..." required>
-                        <input type="telephone" name="telephone" placeholder="Your Telephone Number ..." required>
-                        <input type="email" name="email" placeholder="Your Email ..." required>
-                        <textarea rows="10" name="message" placeholder="Your Message ..."></textarea>
-                        <div class="btn-submit"><input type="submit" value="Submit"></div>
+            <div class="input-container">
+                <p>Ваша сумма товара(ов) составляет <span class="totalSumOfOrder">0</span><i class="fas fa-ruble-sign"></i></p>
+                <p>Заполните форму для оформления заказа на покупку. <span class="tests"></span></p> 
+                <form action="#" method="POST" class="order-form">    
+                    <div class="flex-order-form">
+                        <div><input type="text" name="surname" placeholder="Ваша Фамилия ..."></div>
+                        <div><input type="text" name="first_name" placeholder="Ваше Имя ..." required></div>
+                        <div><input type="text" name="email" placeholder="Ваш Email ..." required></div>
+                        <div><input type="text" name="telephone" placeholder="Ваш Телефон ..." required></div>
+                        <div><textarea rows="10" name="message" placeholder="Ваш Комментарий ..."></textarea></div>
+                        <div class="btn-submit"><input type="submit" value="Заказать"></div>
                     </div>
                 </form>
-            </section>    
+            </div>    
         </main>
 
         <div class="blank"></div>
