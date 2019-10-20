@@ -55,10 +55,17 @@ class GoodsList {
       this.render();
     })
     .then(() => { 
-      //this.addListenersOfSearchInput();
+      this.addListenersOfGoodsButtonsInput(basketOfGoods);
     })
     .then(() => {
-      this.addListenersOfGoodsButtonsInput(basketOfGoods);
+      let searchBtn = document.querySelector('.search-button');
+      let searchInput = document.querySelector('.goods-search');
+      searchBtn.addEventListener('click', (e) => {
+        console.log('alarm');
+        const value = searchInput.value;
+        this.filterGoods(value);
+        this.addListenersOfGoodsButtonsInput(basket);//для search input
+      })
     })
     .catch((err)=>{
       console.log(err);
@@ -91,12 +98,3 @@ class GoodsList {
 
 let goodsList = new GoodsList(basket);
 goodsList.getPromiseGoods(basket);//получение данных товаров
-
-let searchBtn = document.querySelector('.search-button');
-let searchInput = document.querySelector('.goods-search');
-searchBtn.addEventListener('click', (e) => {
-  console.log('alarm');
-  const value = searchInput.value;
-  goodsList.filterGoods(value);
-  goodsList.addListenersOfGoodsButtonsInput(basket)
-});

@@ -84,6 +84,7 @@ class Basket{
         for (let key in this.products) {
             this.sum += this.products[key].price * this.products[key].count;
         }
+        localStorage.setItem("totalSum", this.sum);
     }
   
     /**
@@ -132,3 +133,11 @@ class Basket{
 }
 
 let basket = new Basket();
+
+let buyBtn = document.getElementsByClassName("buy-btn-basket")[0];
+buyBtn.addEventListener('click', function (event) {
+    if(basket.sum > 0){
+        totalSum = basket.sum;
+        window.location='order.html'
+    }
+});
