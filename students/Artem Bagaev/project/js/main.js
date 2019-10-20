@@ -62,7 +62,7 @@ class Catalog {
 
 let catalog = new Catalog ()
 
-class Usercart () {
+class Usercart {
     constructor () {
       this.products = []
       this._init ()
@@ -71,6 +71,12 @@ class Usercart () {
       this._addProdcuts ()
       this._removeProdcuts ()
       this._renderCart()
+    }
+    _addProdcuts () {
+      const button = document.querySelector('.buy-btn')
+      button.addEventListener('click', function () {
+        console.log('event')
+      })
     }
 }
 
