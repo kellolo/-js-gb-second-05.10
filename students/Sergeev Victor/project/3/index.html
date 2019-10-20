@@ -9,7 +9,13 @@
 <body>
     <div class="container">
         <header>
-            <button class="basket-button" type="button">Корзина ▼</button>
+            <i class="basket-button fa fa-shopping-cart" aria-hidden="true"></i>
+            
+            <div class="search-container">
+                <input type="text" class="goods-search" />
+                <i class="search-button fa fa-search" aria-hidden="true"></i>
+            </div>
+
             <div class="title-2Xsport"><h2>2Xsport shop</h2></div>
             <div class="dropdown-menu dropdown-menu-right basket-panel">
                     <table class="table table-hover">
@@ -22,7 +28,7 @@
                                 <th scope="col"></th>
                             </tr>
                         </thead>
-                        <tbody></tbody><!-- тут будут отрисованы товары, попавшие в корзину -->
+                        <tbody></tbody><!-- товары, попавшие в корзину -->
                         <tfoot>
                             <tr>
                                 <th colspan="2" scope="row">Итого:</th>
@@ -31,20 +37,26 @@
                                     <i class="fas fa-ruble-sign"></i>
                                 </td>
                             </tr>
+                            <tr>
+                                <th><button class="buy-btn-basket" onclick="window.location='form-buy.html'">Купить</button></th>
+                            </tr>
                         </tfoot>
+                        
                     </table>
             </div>
         </header>
+
         <main>
             <div class="goods-list"></div>
         </main>
+
         <div class="blank"></div>
         <footer>
-            <p class="copyright">© 2Xsport shop 2019</p>
+            <p class="copyright">© 2Xsport shop 2019, developed by Victor Sergeev</p>
         </footer>
     </div>
 </body>
-<script src="./dist/bundle.js"></script>
+<script src="./dist/bundle.js"></script><!-- webpack -->
 <script src="js/render_dropdown_menu.js"></script>
 <script src="js/basket.js"></script>
 <script src="js/goods.js"></script>

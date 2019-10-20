@@ -132,4 +132,3 @@ class Basket{
 }
 
 let basket = new Basket();
-//module.exports = Basket;

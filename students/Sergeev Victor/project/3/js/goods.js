@@ -1,12 +1,10 @@
-//const Basket = require('./Basket.js');
-
 class GoodsItem {
   constructor(id, title, price) {
     this.id_product = id;
     this.product_name = title;
     this.price = price;
-
   }
+
   render() {
     return `<div class="goods-item"><h3>${this.product_name}</h3><p>${this.price} <i class="fas fa-ruble-sign"></i></p>
   <button class="toBasketBtn" data-id=${this.id_product} data-price=${this.price} data-name=${this.product_name}>В корзину</button>
@@ -16,10 +14,17 @@ class GoodsItem {
 
 class GoodsList {
   constructor() {
-    this.API_url = "https://raw.githubusercontent.com/Essvitex/-js-gb-second-05.10/master/students/Sergeev_Victor/project/3/jsonData";
+    this.API_url = "https://raw.githubusercontent.com/Essvitex/-js-gb-second-05.10/master/students/Sergeev Victor/project/3/jsonData";
     this.goods = [];
+    this.filteredGoods = [];//поле поиска
   }
   
+  filterGoods(searchValue){
+    const regexp = new RegExp(searchValue, 'i');
+    this.filteredGoods = this.goods.filter(good => regexp.test(good.product_name));
+    this.render();
+  }
+
   promisAjaxGetGoods(url){
     return new Promise((res, rej)=>{
       let xhr = new XMLHttpRequest();
@@ -44,12 +49,24 @@ class GoodsList {
     this.promisAjaxGetGoods(`${this.API_url}/catalogData.json`)
     .then((data)=>{
       this.goods = JSON.parse(data);
+      this.filteredGoods = JSON.parse(data);
     })
     .then(() => {
       this.render();
     })
     .then(() => { 
-      let basketBtns = document.querySelectorAll('.toBasketBtn');
+      //this.addListenersOfSearchInput();
+    })
+    .then(() => {
+      this.addListenersOfGoodsButtonsInput(basketOfGoods);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
+  
+  addListenersOfGoodsButtonsInput(basketOfGoods){
+    let basketBtns = document.querySelectorAll('.toBasketBtn');
 
       //берем все кнопки "В корзину" и слушаем клики по ним
       basketBtns.forEach(function (btn) {
@@ -58,17 +75,13 @@ class GoodsList {
           let price = event.srcElement.dataset.price;
           let name = event.srcElement.dataset.name;
           basketOfGoods.addProduct({ id: id, price: price, name: name });
-        })
-      })
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+    }
+    )})
   }
 
   render() {
     let listHtml = '';
-    this.goods.forEach(good => {
+    this.filteredGoods.forEach(good => {
         const goodItem = new GoodsItem(good.id_product, good.product_name, good.price);
         listHtml += goodItem.render();
       });
@@ -76,6 +89,14 @@ class GoodsList {
     }
 }
 
-let goodsList = new GoodsList();
-
+let goodsList = new GoodsList(basket);
 goodsList.getPromiseGoods(basket);//получение данных товаров
+
+let searchBtn = document.querySelector('.search-button');
+let searchInput = document.querySelector('.goods-search');
+searchBtn.addEventListener('click', (e) => {
+  console.log('alarm');
+  const value = searchInput.value;
+  goodsList.filterGoods(value);
+  goodsList.addListenersOfGoodsButtonsInput(basket)
+});

@@ -19,8 +19,9 @@ footer{
 }
 
 .container{
-    width: 1200px;
     margin: 0 auto;
+    box-sizing: border-box;
+	min-height: 100%;
 }
 
 .blank{
@@ -35,26 +36,74 @@ header .title-2Xsport{
     position:absolute;
     width:160px;
     margin-top: -14px;
-    margin-left:150px;
-    color:rgba(75, 183, 142, 0.363);
+    margin-left:100px;
+    color: #fafafa;
 }
 
-.basket-button {
-    background-color: #fafafa;
-    height:40px;
+header .title-2Xsport a{
+    color: #fafafa;
+    text-decoration: none;
+}
+
+header .search-container{
+    position:absolute;
+    width:350px;
+    right: 100px;
+}
+
+.search-button{
     padding: 10px 20px;
-    border: 1px solid transparent;
-    color: #2f2a2d;
-    border-radius: 5px;
+    color: #fafafa;
     transition: all ease-in-out .4s;
     cursor: pointer;
     width: 120px;
     font-size: 15px;
 }
 
+.search-button:hover {
+    color: rgb(12, 165, 76);
+}
+
+.goods-search{
+    color:#fafafa;
+    outline:none;
+    border:none;
+    background-color: #2f2a2d;
+    border-bottom: 2px solid #fafafa;
+}
+
+.goods-search:focus{
+    border-bottom: 2px solid rgb(12, 165, 76);
+}
+
+.goods-search:hover{
+    border-bottom: 2px solid rgb(12, 165, 76);
+}
+
+.basket-button {
+    padding: 5px 20px;
+    color: rgb(12, 165, 76);
+    transition: all ease-in-out .4s;
+    cursor: pointer;
+    width: 120px;
+    font-size: 30px;
+}
+
+.go-back-btn{
+    margin-top:3px;
+    padding: 5px 20px;
+    color: rgb(12, 165, 76);
+    transition: all ease-in-out .4s;
+    cursor: pointer;
+    width: 120px;
+    font-size: 30px;
+}
+
+.go-back-btn:hover{
+    color: #fafafa;
+}
+
 .basket-button:hover {
-    background-color: transparent;
-    border-color: #fafafa;
     color: #fafafa;
 }
 
@@ -86,20 +135,19 @@ thead tr td{
 
 .goods-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-items: center;
-    grid-row-gap: 20px;
-    margin-top: 20px;
+    grid-row-gap: 50px;
+    margin-top: 30px;
 }
-
-
 
 .goods-item {
     font-size: 10pt;
     position: relative;
     width: 200px;
     height: 230px;
-    outline: #9e9b9d solid 1px;
+    border: 1px solid #c5c1c4;
+    border-radius: 5px;
     text-align: center;
     display: inline-block;
     background: url(../images/no-product.png) no-repeat;
@@ -112,17 +160,17 @@ thead tr td{
 
 .toBasketBtn{
     position: absolute;
+    cursor: pointer;
     left: 50px;
     bottom: 0;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
     -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 1px 0 rgba(62, 150, 66, 0.2), 0 1px 2px rgba(2, 182, 11, 0.08);
     color: #fff;
     display:block;
     width:100px;
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     padding: 8px 16px;
     margin: 20px auto;
@@ -131,17 +179,51 @@ thead tr td{
     -webkit-transition: background-color 0.1s linear;
     -moz-transition: background-color 0.1s linear;
     -o-transition: background-color 0.1s linear;
-    transition: background-color 0.1s linear;        
+    transition: background-color 0.1s linear;       
+    background-color: rgb(12, 165, 76); 
 }
-.toBasketBtn {
-    background-color: rgb(12, 165, 76);
-    border: 1px solid rgb( 33, 126, 74 );
-}
+
             
 .toBasketBtn:hover {
-    background-color: rgb( 75, 183, 141 );
+    cursor:pointer;
+    background-color:#2f2a2d;
 }
+
+.toBasketBtn:active {
+    background-color:rgb(8, 82, 39);
+}
+
+.buy-btn-basket{
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 1px 0 rgba(62, 150, 66, 0.2), 0 1px 2px rgba(2, 182, 11, 0.08);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: background-color 0.1s linear;
+    -moz-transition: background-color 0.1s linear;
+    -o-transition: background-color 0.1s linear;
+    transition: background-color 0.1s linear;       
+    background-color: rgb(12, 165, 76); 
+    padding: 4px 8px;
+}
+
+.buy-btn-basket:hover{
+    cursor:pointer;
+    background-color:#2f2a2d;
+}
+
+.buy-btn-basket:active {
+    background-color:rgb(8, 82, 39);
+}
+
 
 .copyright{
     margin-left:30px;
+}
+
+.visible-basket-button{
+    visibility: hidden;
 }
