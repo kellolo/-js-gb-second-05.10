@@ -9,7 +9,7 @@ class Hamburger {
       'cheese': 10,
       'salad': 20,
       'potato': 15,
-      'flavor': 15,
+      'spice': 15,
       'mayonnaise': 20
     }
     this.calories = {
@@ -18,7 +18,7 @@ class Hamburger {
       'cheese': 20,
       'salad': 5,
       'potato': 10,
-      'flavor': 0,
+      'spice': 0,
       'mayonnaise': 5
     }
   }
