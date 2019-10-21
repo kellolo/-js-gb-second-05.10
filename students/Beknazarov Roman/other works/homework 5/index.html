@@ -23,8 +23,8 @@
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <button class="btn-cart" type="button">cart</button>
-            <div class="cart-block">
+            <button class="btn-cart" type="button" @click="show = !show">cart</button>
+            <div class="cart-block" v-show="show">
                 <p v-if="cartItems.length === 0">Empty</p>
                 <div class="cart-item" v-for="item of cartItems">
                     <div class="product-bio">

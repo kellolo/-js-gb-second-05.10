@@ -9,6 +9,7 @@ const API = 'https://raw.githubusercontent.com/paradoxalyty/online-store-api-exa
 new Vue({
     el: "#root",
     data: {
+        show: false,
         catalogUrl: '/catalogData.json',
         imgCatalog: 'https://placehold.it/200x150',
         products: [],
