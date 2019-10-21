@@ -1,148 +1,162 @@
 // генерим каталог товаров
 let itemsList =[]
 
-for (let i = 1; i <= 1000; i++){
-    itemsList.push({id:`${i}`, name:`Жеванный крот${i}`, price:10*`${i}`, img: `src${i}`, quantity:``})
+for (let i = 1; i <= 10; i++){
+    itemsList.push({id:`${i}`, name:`Жеванный крот${i}`, price:10*`${i}`, img: `images/${i}.jpg`, quantity:``})
 }
 
 //основной код страницы
 
-const products = document.querySelector ('.products')
-const btnBasket = document.querySelector ('.btn-basket')
-const basketWrap = document.querySelector(".basketWrap")
+const block_products = document.querySelector ('.products')
+const block_btnBasket = document.querySelector ('.btn-basket')
+const block_basketWrap = document.querySelector(".basketWrap")
 
 
-//создаем корзину
+class Product{
+    constructor(id, name, price, img, quantity =''){
+        this.product_id = id
+        this.product_name = name
+        this.product_price = price
+        this.product_img = img
+        this.product_quantity = quantity
+    }
+    render(){
+        return `
+            <div class="product-item" data-id="${this.product_id}">
+                <div class="desc">
+                    <h3 class="cart-item">${this.product_name}</h3>
+                    <img class="img" src="${this.product_img}" style = "width: 150px; height: 100px;" alt="picture">
+                </div>
+                <p>Цена: <span class="product-price">${this.product_price}</span>$</p>
+                <button class="buy-btn" type="button" data-id="${this.product_id}">В корзину</button>
+            </div>
+        
+        `
+    }
+}
 
-let Basket = {
-    userBasket: [],
+class Catalog {
+    constructor() {
+        this.productsList = []
+        this._init()
+    }
 
-    createBasket() {
-        return this.userBasket
-    },
+    _init(){
+        this._fetchProducts()
+        this._render()
+    }
+
+    _fetchProducts() {
+        for (let i = 0; i < itemsList.length; i++) {
+            this.productsList.push(new Product(itemsList[i]['id'], itemsList[i]['name'], itemsList[i]['price'], itemsList[i]['img'] ))
+        }
+    }
+
+    _render(){
+        let htmlString = ''
+        this.productsList.forEach(item => htmlString += item.render() )
+        block_products.innerHTML = htmlString
+    }
+}
+
+class Basket {
+    constructor(){
+        this.userBasket = []
+        this._renderBasket()
+    }
 
     addProductToBasket(index){
-        let prod = itemsList[index-1]
-        let find = this.userBasket.find(el => el.id === index)
+        let prod = catalog.productsList[index -1]
+        let find = this.userBasket.find(el => el.product_id === index)
 
         if(!find){
-            this.userBasket.push({
-                id:index,
-                name:itemsList[index-1].name,
-                price:itemsList[index-1].price,
-                img: `src${index}`,
-                quantity:1})
-        } else { find.quantity ++}
-        renderBasket()
-    },
+            prod.product_quantity = 1
+            this.userBasket.push(prod)
+        }
+        else{find.product_quantity ++}
+        this._renderBasket()
+    }
 
     removeProductFromBasket(index){
         let prod = itemsList[index-1]
-        let find = this.userBasket.find(el => el.id === index)
+        let find = this.userBasket.find(el => el.product_id === index)
 
-        if(find && find.quantity >1){
-            find.quantity --}
-        else if (find && find.quantity === 1) {
+        if(find && find.product_quantity >1){
+            find.product_quantity --}
+        else if (find && find.product_quantity === 1) {
             this.userBasket.splice(this.userBasket.indexOf(find), 1)
         }
-        renderBasket()
-    },
+        this._renderBasket()
+    }
 
     clearUserBasket(){
         this.userBasket = []
-        renderBasket()
-    },
+        this._renderBasket()
+    }
 
     countAllProductsInBasket(){
-        let total = 0;
+        let total = 0
         for (let i = 0; i < this.userBasket.length; i++) {
-            total += this.userBasket[i].quantity
+            total += this.userBasket[i].product_quantity
         }
-        console.log("Количество товаров в корзине: " );
-        return total;
-    },
+        return total
+    }
 
     countTotalPrice() {
-        let total = 0;
+        let total = 0
         for (let i in this.userBasket) {
-            total += this.userBasket[i].price * this.userBasket[i].quantity ;
+            total += this.userBasket[i].product_price * this.userBasket[i].product_quantity
         }
-        console.log(`Общая сумма товаров в корзине составляет: ${total}`);
         return total;
-    },
+    }
 
-}
-
-// рендерим все
-
-function renderProductsCatalog () {
-    let htmlString = ''
-    itemsList.forEach (function (item) {
+    _renderBasket(){
+        const btnBasket = document.querySelector ('.btn-basket')
+        let htmlString = ''
+        let count = 0
+        this.userBasket.forEach(function (item) {
+            count += 1 * item.product_quantity
+            htmlString += `
+                <div class="basketInvisibleItem">
+                    <img src="${item.product_img}" alt="картинка" style="width: 60px; height: 45px; align-self: center"" >
+                    <p class="productTitle">${item.product_name}</p>
+                    <p class="productQuantity">${item.product_quantity}</p>
+                    <button class="del-btn" data-id="${item.product_id}" style="height: 20px; width: 20px;">&times;</button>
+                </div>
+            `
+        })
         htmlString += `
-                    <div class="product-item">
-                        <div class="desc">
-                            <h3 class="cart-item">${item.name}</h3>
-                            <img class="img" src="" style = "width: 150px; height: 100px;" alt="picture">
-                        </div>
-                        <p>Цена: <span class="product-price">${item.price}</span>$</p>
-                        <button class="buy-btn" type="button" data-id="${item.id}">В корзину</button>
-                    </div>
-                    `
-    })
-    products.innerHTML = htmlString
+        <p>Итого в корзине:${this.countAllProductsInBasket()}</p>
+        <p>На сумму: ${this.countTotalPrice()}</p>
+        <p><button>Оплатить</button></p>
+        <p><button class="cls-btn">Очистить</button></p>`
+
+        btnBasket.innerHTML = `В корзине (${count})`
+        block_basketWrap.innerHTML = htmlString
+    }
+
 }
 
-function renderBasket(){
-    let htmlString = ''
-    let count = 0
-    Basket.userBasket.forEach(function (item) {
-        count += 1 * item.quantity
-        console.log(item)
-
-        htmlString += `
-            <div class="basketInvisibleItem">
-                <img src="" alt="картинка" style="width: 60px; height: 45px; align-self: center"" >
-                <p class="productTitle">${item.name}</p>
-                <p class="productQuantity">${item.quantity}</p>
-                <button class="del-btn" data-id="${item.id}" style="height: 20px; width: 20px;">&times;</button>
-            </div>
-        `
-    })
-    htmlString += `
-    <p>Итого в корзине:${Basket.countAllProductsInBasket()}</p>
-    <p>На сумму: ${Basket.countTotalPrice()}</p>
-    <p><button>Оплатить</button></p>
-    <p><button class="cls-btn">Очистить</button></p>`
-
-    btnBasket.innerHTML = `В корзине (${count})`
-    basketWrap.innerHTML = htmlString
-}
+let catalog = new Catalog()
+let basket = new Basket()
 
 //обработчики событий
 
-products.addEventListener('click', function (e) {
-    //добавление в корзину
+block_products.addEventListener('click', function (e) {
     if(e.target.classList.contains('buy-btn')){
-        Basket.addProductToBasket(e.target.dataset['id'])
-        console.dir(e.target)
-        console.log(Basket.userBasket)
-    }
-})
-
-basketWrap.addEventListener('click', function (e) {
-    //удаление из корзины
-    if(e.target.classList.contains('del-btn')){
-        Basket.removeProductFromBasket(e.target.dataset['id'])
         // console.dir(e.target)
-    } else if(e.target.classList.contains('cls-btn')){
-        Basket.clearUserBasket()
+        basket.addProductToBasket(e.target.dataset['id'])
     }
 })
 
-btnBasket.addEventListener('click', function (e) {
-    basketWrap.classList.toggle ('invisible')
+block_basketWrap.addEventListener('click', function (e) {
+    if(e.target.classList.contains('del-btn')){
+        basket.removeProductFromBasket(e.target.dataset['id'])
+    } else if(e.target.classList.contains('cls-btn')){
+        basket.clearUserBasket()
+    }
 })
 
-
-renderProductsCatalog()
-renderBasket()
+block_btnBasket.addEventListener('click', function (e) {
+    block_basketWrap.classList.toggle ('invisible')
+})
