@@ -1,20 +1,21 @@
 const API = 'https://raw.githubusercontent.com/paradoxalyty/online-store-api-example/master';
-//const API = 'https://raw.githubusercontent.com/paradoxalyty/online-store-api-example/master';
 //const image = imgCatalog: 'https://placehold.it/200x150';
 //const cartImage = 'https://placehold.it/100x80';
 //const CATALOG_URL = 'https://placehold.it/200x150';
 //const CART_URL = '/getBasket.json';
 
 
-let app = new Vue({
+// noinspection JSUnresolvedFunction
+new Vue({
     el: "#root",
     data: {
         catalogUrl: '/catalogData.json',
         imgCatalog: 'https://placehold.it/200x150',
         products: [],
-        cartUrl: '/addToBasket.json',
+        addUrl: '/addToBasket.json',
         imgCart: 'https://placehold.it/100x80',
         cartItems: [],
+        deleteUrl: '/deleteFromBasket.json',
     },
     methods: {
         getJson(url) {
@@ -25,11 +26,10 @@ let app = new Vue({
                 });
         },
         addProduct(product) {
-            this.getJson (this.cartUrl)
+            this.getJson (this.addUrl)
                 .then (response => {
                     if (response.result) {
                         let find = this.cartItems.find (item => item.product_id === product.product_id);
-                        console.log(product.product_id);
                         if (find) {
                             find.quantity ++;
                         } else {
@@ -40,7 +40,19 @@ let app = new Vue({
                                 quantity: 1
                             };
                             this.cartItems.push(item);
-                            console.log(item.product_id);
+                        }
+                    }
+                });
+        },
+        removeProduct(product) {
+            this.getJson (this.deleteUrl)
+                .then (response => {
+                    if (response.result) {
+                        let find = this.cartItems.find (item => item.product_id === product.product_id);
+                        if (find.quantity > 1) {
+                            find.quantity --;
+                        } else {
+                            this.cartItems.splice(this.cartItems.indexOf(find), 1);
                         }
                     }
                 });
