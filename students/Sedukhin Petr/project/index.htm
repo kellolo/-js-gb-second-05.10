@@ -6,25 +6,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    </div>
-    <header>
-        <div class="logo">E-shop</div>
-        <div class="cart">
-            <form action="#" class="search-form">
-                <input type="text" class="search-field">
-                <button class="btn-search" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-            <button class="btn-cart" type="button">Корзина</button>
-            <div class="cart-block invisible"></div>
-        </div>
-    </header> 
-    <main>
-        <div class="products">           
-        </div>
-    </main>
-    <!-- <script src="script/gallery.js"></script> -->
+    <div id="app">
+        <header>
+            <div class="logo">E-shop</div>
+            <div class="cart">
+                <form action="#" class="search-form">
+                    <input type="text" class="search-field">
+                    <button class="btn-search" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+                <button class="btn-cart" @click="cartView = !cartView" >Корзина</button>
+                <div class="cart-block" v-show="cartView">
+                    <p v-if="cart.length == 0">Ваша корзина пуста</p>
+                </div>
+            </div>
+        </header> 
+        <main>
+            <div class="products">
+                <div class="product-item" v-for="product of products">
+                    <img :src="getImg(product)" alt="img">
+                    <h2>{{product.name}}</h2>
+                    <p>price: {{product.price}}</p>
+                    <button class="buy-btn" @click="addProdToCart(product)">Купить</button>
+                </div>           
+            </div>
+        </main>
+    </div>    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
