@@ -1,4 +1,4 @@
-const API = 'https://raw.githubusercontent.com/paradoxalyty/online-store-api-example/master';
+const API = 'https://raw.githubusercontent.com/paradoxalyty/online-store-api-example/master/responses';
 //const image = imgCatalog: 'https://placehold.it/200x150';
 //const cartImage = 'https://placehold.it/100x80';
 //const CATALOG_URL = 'https://placehold.it/200x150';
