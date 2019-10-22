@@ -9,7 +9,10 @@ let app = new Vue ({
         mediaFolder: 'img/',
         products: [],
         cart: [],
-        cartView: false
+        cartView: false,
+        searchPattern: '',
+        searchResult: [],
+        searchView: false
     },
     
     methods: {
@@ -23,7 +26,7 @@ let app = new Vue ({
         
         addProdToCart (product) {
             let res = false
-            this.cart.forEach(el => {if (el.id === product.id){ res = el}})
+            this.cart.forEach(el => {if (el.id === product.id){res = el}})
             if (res){
                 res.qty ++
                 this.cart.splice(this.cart.indexOf(res), 1, res)
@@ -44,18 +47,33 @@ let app = new Vue ({
             }
         },
 
-        getImg(product){
+        getImg (product) {
             return this.mediaFolder + product.img
         },
 
-        totalSum(){
+        totalSum () {
             let sum = 0
             this.cart.forEach(el => {
                 sum += el.price * el.qty
             })
             return sum
-        }
+        },
+
+        searchProd () {
+            if(!this.searchView) this.searchView = true
+            if (this.searchPattern.length > 0){
+                this.searchResult = []
+                let regexp = new RegExp(this.searchPattern, 'i')
+                this.products.forEach(el=> {
+                    if(regexp.test(el.name)){
+                        this.searchResult.push(el)
+                    }
+                })
+            } 
+        }    
     },
+
+
     
     mounted () {
         this.getJson (this.catalogUrl)
