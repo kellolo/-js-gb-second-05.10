@@ -30,7 +30,7 @@
                     <li><a class="userMenu__item" href="#">shopping card</a></li>
                     <li> <a class="userMenu__item" href="#" @click="isVisibleCart=!isVisibleCart">
                             <i class="fas fa-shopping-basket"></i>
-                            <span class="basket_indicator">(empty)</span>
+                            <span class="basket_indicator">{{cartAmount}}</span>
                         </a> </li>
                 </ul>
             </div>
@@ -181,6 +181,7 @@
 
             </div>
             <h2 class="basketWindow__header"> shopping list </h2>
+            <div v-if="cartAmount==0" class="emptyBasket">Basket is empty</div>
             <div class="basketWindow__itemContainer">
                 <div class="cartItem" v-for="(cartItem,index) in cartItems">
                     <img class="cartItem__img" :src="img_url+cartItem.certImg" alt="Изображение">

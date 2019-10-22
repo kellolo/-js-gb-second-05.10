@@ -288,3 +288,10 @@ h2 {
   border: none;
   border-radius: 10px;
 }
+.emptyBasket {
+  text-align: center;
+  font-style: italic;
+  font-weight: 800;
+  color: #777;
+  font-size: 30px;
+}
