@@ -162,6 +162,7 @@ body {
     border-radius: 10px;
   }
 
+
   .buiItBtn:hover {
     background-color: #111;
     color: #ccc;
@@ -271,7 +272,7 @@ h2 {
     background-color: #fff;
     position: absolute;
     top: -8px;
-    right: 4px;
+    right: 12px;
     width: 18px;
     height: 20px;
     transform: rotate(45deg);
@@ -288,8 +289,9 @@ h2 {
     width: 100%;
     text-align: right;
     font-size: 16px;
-    border-top: 1px solid grey;
+    border-top: 1px solid #ccc;
     font-weight: 800;
+    padding-top: 10px;
   }
 }
 
@@ -318,15 +320,18 @@ h2 {
     width: 50px;
   }
 
-  &__plusBtn {
-    text-align: center;
-    background-color: inherit;
-  }
-
+  &__plusBtn,
   &__minusBtn {
     text-align: center;
     background-color: inherit;
+    border: none;
+    color: #777;
   }
+
+  // &__minusBtn {
+  //   text-align: center;
+  //   background-color: inherit;
+  // }
 
   &__quantity {
     text-align: center;
@@ -338,4 +343,24 @@ h2 {
     padding: 10px;
     font-weight: 800;
   }
+
+  // button {
+  //   background-color: inherit;
+  //   border: none;
+  //   color: #777;
+  // }
+
+}
+
+.cartItem:nth-child(2n) {
+  background-color: #eee;
+}
+
+.cartButton {
+  float: right;
+  margin: 15px;
+  width: 150px;
+  height: 25px;
+  border: none;
+  border-radius: 10px;
 }

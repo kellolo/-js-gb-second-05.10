@@ -26,6 +26,7 @@ window.addEventListener('load', function () {
             setTimeout(() => {
                 images.readyToSlide = true;
             }, 1500);
+            setInterval(images.setNextRightImage, 5000);
         }
     });
 

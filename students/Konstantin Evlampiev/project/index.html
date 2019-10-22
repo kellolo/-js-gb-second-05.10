@@ -28,7 +28,7 @@
                     <li><a class="userMenu__item" href="#">shopping card </a></li>
                     <li><a class="userMenu__item" href="#">checkout</a></li>
                     <li><a class="userMenu__item" href="#">shopping card</a></li>
-                    <li> <a class="userMenu__item" href="#">
+                    <li> <a class="userMenu__item" href="#" @click="isVisibleCart=!isVisibleCart">
                             <i class="fas fa-shopping-basket"></i>
                             <span class="basket_indicator">(empty)</span>
                         </a> </li>
@@ -90,8 +90,18 @@
         </div>
         <div class="main">
             <h2 class="grayTitle"> featured </h2>
-            <div class="goods-list">
+            <div class="searchForm">
+                <input type="search" placeholder="Enter product name here..." v-model="searchLine">
+                <button><i class="fa fa-search" aria-hidden="true"></i></button>
 
+            </div>
+            <div class="goods-list">
+                <div class="goods-item" v-for="(item,index) in filteredGoods">
+                    <img v-bind:src="img_url+item.img">
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.price.toFixed(2)}}</p>
+                    <button type="submit" class="buiItBtn orangeStyled" @click="addToCart(item.id)">Buy it</button>
+                </div>
             </div>
             <div class="main__nav">
 
@@ -166,21 +176,47 @@
             </div>
         </div>
 
-        <div class="basketWindow hidden-form">
+        <div class="basketWindow" v-if="isVisibleCart">
             <div class="basketWindow__refSquare">
 
             </div>
             <h2 class="basketWindow__header"> shopping list </h2>
             <div class="basketWindow__itemContainer">
+                <div class="cartItem" v-for="(cartItem,index) in cartItems">
+                    <img class="cartItem__img" :src="img_url+cartItem.certImg" alt="Изображение">
+                    <p class="cartItem__name"> {{cartItem.title}} </p>
+                    <p class="cartItem__price"> {{cartItem.price.toFixed(2)}}</p>
+                    <button class="cartItem__plusBtn" @click="cartItem.quantity++">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <input class="cartItem__quantity" type="number" min="0" max="99" :value="cartItem.quantity">
+                    <button class="cartItem__minusBtn"
+                        @click="(cartItem.quantity>1)?cartItem.quantity--:cartItem.quantity=0">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                    </button>
+                    <button class="cartItem__minusBtn" @click="delCartItem(index)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                    <p class="cartItem__totalSum">
+                        {{(Number(cartItem.price)*Number(cartItem.quantity)).toFixed(2)}}</p>
+                </div>
             </div>
             <div class="basketWindow__footer">
-                basket is empty
+                <div> Total: {{cartAmount}} items for {{cartSum.toFixed(2)}} $ </div>
+                <div class="basket__controls">
+                    <button class="cartButton orangeStyled" @click="isVisibleCart=false">Close</button>
+                    <button class="cartButton orangeStyled">Make order</button>
+                    <button class="cartButton orangeStyled" @click="compressCart()">Recalc</button>
+                </div>
             </div>
         </div>
 
     </div>
-    <script src='packages/handMadeSlider/scripts/slider.js'> </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="js/script.js"></script>
+
+    <script src='packages/handMadeSlider/scripts/slider.js'> </script>
+
 
 </body>
 
