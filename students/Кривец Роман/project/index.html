@@ -7,29 +7,53 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div id="app">
     <header>
         <div class="logo">E-shop</div>
         <div class="cart">
-            <form action="#" method="post" class="search-form">
-                <input type="text" class="search-field">
+            <form action="#" method="post" class="search-form" @submit.prevent="filter">
+                <input type="text" class="search-field" v-model="userSearch">
                 <button class="btn-search" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <button class="btn-cart" type="button">Корзина</button>
-            <div class="cart-block invisible"></div>
+            <button class="btn-cart" type="button" @click='showCart = !showCart'>Корзина</button>
+            <div class="cart-block" v-show="showCart">
+                <p v-if="!cartItems.length">Cart is empty</p>
+                <div class="cart-item" v-for="item of cartItems" :key="item.id_product">
+                <div class="product-bio">
+                    <img :src="imgCart" alt="Some image">
+                    <div class="product-desc">
+                        <p class="product-title">{{item.product_name}}</p>
+                        <p class="product-quantity">Quantity: {{item.quantity}}</p>
+                        <p class="product-single-price">{{item.price}} each</p>
+                    </div>
+                </div>
+                <div class="right-block">
+                    <p class="product-price">{{item.quantity*item.price}}</p>
+                    <button class="del-btn" @click="remove(item)">&times;</button>
+                </div>
+            </div>
+            </div>
         </div>
     </header>
     <main>
-        <!--beforebegin-->
+
         <div class="products">
-            <!--afterbegin-->
-            <!--<p></p>-->
-            <!--beforeend-->
+            <div class="product-item" v-for="product of filtered" :key="product.id_product">
+                <img :src="imgCatalog" :alt="product.product_name">
+                <div class="desc">
+                    <h3>{{ product.product_name }}</h3>
+                    <p>{{ product.price }}</p>
+                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>
+            </div>
         </div>
-        <!--afterend-->
+
     </main>
+</div>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
