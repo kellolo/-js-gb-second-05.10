@@ -19,6 +19,22 @@
                 <button class="btn-cart" @click="cartView = !cartView" >Корзина</button>
                 <div class="cart-block" v-show="cartView">
                     <p v-if="cart.length == 0">Ваша корзина пуста</p>
+                    <div v-else v-for="cartItem of cart" class="product-item-cart">
+                        <div class = "left-block">   
+                            <img :src="getImg(cartItem)" alt="img">
+                            <h2>{{cartItem.name}}</h2>
+                            <p>price: {{cartItem.price}}</p>
+                        </div>    
+                        <div class = "right-block">
+                            <button class="add-btn" @click="addProdToCart(cartItem)">+</button>
+                            <p class = "product-quantity">{{cartItem.qty}}</p>
+                            <button class="rem-btn" @click="removeProdFromCart(cartItem)">-</button>
+                            <p class="product-price">{{cartItem.qty * cartItem.price}}</p>
+                        </div>
+                    </div>
+                    <div v-if="cart.length > 0" class="total-sum">
+                            Total sum:  {{totalSum()}}
+                    </div>
                 </div>
             </div>
         </header> 

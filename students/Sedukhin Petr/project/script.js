@@ -11,6 +11,7 @@ let app = new Vue ({
         cart: [],
         cartView: false
     },
+    
     methods: {
         getJson (url) {
             return fetch (`${API + url}`)
@@ -19,15 +20,43 @@ let app = new Vue ({
                     console.log (err)
                 })
         },
+        
         addProdToCart (product) {
-            // this.cart.push(product)
-            console.log (`Куплен ${product.name}`)
+            let res = false
+            this.cart.forEach(el => {if (el.id === product.id){ res = el}})
+            if (res){
+                res.qty ++
+                this.cart.splice(this.cart.indexOf(res), 1, res)
+            } else{
+                product["qty"] = 1
+                this.cart.push (product)
+            }
+        },
+
+        removeProdFromCart (product) {
+            let res = false
+            this.cart.forEach(el => {if(el.id === product.id) { res = el}})
+            if (res.qty > 1){
+                res.qty --
+                this.cart.splice(this.cart.indexOf(res), 1, res)
+            } else {
+                this.cart.splice(this.cart.indexOf(res), 1)
+            }
         },
 
         getImg(product){
             return this.mediaFolder + product.img
+        },
+
+        totalSum(){
+            let sum = 0
+            this.cart.forEach(el => {
+                sum += el.price * el.qty
+            })
+            return sum
         }
     },
+    
     mounted () {
         this.getJson (this.catalogUrl)
             .then (data => this.products = data)
@@ -96,19 +125,19 @@ let app = new Vue ({
 //         this.qty = el.qty
 //     }
 //     render () {
-//         return `<div class="product-item-cart" data-id="${this.id}">
-//         <div class = "left-block">   
-//             <img src="img/${this.img}" alt="img">
-//             <h2>${this.name}</h2>
-//             <p>price: ${this.price}</p>
-//         </div>    
-//         <div class = "right-block">
-//             <button class="add-btn" data-id = "${this.id}">+</button>
-//             <p class = "product-quantity">${this.qty}</p>
-//             <button class="rem-btn" data-id = "${this.id}">-</button>
-//             <p class="product-price">${this.qty * this.price}</p>
-//         </div>
-//     </div>`
+    //     return `<div class="product-item-cart" data-id="${this.id}">
+    //     <div class = "left-block">   
+    //         <img src="img/${this.img}" alt="img">
+    //         <h2>${this.name}</h2>
+    //         <p>price: ${this.price}</p>
+    //     </div>    
+    //     <div class = "right-block">
+    //         <button class="add-btn" data-id = "${this.id}">+</button>
+    //         <p class = "product-quantity">${this.qty}</p>
+    //         <button class="rem-btn" data-id = "${this.id}">-</button>
+    //         <p class="product-price">${this.qty * this.price}</p>
+    //     </div>
+    // </div>`
 //     }
 // }
 
