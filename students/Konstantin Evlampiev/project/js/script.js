@@ -39,14 +39,35 @@ let app = new Vue({
     },
     methods: {
 
-        async makeReq(url) {
+        async makeGetReq(url) {
             const data = await fetch(url);
             return await data.json();
         },
 
+        async makePostReq(url, obj) {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(obj)
+            })
+            return response;
+        },
+
         async getData() {
-            this.goods = await this.makeReq(API_URL + this.catalog_url);
-            this.cartItems = await this.makeReq(API_URL + this.cart_url);
+            this.goods = await this.makeGetReq(API_URL + this.catalog_url);
+            this.cartItems = await this.makeGetReq(API_URL + this.cart_url);
+        },
+
+        async sendCart() {
+            try {
+                let response = await this.makePostReq(API_URL + this.cart_url,
+                    this.cartItems);
+                console.log(response);
+            } catch (err) {
+                console.log(err);
+            }
         },
 
         getCartItem(id) {
@@ -90,13 +111,14 @@ let app = new Vue({
         /**
          * Сохранение корзины на сервере
          */
-        saveCart() {
-
-        }
 
     },
     async mounted() {
         await this.getData();
+    },
+
+    async beforeDestroy() {
+        await this.sendCart();
     },
 });
 
