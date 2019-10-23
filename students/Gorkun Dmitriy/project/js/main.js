@@ -13,6 +13,11 @@ let app = new Vue({
         searchLine: '',
         isVisibleCart: true
     },
+
+    components: {
+        'catalog': catalog,
+        'filter-comp': filterComp
+    }
     methods: {
         getJson(url) {
             return fetch(`${this.API + url}`)
@@ -22,7 +27,7 @@ let app = new Vue({
                 })
         },
         filterGoods() {
-            const reg = new RegExp(`${this.searchLine}`,'i')
+            const reg = new RegExp(`${this.searchLine}`, 'i')
             this.products = this.getProducts.filter((product) => {
                 return reg.test(product.product_name)
             })
