@@ -1,4 +1,4 @@
-const API = 'https://raw.githubusercontent.com/Essvitex/git_repo/master'
+const API = 'https://raw.githubusercontent.com/Essvitex/-js-gb-second-05.10/master/students/Sergeev%20Victor/project/5_project_vuejs/jsonData'
 
 const app = new Vue({
   el: '#app',
@@ -6,7 +6,9 @@ const app = new Vue({
     catalogUrl: '/catalogData.json',
     goods: [],
     filteredGoods: [],
-    searchLine: ''
+    searchLine: '',
+    isVisibleBasket: false,
+    goodsAreExist: false
   },
   methods:{
     getJson (url) {
@@ -19,19 +21,21 @@ const app = new Vue({
     filterGoods(){
       const regexp = new RegExp(this.searchLine, 'i');
       this.filteredGoods = this.goods.filter(good => regexp.test(good.product_name));
+    },
+    showBasket(){
+      this.isVisibleBasket = !this.isVisibleBasket;
+      console.log(this.isVisibleBasket);
     }
   },
   mounted () {
     this.getJson (this.catalogUrl)
-        .then (data => {this.goods = data; this.filteredGoods = data;})
-        debugger;
+        .then (data => {this.goods = data; this.filteredGoods = data; this.goodsAreExist = true;})
+        .catch(() =>{
+          this.goodsAreExist = false;
+          conbsole.log("Товары не подгрузидлись!")
+        });
 }
 });
-
-
-
-
-
 
 
 /*class GoodsItem {
