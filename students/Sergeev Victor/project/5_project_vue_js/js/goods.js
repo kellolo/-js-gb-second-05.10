@@ -1,4 +1,4 @@
-const API = 'https://raw.githubusercontent.com/Essvitex/-js-gb-second-05.10/master/students/Sergeev%20Victor/project/5_project_vuejs/jsonData'
+const API = 'https://raw.githubusercontent.com/Essvitex/-js-gb-second-05.10/master/students/Sergeev%20Victor/project/5_project_vue_js/jsonData'
 
 const app = new Vue({
   el: '#app',
