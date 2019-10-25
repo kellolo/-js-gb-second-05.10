@@ -37,7 +37,7 @@ window.addEventListener('load', function () {
             clearInterval();
             setTimeout(() => {
                 images.readyToSlide = true;
-                setInterval(images.setNextRightImage.bind(images), 10000);
+                //setInterval(images.setNextRightImage.bind(images), 10000);
             }, 1500);
         }
     });
@@ -121,7 +121,9 @@ let images = {
             this.slides[this.currentIdx].classList.remove('slide-left');
             this.slides[prevIndex].classList.add('hidden-slide');
             this.slides[prevIndex].classList.remove('erase-left');
+            this.readyToSlide = true; //!!
         }, 1500);
+
 
     },
 
@@ -141,6 +143,7 @@ let images = {
             this.slides[this.currentIdx].classList.remove('slide-right');
             this.slides[prevIndex].classList.add('hidden-slide');
             this.slides[prevIndex].classList.remove('erase-right');
+            this.readyToSlide = true; //!!
         }, 1500);
     },
 }
