@@ -1,6 +1,6 @@
 const API = 'https://raw.githubusercontent.com/petr-sed/-js-gb-second-05.10/master/students/Sedukhin%20Petr/project'
-const CATALOG_URL = '/basa.json'
-const READ_CART = '/getBasket.json'
+const CATALOG_URL = '/json/basa.json'
+const READ_CART = '/json/getBasket.json'
 
 let app = new Vue ({
     el: '#app',
