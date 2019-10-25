@@ -28,7 +28,7 @@
                     <li><a class="userMenu__item" href="#">shopping card </a></li>
                     <li><a class="userMenu__item" href="#">checkout</a></li>
                     <li><a class="userMenu__item" href="#">shopping card</a></li>
-                    <li> <a class="userMenu__item" href="#">
+                    <li> <a class="userMenu__item" href="#" @click="isVisibleCart=!isVisibleCart">
                             <i class="fas fa-shopping-basket"></i>
                             <!-- <span class="basket_indicator">{{cartAmount}}</span> -->
                         </a> </li>
@@ -93,7 +93,7 @@
 
             <search></search>
 
-            <goods-list ref="catalog">
+            <goods-list ref="catalog" :isVisibleCart="isVisibleCart">
 
             </goods-list>
 
@@ -170,46 +170,18 @@
             </div>
         </div>
 
-        <!-- <div class="basketWindow" v-if="isVisibleCart">
-            <div class="basketWindow__refSquare">
+        <cart :isVisibleCart="isVisibleCart" ref="cart"> </cart>
 
-            </div>
-            <h2 class="basketWindow__header"> shopping list </h2>
-            <div v-if="cartAmount==0" class="emptyBasket">Basket is empty</div>
-            <div class="basketWindow__itemContainer">
-                <div class="cartItem" v-for="(cartItem,index) in cartItems">
-                    <img class="cartItem__img" :src="img_url+cartItem.certImg" alt="Изображение">
-                    <p class="cartItem__name"> {{cartItem.title}} </p>
-                    <p class="cartItem__price"> {{cartItem.price.toFixed(2)}}</p>
-                    <button class="cartItem__plusBtn" @click="cartItem.quantity++">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                    </button>
-                    <input class="cartItem__quantity" type="number" min="0" max="99" :value="cartItem.quantity">
-                    <button class="cartItem__minusBtn"
-                        @click="(cartItem.quantity>1)?cartItem.quantity--:cartItem.quantity=0">
-                        <i class="fa fa-minus" aria-hidden="true"></i>
-                    </button>
-                    <button class="cartItem__minusBtn" @click="delCartItem(index)">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </button>
-                    <p class="cartItem__totalSum">
-                        {{(Number(cartItem.price)*Number(cartItem.quantity)).toFixed(2)}}</p>
-                </div>
-            </div>
-            <div class="basketWindow__footer">
-                <div> Total: {{cartAmount}} items for {{cartSum.toFixed(2)}} $ </div>
-                <div class="basket__controls">
-                    <button class="cartButton orangeStyled" @click="isVisibleCart=false">Close</button>
-                    <button class="cartButton orangeStyled" @click="sendCart()">Make order</button>
-                    <button class="cartButton orangeStyled" @click="compressCart()">Recalc</button>
-                </div>
-            </div>
-        </div> -->
+
+        <notification :display="displayNotification" :message="notificationMessage" />
+
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="js/catalog.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/notification.js"></script>
     <script src="js/main.js"></script>
 
     <script src='packages/handMadeSlider/scripts/slider.js'> </script>

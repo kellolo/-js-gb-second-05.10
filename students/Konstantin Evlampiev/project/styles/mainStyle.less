@@ -372,3 +372,49 @@ h2 {
   color: #777;
   font-size: 30px;
 }
+
+.error-notification {
+  position: absolute;
+  //display: flex;
+  //flex-direction: column;
+  //justify-items: center;
+  min-width: 500px;
+  //  min-height: 50%;
+  top: 250px;
+  left: 0px;
+  width: 980px;
+  padding: 10px;
+  background-color: rgb(253, 175, 175);
+  color: maroon;
+  box-shadow: 8px 8px 19px 5px rgba(0, 0, 0, 0.43);
+  opacity: 0.9;
+  z-index: 17;
+  font-size: 18px;
+
+  div {
+    margin: 2px;
+    border: 1px solid rgb(236, 95, 95);
+    padding: 10px;
+  }
+
+  p {
+    width: 100%;
+    text-align: center;
+  }
+
+  button {
+    background-color: red;
+    color: white;
+    width: 100px;
+    height: 40px;
+    margin-left: 200px;
+    border: none;
+    border-radius: 20px;
+  }
+
+  button:hover {
+    background-color: maroon;
+    color: white;
+    font-size: 18px;
+  }
+}

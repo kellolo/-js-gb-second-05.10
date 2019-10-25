@@ -295,3 +295,40 @@ h2 {
   color: #777;
   font-size: 30px;
 }
+.error-notification {
+  position: absolute;
+  min-width: 500px;
+  top: 250px;
+  left: 0px;
+  width: 980px;
+  padding: 10px;
+  background-color: #fdafaf;
+  color: maroon;
+  box-shadow: 8px 8px 19px 5px rgba(0, 0, 0, 0.43);
+  opacity: 0.9;
+  z-index: 17;
+  font-size: 18px;
+}
+.error-notification div {
+  margin: 2px;
+  border: 1px solid #ec5f5f;
+  padding: 10px;
+}
+.error-notification p {
+  width: 100%;
+  text-align: center;
+}
+.error-notification button {
+  background-color: red;
+  color: white;
+  width: 100px;
+  height: 40px;
+  margin-left: 200px;
+  border: none;
+  border-radius: 20px;
+}
+.error-notification button:hover {
+  background-color: maroon;
+  color: white;
+  font-size: 18px;
+}

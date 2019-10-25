@@ -7,14 +7,12 @@ let goodsItem = {
             img_url: 'img/forGoodsList/'
         };
     },
-    mounted() {
-
-    },
+    mounted() {},
     template: ` <div class="goods-item">
                     <img v-bind:src="img_url+product.img">
                     <h3>{{product.title}}</h3>
                     <p>{{product.price.toFixed(2)}}</p>
-                    <button type="submit" class="buiItBtn orangeStyled">Buy it</button>
+                    <button type="submit" class="buiItBtn orangeStyled" @click="$root.$refs.cart.addToCart(product)">Buy it</button>
                 </div>`
 };
 
