@@ -58,6 +58,11 @@ p {
     overflow: hidden;
     margin: 20px 0;
 }
+.no-data {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 50px;
+}
 img {
     max-width: 100%;
     height: auto
@@ -70,8 +75,6 @@ img {
     position: relative;
 }
 .cart-block{
-    display: grid;
-    grid-template-columns: 3fr 2fr 1fr;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.62);
     border-radius: 5px;
     box-sizing: border-box;
@@ -84,24 +87,9 @@ img {
     width: 300px;
 }
 
-.cart-count {
-    text-align: right;
-    padding: 10px;
-    position: absolute;
-    top: -35px;
-    right: -12px;
-    
-}
-
 .invisible{
     display: none;
 }
-
-.hidden{
-    opacity: 0;
-    transition: 2s;
-}
-
 .cart-block:before{
     content: '';
     width: 0;

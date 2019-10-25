@@ -1,190 +1,293 @@
 'use strict';
 
-//исходники для сборки json или что-то подобное
-const names = ['leak detector',
-    'presence sensor',
-    'presence sensor',
-    'smoke sensor',
-    'gas sensor',
-    'open sensor',
-    'termometr',
-    'smth'
-];
-const prices = [12, 10.99, 7.50, 14.10, 15, 12, 8, 8];
-const ids = [1, 2, 3, 4, 5, 6, 7, 8];
-const imgs = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
-const cartImages = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'];
+const API_URL = "https://raw.githubusercontent.com/kevlampiev/JSONdata/master/jsLessonsLvl2";
 
-/**
- * Функция генерит массив объектов из массивов сверху
- */
-function fetchProducts() {
-    let arr = [];
-    for (let i = 0; i < ids.length; i++) {
-        arr.push(new Product(ids[i],
-            names[i],
-            prices[i],
-            imgs[i],
-            cartImages[i]));
-    }
-    return arr;
-}
+let app = new Vue({
+    el: '.container',
+    data: {
+        client_id: "", //идентификатор клиента uuid
+        catalog_url: '/selectAllProducts.json',
+        goods: [],
+        cart_url: '/selectAllCartItems.json',
+        cartItems: [],
+        img_url: 'img/forGoodsList/',
+        isVisibleCart: false,
+        searchLine: ''
+    },
+    computed: {
+        cartSum: function () {
+            let res = 0;
+            this.cartItems.forEach(el => {
+                res += (el.price * el.quantity)
+            });
+            return res;
+        },
 
+        cartAmount: function () {
+            let res = 0;
+            this.cartItems.forEach(el => {
+                res += el.quantity
+            });
+            return res;
+        },
 
-class Product {
-    /**
-     * Конструктор, который получает кучу параметров для инициализации
-     * @param {Number} id идентификатор 
-     * @param {String} name наименование
-     * @param {Number} price цена
-     * @param {String} image имя файла с изображением
-     * @param {String} certImage имя файла с уменьшенной картинкой
-     */
-    constructor(id, name, price, image, certImage) {
-        this.id = id;
-        this.title = name;
-        this.price = price;
-        this.img = image;
-        this.certImg = certImage;
-        this.template = `<div class="goods-item">
-                <img src="img/forGoodsList/${image}">
-                <h3>${name}</h3>
-                <p>${price.toFixed(2)}</p>
-                <button type="submit" class="buiItBtn orangeStyled">Buy it</button>
-                </div>`;
-
-    }
-}
-
-class Catalog {
-    constructor() {
-        this.products = [];
-        this.catalogContainer = document.querySelector('.goods-list');
-        this._init();
-    }
-
-    _init() {
-        this.products = fetchProducts();
-    }
-
-    render() {
-        this.products.forEach(product => {
-            this.catalogContainer.innerHTML += product.template
-        });
-    }
-
-    //бессмысленное поле для каталога, в принципе
-    get totalPrice() {
-        let summ = 0;
-        for (let el of this.products) {
-            summ += el.price;
+        filteredGoods: function () {
+            let regEx = new RegExp(this.searchLine.toUpperCase());
+            return this.goods.filter(el => regEx.test(el.title.toUpperCase()));
         }
-        return summ;
-    }
 
-
-}
-
-
-
-
-class CartItem {
-    /**
-     * 
-     * @param {Product} product 
-     */
-    constructor(product) {
-        this.product = product;
-        this.quantity = 1; //Количество продуктов данного вида в корзине
-        this.template = ""; //html-код
-    }
-}
-
-class Cart {
-    constructor() {
-        this.cartItems = []; //list of cartItems
-    }
-
-    /**
-     * Изменяет this.cartItems: или добавляет позицию или увеличивает соответствующее количестов в позиции
-     * @param {Product} product 
-     */
-    addProduct(product) {
-
-    }
-    /**
-     * Изменяет this.cartItems: или удаляет позицию или уменьшает соответствующее количестов в позиции
-     * @param {*} product 
-     */
-    deleteProduct(product) {
-
-    }
-
-    //Общее количестов товаров в корзине
-    get totalQuantity() {
-
-    }
-
-    //Общая стоимость корзины
-    get totalPrice() {
-
-    }
-
-    //Прорисова элементов корзины
-    renderCart() {
-
-    }
-}
-
-
-/*
-const goods = [{
-        title: 'Shirt',
-        price: 150
     },
-    {
-        title: 'Socks',
-        price: 50
+    methods: {
+
+        async makeGetReq(url) {
+            const data = await fetch(url);
+            return await data.json();
+        },
+
+        async makePostReq(url, obj) {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(obj)
+            })
+            return response;
+        },
+
+        async getData() {
+            this.goods = await this.makeGetReq(API_URL + this.catalog_url);
+            this.cartItems = await this.makeGetReq(API_URL + this.cart_url);
+        },
+
+        async sendCart() {
+            try {
+                let response = await this.makePostReq(API_URL + this.cart_url,
+                    this.cartItems);
+                console.log(response);
+            } catch (err) {
+                console.log(err);
+            }
+        },
+
+        getCartItem(id) {
+            return this.cartItems.find((el, index) => el.id == id)
+        },
+
+        getCatalogItem(id) {
+            return this.goods.find((el, index) => el.id == id)
+        },
+
+        /**
+         * Удаляет (совсем) товар из корзины 
+         * @param {Number} indx индекс товара в корзине
+         */
+        delCartItem(indx) {
+            this.cartItems.splice(indx, 1);
+        },
+
+        /**
+         * Добавляет товар в корзину по идентификатору id записи в базе данных
+         * @param {Number} id 
+         */
+        addToCart(id) {
+            let obj = this.getCartItem(id);
+            if (obj != null) {
+                obj.quantity++
+            } else {
+                obj = Object.assign({}, this.getCatalogItem(id), {
+                    quantity: 1
+                });
+                this.cartItems.push(obj);
+            }
+        },
+        /**
+         * Удаляет все товары из корзины у которых количество == 0
+         */
+        compressCart() {
+            this.cartItems = this.cartItems.filter(el => el.quantity != 0);
+        },
+
+        /**
+         * Сохранение корзины на сервере
+         */
+
     },
-    {
-        title: 'Jacket',
-        price: 350
+    async mounted() {
+        await this.getData();
     },
-    {
-        title: 'Shoes',
-        price: 250
+
+    async beforeDestroy() {
+        await this.sendCart();
     },
-];
+});
+
+//console.log(app);
+
+// //прообраз записи о товаре
+// class Item {
+//     constructor(el) {
+//         this.id = el.id;
+//         this.title = el.title;
+//         this.price = el.price;
+//         this.img = img;
+//         this.cartImg = cartImg;
+
+//     }
+//     render() {
+//         `<div class="goods-item" data-id=${this.id}>
+//          <img src="img/forGoodsList/${this.img}">
+//          <h3>${this.title}</h3>
+//          <p>${this.price.toFixed(2)}</p>
+//          <button type="submit" class="buiItBtn orangeStyled">Buy it</button>
+//          </div>`;
+//     }
+// }
 
 
-//Воспользовался свойством стрелочной функции чтобы не писать return, но код стал менее читаемым
-const renderGoodsItem = (title = "no name", price = 99.99) => `<div class="goods-item"><img src="img/forGoodsList/1.jpg"><h3>${title}</h3><p>${price.toFixed(2)}</p><button type="submit" class="buiItBtn orangeStyled">Buy it</button></div>`;
 
-//удалил запятую, она была из-за того что работали с массивом, преобразовал его .join() к строке явно через пробел 
-const renderGoodsList = (list) => {
-    let goodsList = list.map(item => renderGoodsItem(item.title, item.price)).join(" ");
-    document.querySelector('.goods-list').innerHTML = goodsList;
-}
+// //Прообраз списка товаров
+// class List {
+//     /**
+//      * 
+//      * @param {String} url Строка запроса данных
+//      * @param {String} containerName Название класса контейнара для рендеринга
+//      */
+//     constructor(url, containerName) {
+//         this.containerName = containerName;
+//         this.url = url;
+//         this.items = [];
+//         this.renderedItems = [];
+//         this._init()
+//     }
+
+//     _init() {
+//         return null;
+//     }
+
+//     /**
+//      * Запрос данных и заполнение items
+//      * @param {String} url 
+//      */
+//     async getJson(url) {
+//         try {
+//             this.items = await fetch(API_URL + url)
+//                 .then(data => data.json());
+//         } catch (error) {
+//             alert("Can't get data from " + url);
+//             console.log(error);
+//         }
+//     }
+
+//     handleData(data) {
+//         this.goods = [...data];
+//         this.render();
+//         this._init();
+//     }
+
+//     render() {
+//         const htmlEl = document.querySelector(this.containerName);
+//         let str = "";
+//         this.items.forEach(el => {
+//             let product = new lists[this.constructor.name](el);
+//             this.renderedItems.push(product);
+//             str += product.render();
+//         });
+//         htmlEl.innerHTML = str;
+
+//     }
+// }
 
 
-//Ну, это, чтобы гарантированно грузилось содержимое после перерисовки страницы и чтобы потом могли перересовать с другим массивом, сортированным, например или еще что 
-const rGL = () => {
-    renderGoodsList(goods);
-}
 
-window.addEventListener('load', rGL);
+// class СatalogItem extends Item {}
 
-*/
+// class CartItem extends Item {
+//     constructor(el) {
+//         super(el);
+//         this.quantity = el.quantity;
+//     }
+
+
+//     render() {
+//         return `<div class="cartItem" data-id="${this.product.id}">
+//                          <img class="cartItem__img" 
+//                              src="img/forGoodsList/${this.product.certImg}" 
+//                              alt="Изображение">
+//                          <p class="cartItem__name"> ${this.product.title} </p>
+//                          <p class="cartItem__price"> ${this.product.price.toFixed(2)}</p>
+//                          <button class="cartItem__plusBnt">+</button>
+//                          <input class="cartItem__quantity" type="number" min="0" max="99" value="${this.quantity}">
+//                          <button class="cartItem__minusBnt">-</button>
+//                          <p class="cartItem__totalSum"> ${(Number(this.product.price)*Number(this.quantity)).toFixed(2)}</p>
+//                          </div>`;
+//     }
+// }
+
+// //Каталог товаров
+// class Catalog extends List {
+//     constructor(cart, url = URL_CATALOG, container = '.goods-list') {
+//         super(url, container)
+//         this.cart = cart
+//         this.getJson(url)
+//             .then(data => {
+//                 console.log(data);
+//                 this.handleData(data)
+//             })
+//     }
+
+//     _init() {
+//         document.querySelector(this.containerName).addEventListener('click', event => {
+//             if (event.target.classList.contains('buy-btn')) {
+//                 this.cart.addProduct(event.target)
+//             }
+//         })
+//     }
+// }
+
+// class Cart extends List {
+//     constructor(url = URL_CART, container = '.basketWindow__itemContainer') {
+//         super(url, container)
+//         this.getJson(url)
+//             .then(data => {
+//                 this.handleData(data);
+//             })
+//         // .then(data => this.handleData(data.contents))
+//     }
+
+//     addProduct(element) {
+//         this.getJson(API + '/addToBasket.json')
+//             .then(response => {
+//                 if (response.result) {
+//                     let prodId = +element.dataset['id']
+//                     let find = this.allProducts.find(item => item.id_product === prodId)
+//                     if (find) {
+//                         find.quantity++
+//                         this._updateCart(find)
+//                     } else {
+//                         let product = {
+//                             id_product: prodId,
+//                             price: +element.dataset['price'],
+//                             product_name: element.dataset['name'],
+//                             img: +element.dataset['image'],
+//                             quantity: 1
+//                         }
+//                         this.allProducts.push(product)
+//                         this.render()
+//                     }
+//                 }
+//             })
+//     }
+
+// }
+
+
+// const lists = {
+//     Catalog: СatalogItem,
+//     Cart: CartItem
+// }
 
 
 
-let goodsList = new Catalog;
-goodsList.render();
-
-document.querySelectorAll('.buiItBtn').forEach(
-    el => {
-        el.addEventListener('click', (event) => {
-            alert('Have not been realiazed yet')
-        });
-    }
-);
+// let cart = new Cart()
+// let catalog = new Catalog(cart)

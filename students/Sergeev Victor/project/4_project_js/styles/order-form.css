@@ -1,0 +1,50 @@
+.input-container form{
+    display:flex;
+    justify-content: center;
+}
+
+.input-container input[name="surname"]{
+    float:right;
+}
+
+.input-container input[name="email"]{
+   float:right;
+}
+
+.input-container input{
+    margin-top:10px;
+    height:25px;
+    width:200px;
+    padding-left:5px;
+}
+
+.input-container textarea{
+    margin-top:30px;
+    padding-top:10px;
+    width:420px;
+    resize:none;
+    font-family: 'Mandali', sans-serif;
+    padding-left:10px;
+}
+
+.input-container input[type="submit"]{
+    margin-top:20px;
+    margin-left:160px;
+    width:110px;
+    height:35px;
+    background-color:rgb(12, 165, 76);
+    border:1px solid white;
+    color:white;
+    border-radius:25px;
+    padding-right:5px;
+    
+}
+
+.input-container input[type="submit"]:hover{
+    background-color:#2f2a2d;
+    cursor:pointer;
+}
+
+.input-container p{
+    text-align: center;
+}

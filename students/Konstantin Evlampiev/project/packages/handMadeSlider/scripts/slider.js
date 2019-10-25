@@ -26,6 +26,7 @@ window.addEventListener('load', function () {
             setTimeout(() => {
                 images.readyToSlide = true;
             }, 1500);
+
         }
     });
 
@@ -33,8 +34,10 @@ window.addEventListener('load', function () {
         if (images.readyToSlide) {
             images.readyToSlide = false;
             images.setNextRightImage();
+            clearInterval();
             setTimeout(() => {
                 images.readyToSlide = true;
+                //setInterval(images.setNextRightImage.bind(images), 10000);
             }, 1500);
         }
     });
@@ -43,6 +46,7 @@ window.addEventListener('load', function () {
     images.init();
     // Скрываем иконку загрузки
     hideLoadIcon(loadIcon);
+    setInterval(images.setNextRightImage.bind(images), 10000);
 });
 
 /**
@@ -102,8 +106,6 @@ let images = {
 
     /** Переключиться на предыдущее изображение. */
     setNextRightImage() {
-
-
         this.readyToSlide = false;
         let prevIndex = this.currentIdx;
 
@@ -119,7 +121,9 @@ let images = {
             this.slides[this.currentIdx].classList.remove('slide-left');
             this.slides[prevIndex].classList.add('hidden-slide');
             this.slides[prevIndex].classList.remove('erase-left');
+            this.readyToSlide = true; //!!
         }, 1500);
+
 
     },
 
@@ -139,6 +143,7 @@ let images = {
             this.slides[this.currentIdx].classList.remove('slide-right');
             this.slides[prevIndex].classList.add('hidden-slide');
             this.slides[prevIndex].classList.remove('erase-right');
+            this.readyToSlide = true; //!!
         }, 1500);
     },
 }
