@@ -10,21 +10,6 @@
         <header>
             <div class="logo">E-shop</div>
             <filter-comp></filter-comp>
-            <!-- <div class="search-block" v-show="searchView">
-                    <button class="btn-cls-srch" @click="searchView = ! searchView">Закрыть</button>
-                    <div class = "search-result">
-                        <p v-if="searchResult.length === 0">Ничего не найдено</p>
-                        <div class="search-item" v-else v-for="item of searchResult">
-                            <div class = "left-block">
-                                <h2>{{item.name}}</h2>
-                                <p>price: {{item.price}}</p>
-                            </div>    
-                            <div class = "right-block">
-                                <button class="add-btn-srch" @click="addProdToCart(item)">Add to cart</button>
-                            </div>
-                        </div>
-                    </div>    
-                </div> -->
             <cart ref="cart"/>
         </header> 
         <main>
