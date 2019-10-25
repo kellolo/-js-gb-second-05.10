@@ -68,7 +68,7 @@ let app = new Vue ({
             .then (data => this.products = data)
     }
 })
-=======
+
 const image = 'https://placehold.it/200x150'
 const cartImage = 'https://placehold.it/100x80'
 const items = ['Notebook', 'Display', 'Keyboard', 'Mouse', 'Phones', 'Router', 'USB-camera', 'Gamepad']
