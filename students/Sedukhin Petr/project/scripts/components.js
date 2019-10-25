@@ -72,9 +72,9 @@ let cartItem = {
                 <p>price: {{cartItem.price}}</p>
             </div>    
             <div class = "right-block">
-                <button class="add-btn" @click="$root.$refs.cart.addProdToCart(cartItem)">+</button>
+                <button class="add-btn" @click="$parent.addProdToCart(cartItem)">+</button>
                 <p class = "product-quantity">{{cartItem.qty}}</p>
-                <button class="rem-btn" @click="$root.$refs.cart.removeProdFromCart(cartItem)">-</button>
+                <button class="rem-btn" @click="$parent.removeProdFromCart(cartItem)">-</button>
                 <p class="product-price">{{cartItem.qty * cartItem.price}}</p>
             </div>
         </div>    
