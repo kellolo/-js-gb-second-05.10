@@ -15,7 +15,7 @@ let product = {
 let catalog = {
     data(){
         return {
-            catalogUrl: '/basa.json',
+            catalogUrl: '/json/basa.json',
             mediaFolder: 'img/',
             products: [],
             filtered: []
@@ -124,7 +124,7 @@ let cart = {
             <button class="btn-cart" @click="cartView = !cartView" >Корзина</button>
             <div class="cart-block" v-show="cartView">
                 <p v-if="cart.length == 0">Ваша корзина пуста</p>
-                <cartItem v-else v-for="cartItem of cart" :cartItem = "cartItem" class="product-item-cart" :key="cartItem.qty">
+                <cartItem v-else v-for="cartItem of cart" :cartItem = "cartItem" class="product-item-cart" :key="cartItem.id">
                 </cartItem>
                 <div v-if="cart.length > 0" class="total-sum">
                         Total sum:  {{totalSum()}}
