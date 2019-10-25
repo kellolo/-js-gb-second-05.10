@@ -5,14 +5,10 @@ const READ_CART = '/getBasket.json'
 let app = new Vue ({
     el: '#app',
     data: {
-        catalogUrl: '/basa.json',
         mediaFolder: 'img/',
-        products: [],
-        cart: [],
-        cartView: false,
-        searchPattern: '',
-        searchResult: [],
-        searchView: false
+        // searchPattern: '',
+        // searchResult: [],
+        // searchView: false
     },
     
     methods: {
@@ -23,61 +19,33 @@ let app = new Vue ({
                     console.log (err)
                 })
         },
-        
-        addProdToCart (product) {
-            let res = false
-            this.cart.forEach(el => {if (el.id === product.id){res = el}})
-            if (res){
-                res.qty ++
-                this.cart.splice(this.cart.indexOf(res), 1, res)
-            } else{
-                product["qty"] = 1
-                this.cart.push (product)
-            }
-        },
-
-        removeProdFromCart (product) {
-            let res = false
-            this.cart.forEach(el => {if(el.id === product.id) { res = el}})
-            if (res.qty > 1){
-                res.qty --
-                this.cart.splice(this.cart.indexOf(res), 1, res)
-            } else {
-                this.cart.splice(this.cart.indexOf(res), 1)
-            }
-        },
 
         getImg (product) {
             return this.mediaFolder + product.img
         },
-
-        totalSum () {
-            let sum = 0
-            this.cart.forEach(el => {
-                sum += el.price * el.qty
-            })
-            return sum
-        },
-
-        searchProd () {
-            if(!this.searchView) this.searchView = true
-            if (this.searchPattern.length > 0){
-                this.searchResult = []
-                let regexp = new RegExp(this.searchPattern, 'i')
-                this.products.forEach(el=> {
-                    if(regexp.test(el.name)){
-                        this.searchResult.push(el)
-                    }
-                })
-            } 
-        }    
+        
+        
+        // searchProd () {
+        //     if(!this.searchView) this.searchView = true
+        //     if (this.searchPattern.length > 0){
+        //         this.searchResult = []
+        //         let regexp = new RegExp(this.searchPattern, 'i')
+        //         this.products.forEach(el=> {
+        //             if(regexp.test(el.name)){
+        //                 this.searchResult.push(el)
+        //             }
+        //         })
+        //     } 
+        // }    
     },
 
-
-    
     mounted () {
-        this.getJson (this.catalogUrl)
-            .then (data => this.products = data)
+    },
+
+    components: {
+        'catalog': catalog,
+        'filter-comp': filterComp,
+        'cart': cart
     }
 })
 
