@@ -7,9 +7,7 @@ let goodsItem = {
             img_url: 'img/forGoodsList/'
         };
     },
-    mounted() {
-
-    },
+    mounted() {},
     template: ` <div class="goods-item">
                     <img v-bind:src="img_url+product.img">
                     <h3>{{product.title}}</h3>
