@@ -3,68 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Интернет-магазин</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div id="app">
         <header>
             <div class="logo">E-shop</div>
-            <div class="cart">
-                <form action="#" class="search-form">
-                    <input type="text" class="search-field" v-model="searchPattern">
-                    <button class="btn-search" @click="searchProd()">
-                        <img src="img/search.png">
-                    </button>
-                </form>
-                <div class="search-block" v-show="searchView">
-                    <button class="btn-cls-srch" @click="searchView = ! searchView">Закрыть</button>
-                    <div class = "search-result">
-                        <p v-if="searchResult.length === 0">Ничего не найдено</p>
-                        <div class="search-item" v-else v-for="item of searchResult">
-                            <div class = "left-block">
-                                <h2>{{item.name}}</h2>
-                                <p>price: {{item.price}}</p>
-                            </div>    
-                            <div class = "right-block">
-                                <button class="add-btn-srch" @click="addProdToCart(item)">Add to cart</button>
-                            </div>
-                        </div>
-                    </div>    
-                </div>
-                <button class="btn-cart" @click="cartView = !cartView" >Корзина</button>
-                <div class="cart-block" v-show="cartView">
-                    <p v-if="cart.length == 0">Ваша корзина пуста</p>
-                    <div v-else v-for="cartItem of cart" class="product-item-cart">
-                        <div class = "left-block">   
-                            <img :src="getImg(cartItem)" alt="img">
-                            <h2>{{cartItem.name}}</h2>
-                            <p>price: {{cartItem.price}}</p>
-                        </div>    
-                        <div class = "right-block">
-                            <button class="add-btn" @click="addProdToCart(cartItem)">+</button>
-                            <p class = "product-quantity">{{cartItem.qty}}</p>
-                            <button class="rem-btn" @click="removeProdFromCart(cartItem)">-</button>
-                            <p class="product-price">{{cartItem.qty * cartItem.price}}</p>
-                        </div>
-                    </div>
-                    <div v-if="cart.length > 0" class="total-sum">
-                            Total sum:  {{totalSum()}}
-                    </div>
-                </div>
-            </div>
+            <filter-comp></filter-comp>
+            <cart ref="cart"/>
         </header> 
         <main>
-            <div class="products">
-                <div class="product-item" v-for="product of products">
-                    <img :src="getImg(product)" alt="img">
-                    <h2>{{product.name}}</h2>
-                    <p>price: {{product.price}}</p>
-                    <button class="buy-btn" @click="addProdToCart(product)">Купить</button>
-                </div>           
-            </div>
+            <catalog ref="cata"/>  
         </main>
     </div>    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="script.js"></script>
+    <script src="scripts/components.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
