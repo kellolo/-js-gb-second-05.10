@@ -1,22 +1,53 @@
 let product = {
+  props: ['prod'],
   template: `        
-    <div class="products" v-if="products.length">
-      <div class="product-item" v-for="product in products">
-          <img :src="product.img" alt="Some img">
+      <div class="product-item">
+          <img :src="prod.img" alt="Some img">
           <div class="desc">
-              <h3> {{product.product_name}} </h3>
-              <p>{{product.price}} $</p>
-              <button class="buy-btn" @click="addProduct(product)">Купить</button>
+              <h3> {{prod.product_name}} </h3>
+              <p>{{prod.price}} $</p>
+              <button class="buy-btn" @click="buyItem">Купить</button>
           </div>
       </div>
-    </div>
-  `
+  `,
+  methods: {
+    buyItem() {
+      this.$emit('buy', this.prod)
+    }
+  }
 }
 
 let catalog = {
+  data() {
+    return {
+      catalogUrl: '/catalogData.json',
+      products: [],
+      filtered: []
+    }
+  },
+
+  mounted() {
+    this.$parent.getJson(this.catalogUrl)
+      .then(data => {
+        this.products = data
+        this.filtered = data
+      })
+  },
+
+  methods: {
+    filter(value) {
+      let reg = new RegExp(value, 'i')
+      this.filtered = this.products.filter(el => reg.test(el.product_name))
+    }
+  },
+
   template: `        
-  <div class="products" v-if="products.length">
-    <div class="product-item" v-for="product in products"></div>
+  <div class="products">
+    <product v-for="product in filtered" :prod="product" :key="product.id_product" @buy="$root.$refs.basket.addProduct">
+    </product>
   </div>
-`
+`,
+  components: {
+    product
+  }
 }
