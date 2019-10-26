@@ -374,15 +374,15 @@ h2 {
 }
 
 .error-notification {
-  position: absolute;
-  //display: flex;
-  //flex-direction: column;
-  //justify-items: center;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
   min-width: 500px;
   //  min-height: 50%;
-  top: 250px;
-  left: 0px;
-  width: 980px;
+  top: 40vh;
+  left: 24vw;
+  width: 50vw;
   padding: 10px;
   background-color: rgb(253, 175, 175);
   color: maroon;
@@ -395,6 +395,7 @@ h2 {
     margin: 2px;
     border: 1px solid rgb(236, 95, 95);
     padding: 10px;
+    overflow: hidden;
   }
 
   p {
@@ -405,9 +406,10 @@ h2 {
   button {
     background-color: red;
     color: white;
-    width: 100px;
+    width: 8vw;
+    font-size: inherit;
     height: 40px;
-    margin-left: 200px;
+    margin-left: 40%;
     border: none;
     border-radius: 20px;
   }

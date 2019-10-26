@@ -296,11 +296,14 @@ h2 {
   font-size: 30px;
 }
 .error-notification {
-  position: absolute;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
   min-width: 500px;
-  top: 250px;
-  left: 0px;
-  width: 980px;
+  top: 40vh;
+  left: 24vw;
+  width: 50vw;
   padding: 10px;
   background-color: #fdafaf;
   color: maroon;
@@ -313,6 +316,7 @@ h2 {
   margin: 2px;
   border: 1px solid #ec5f5f;
   padding: 10px;
+  overflow: hidden;
 }
 .error-notification p {
   width: 100%;
@@ -321,9 +325,10 @@ h2 {
 .error-notification button {
   background-color: red;
   color: white;
-  width: 100px;
+  width: 8vw;
+  font-size: inherit;
   height: 40px;
-  margin-left: 200px;
+  margin-left: 40%;
   border: none;
   border-radius: 20px;
 }
