@@ -27,44 +27,51 @@ let cartProduct = {
 let cart = {
     data() {
         return {
-            cartUrl: '/getBasket.json',
-            products: [],
-            current: []
+            products: []
         }
     },
 
     mounted() {
-        this.$parent.getJson(this.cartUrl)
+        this.$parent.getJson('/api/cart')
             .then(data => {
                 this.products = data.contents
-                this.current = data.contents
             })
     },
 
     methods: {
-        test() {
-            console.log('test')
-        },
         addProduct(prod) {
-            const find = this.current.find((item) => item.id_product === prod.id_product)
-            if (find) find.quantity++
-            else {
+            const find = this.products.find((item) => item.id_product === prod.id_product)
+            if (find) {
+                this.$parent.putJson('/api/cart/' + find.id_product, {quantity: 1})
+                .then(data => {
+                    if (data.result) {
+                        find.quantity++
+                    }
+                })
+            } else {
                 let item = Object.assign({}, prod, {quantity: 1, img: prod.img.replace(/img/, 'img\/small')})
-                this.current.push(item)
+                this.$parent.postJson('/api/cart', item)
+                .then(data => {
+                    if (data.result) {
+                        this.products.push(item)
+                    }
+                })
             }
         },
         removeProduct(id) {
-            const find = this.current.find((item) => item.id_product === id)
-            const index = this.current.findIndex((item) => item.id_product === id)
-            if (find.quantity > 1) {
-                find.quantity--
-            }
-            else this.current.splice(index, 1)
+            console.log(id)
+            
+            // const find = this.current.find((item) => item.id_product === id)
+            // const index = this.current.findIndex((item) => item.id_product === id)
+            // if (find.quantity > 1) {
+            //     find.quantity--
+            // }
+            // else this.current.splice(index, 1) 
         }
     },
 
     template: `<div class="cart-block" v-if="$parent.isVisibleCart">
-    <cart-product v-for="product in current" :prod="product" :key="product.id_product" @remove="removeProduct">
+    <cart-product v-for="product in products" :prod="product" :key="product.id_product" @remove="removeProduct">
     </cart-product>
     </div>
   `,

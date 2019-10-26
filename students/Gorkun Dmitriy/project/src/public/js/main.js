@@ -11,15 +11,53 @@ let app = new Vue({
     },
 
     methods: {
-        getJson(url) {
-            return fetch(`${this.API + url}`)
-                .then(result => result.json())
-                .catch(err => {
-                    console.log(err)
-                })
+        getJson (url) {
+            return fetch (url)
+            .then (result => result.json())
+            .catch (err => {
+                console.log (err)
+            })
+        },
+        postJson (url, data) {
+            return fetch (url, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify (data)
+            })
+            .then (result => result.json())
+            .catch (err => {
+                console.log (err)
+            })
+        },
+        putJson (url, data) {
+            return fetch (url, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify (data)
+            })
+            .then (result => result.json())
+            .catch (err => {
+                console.log (err)
+            })
+        },
+        delJson (url, data) {
+            return fetch (url, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify (data)
+            })
+            .then (result => result.json())
+            .catch (err => {
+                console.log (err)
+            })
         }
     },
-
     mounted() {
 
     }
