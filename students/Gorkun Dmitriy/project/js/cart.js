@@ -50,13 +50,6 @@ let cart = {
             if (find) find.quantity++
             else {
                 let item = Object.assign({}, prod, {quantity: 1, img: prod.img.replace(/img/, 'img\/small')})
-                // let item = {
-                //     id_product: prod.id_product,
-                //     product_name: prod.product_name,
-                //     price: prod.price,
-                //     quantity: 1,
-                //     img: prod.img.replace(/img/, 'img\/small')
-                // }
                 this.current.push(item)
             }
         },
