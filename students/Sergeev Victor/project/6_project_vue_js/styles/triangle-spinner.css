@@ -36,7 +36,14 @@
     animation: rotate-three 1s linear infinite;
     border-top: 3px solid #2f2a2d;
   }
-  
+
+  .err-msg{
+    position:absolute;
+    top: calc(45%);
+    left: calc(50% + 70px);
+    color:rgb(216, 216, 216);
+  }
+
   @keyframes rotate-one {
     0% {
       transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
