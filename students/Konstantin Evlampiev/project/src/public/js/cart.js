@@ -69,7 +69,7 @@ let cart = {
          */
         addToCart(good) {
             let obj = this.getCartItem(good.id);
-            if (obj != null) {
+            if (obj != null) { //put
                 this.$parent.putJson('/api/cart/' + obj.id, {
                         quantity: 1
                     })
@@ -78,7 +78,7 @@ let cart = {
                             obj.quantity++;
                         }
                     });
-            } else {
+            } else { //post
                 obj = Object.assign({}, good, {
                     quantity: 1
                 });
