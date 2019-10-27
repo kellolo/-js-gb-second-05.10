@@ -23,13 +23,13 @@ let goodsList = {
         return {
             filteredGoods: [],
             goods: [],
-            url: '/selectAllProducts.json'
+            url: '/api/products'
         }
     },
 
     methods: {
         async getData() {
-            this.$parent.makeGetReq(API_URL + this.url)
+            this.$parent.makeGetReq(this.url)
                 .then(result => {
                     this.goods = result;
                     this.filteredGoods = result;

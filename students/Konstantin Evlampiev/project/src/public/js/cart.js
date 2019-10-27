@@ -2,7 +2,7 @@ let cartItem = {
     props: ['cartItem', 'index'],
     data() {
         return {
-            img_url: 'img/forGoodsList/'
+            img_url: './img/forGoodsList/'
         }
     },
     template: `<div class="cartItem">
@@ -30,13 +30,13 @@ let cart = {
     data() {
         return {
             cartItems: [],
-            url: '/selectAllCartItems.json'
+            url: '/api/cart'
         }
     },
 
     methods: {
         async getData() {
-            this.$parent.makeGetReq(API_URL + this.url)
+            this.$parent.makeGetReq(this.url)
                 .then(data => {
                     this.cartItems = data;
                 })
@@ -70,12 +70,24 @@ let cart = {
         addToCart(good) {
             let obj = this.getCartItem(good.id);
             if (obj != null) {
-                obj.quantity++
+                this.$parent.putJson('/api/cart/' + obj.id, {
+                        quantity: 1
+                    })
+                    .then(data => {
+                        if (data.result) {
+                            obj.quantity++;
+                        }
+                    });
             } else {
                 obj = Object.assign({}, good, {
                     quantity: 1
                 });
-                this.cartItems.push(obj);
+                this.$parent.postJson('/api/cart', obj)
+                    .then(data => {
+                        if (data.result) {
+                            this.cartItems.push(obj)
+                        };
+                    });
             }
         },
         /**
