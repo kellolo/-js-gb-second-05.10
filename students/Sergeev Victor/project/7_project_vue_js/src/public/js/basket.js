@@ -4,8 +4,8 @@ let basketItem = {
             <tr>
                 <th scope="row">{{basketProduct.id_product}}</th>
                 <td>{{basketProduct.product_name}}</td>
-                <td>{{basketProduct.price * basketProduct.amount}}</td>
-                <td class="productCount">{{basketProduct.amount}}</td>
+                <td>{{basketProduct.price * basketProduct.quantity}}</td>
+                <td class="productCount">{{basketProduct.quantity}}</td>
                 <td><i class="fas fa-trash-alt productRemoveBtn" @click="$parent.removeProduct(basketProduct)"></i></td>
             </tr>
             `
@@ -18,6 +18,11 @@ let basket = {
         }
     },
     mounted () {
+        this.$parent.getJson ('/api/basket')
+            .then (data => {
+                this.basketProducts = data
+                this.basketProducts = data.contents
+            })
     },
     computed: {
         
@@ -34,21 +39,41 @@ let basket = {
         addProduct (good) {
             let findClickedProduct = this.basketProducts.find(item => item.id_product === good.id_product);
             if(findClickedProduct){
-                findClickedProduct.amount++;
+                this.$parent.putJson ('/api/basket/plus/' + findClickedProduct.id_product, {quantity: 1})
+                .then (data => {
+                    if (data.result) {
+                        findClickedProduct.quantity ++
+                    }
+                })
             } else { 
-                let newBasketProduct = Object.assign ({}, good, {amount: 1});
-                this.basketProducts.push(newBasketProduct);
+                let newBasketProduct = Object.assign ({}, good, {quantity: 1});
+                this.$parent.postJson ('/api/basket', newBasketProduct)
+                    .then (data => {
+                        if (data.result) {
+                            this.basketProducts.push (newBasketProduct)
+                        }
+                    })
             }
 
         },
 
         removeProduct (good) {
             let findClickedProduct = this.basketProducts.find(item => item.id_product === good.id_product);
-    
-            if (findClickedProduct.amount > 1) {
-                findClickedProduct.amount --;
-            } else {
-                this.basketProducts.splice(this.basketProducts.indexOf(findClickedProduct), 1);
+            if(findClickedProduct.quantity > 1){
+                this.$parent.putJson ('/api/basket/minus/' + findClickedProduct.id_product, {quantity: 1})
+                .then (data => {
+                    if (data.result) {
+                        findClickedProduct.quantity --
+                    }
+                })
+            } else { 
+                this.basketProducts.splice(this.basketProducts.indexOf(findClickedProduct), 1) 
+                this.$parent.deleteJson ('/api/basket', findClickedProduct)
+                    .then (data => {
+                        if (data.result) {
+                            this.basketProducts.pop (findClickedProduct)
+                        }
+                    })
             }
         }
     },

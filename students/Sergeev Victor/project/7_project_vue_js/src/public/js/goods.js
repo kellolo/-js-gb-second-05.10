@@ -17,13 +17,13 @@ let goodItem = {
 let goodsList = {
   data () {
       return {
-          catalogUrl: '/catalogData.json',
+          //catalogUrl: '/catalogData.json',
           goods: [],
           filtered: []
       }
   },
   mounted () {
-      this.$parent.getJson (this.catalogUrl)
+      this.$parent.getJson ('/api/products')
           .then (data => {
               this.goods = data
               this.filtered = data
