@@ -18,8 +18,8 @@ let app = new Vue({
             }
         },
 
-        putJson(url, data) {
-            return fetch(url, {
+        async putJson(url, data) {
+            return await fetch(url, {
                     method: 'PUT',
                     headers: {
                         "Content-type": "application/json"
@@ -32,8 +32,8 @@ let app = new Vue({
                 })
         },
 
-        postJson(url, data) {
-            return fetch(url, {
+        async postJson(url, data) {
+            return await fetch(url, {
                     method: 'POST',
                     headers: {
                         "Content-type": "application/json"

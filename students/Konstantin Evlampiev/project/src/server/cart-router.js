@@ -18,11 +18,11 @@ router.get('/', (req, res) => {
     })
 })
 
-router.post('/', (res, req) => {
+router.post('/', (req, res) => {
     handler(req, res, 'add', './src/server/database/user-cart.json');
 });
 
-router.put('/:id', (res, req) => {
+router.put('/:id', (req, res) => {
     handler(req, res, 'modify', './src/server/database/user-cart.json')
 });
 

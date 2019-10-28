@@ -7,12 +7,13 @@ app.use(express.json());
 app.use('/', express.static('./src/public'));
 
 app.use('/api/cart', cartRouter);
+
 app.use('/api/products', (req, res) => {
     fs.readFile('./src/server/database/catalog.json', (err, data) => {
         if (err) {
             res.sendStatus(404, JSON.stringify({
                 result: 0,
-                text: err
+                test: err
             }));
         } else {
             res.send(data);
