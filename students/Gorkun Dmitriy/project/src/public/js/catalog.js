@@ -20,14 +20,13 @@ let product = {
 let catalog = {
   data() {
     return {
-      catalogUrl: '/catalogData.json',
       products: [],
       filtered: []
     }
   },
 
   mounted() {
-    this.$parent.getJson(this.catalogUrl)
+    this.$parent.getJson('/api/products')
       .then(data => {
         this.products = data
         this.filtered = data
