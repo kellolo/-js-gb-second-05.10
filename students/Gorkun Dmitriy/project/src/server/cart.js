@@ -5,8 +5,11 @@ let add = (cart, req) => {
 
 let change = (cart, req) => {
   let find = cart.contents.find (el => el.id_product === +req.params.id)
-  find.quantity += +req.body.quantity
-  return JSON.stringify (cart, null, 4) 
+  if (find) {
+    find.quantity += +req.body.quantity
+    if (find.quantity < 1) cart.contents = cart.contents.filter((element) => element.quantity > 0)
+  }
+  return JSON.stringify (cart, null, 4)
 }
 
 module.exports = {

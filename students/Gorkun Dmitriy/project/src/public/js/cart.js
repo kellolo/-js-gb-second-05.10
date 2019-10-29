@@ -42,32 +42,29 @@ let cart = {
         addProduct(prod) {
             const find = this.products.find((item) => item.id_product === prod.id_product)
             if (find) {
-                this.$parent.putJson('/api/cart/' + find.id_product, {quantity: 1})
-                .then(data => {
-                    if (data.result) {
-                        find.quantity++
-                    }
-                })
+                this.$parent.putJson('/api/cart/' + find.id_product, { quantity: 1 })
+                    .then(data => {
+                        if (data.result) {
+                            find.quantity++
+                        }
+                    })
             } else {
-                let item = Object.assign({}, prod, {quantity: 1, img: prod.img.replace(/img/, 'img\/small')})
+                let item = Object.assign({}, prod, { quantity: 1, img: prod.img.replace(/img/, 'img\/small') })
                 this.$parent.postJson('/api/cart', item)
-                .then(data => {
-                    if (data.result) {
-                        this.products.push(item)
-                    }
-                })
+                    .then(data => {
+                        if (data.result) {
+                            this.products.push(item)
+                        }
+                    })
             }
         },
         removeProduct(id) {
             console.log(id)
-            
-            // const find = this.current.find((item) => item.id_product === id)
-            // const index = this.current.findIndex((item) => item.id_product === id)
-            // if (find.quantity > 1) {
-            //     find.quantity--
-            // }
-            // else this.current.splice(index, 1) 
-        }
+            this.$parent.putJson('/api/cart/'+ id, { quantity: -1 })
+                .then(data => {
+                        console.log(data)
+                })
+        },
     },
 
     template: `<div class="cart-block" v-if="$parent.isVisibleCart">

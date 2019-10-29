@@ -43,20 +43,7 @@ let app = new Vue({
             .catch (err => {
                 console.log (err)
             })
-        },
-        delJson (url, data) {
-            return fetch (url, {
-                method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify (data)
-            })
-            .then (result => result.json())
-            .catch (err => {
-                console.log (err)
-            })
-        }
+        },  
     },
     mounted() {
 
