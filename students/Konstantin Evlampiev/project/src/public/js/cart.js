@@ -2,22 +2,22 @@ let cartItem = {
     props: ['cartItem', 'index'],
     data() {
         return {
-            img_url: 'img/forGoodsList/'
+            img_url: './img/forGoodsList/'
         }
     },
     template: `<div class="cartItem">
                     <img class="cartItem__img" :src="img_url+cartItem.certImg" alt="Изображение">
                     <p class="cartItem__name"> {{cartItem.title}} </p>
                     <p class="cartItem__price"> {{cartItem.price.toFixed(2)}}</p>
-                    <button class="cartItem__plusBtn" @click="cartItem.quantity++">
+                    <button class="cartItem__plusBtn" @click="$parent.addToCart(cartItem,cartItem.quantity+1)">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
-                    <input class="cartItem__quantity" type="number" min="0" max="99" :value="cartItem.quantity">
+                    <input class="cartItem__quantity" type="number" min="0" max="99" v-model="cartItem.quantity" @change="$parent.addToCart(cartItem,cartItem.quantity)">
                     <button class="cartItem__minusBtn"
-                        @click="(cartItem.quantity>1)?cartItem.quantity--:cartItem.quantity=0">
+                        @click="$parent.addToCart(cartItem,cartItem.quantity-1)">
                         <i class="fa fa-minus" aria-hidden="true"></i>
                     </button>
-                    <button class="cartItem__minusBtn" @click="$parent.delCartItem(index)">
+                    <button class="cartItem__minusBtn" @click="$parent.deleteFromCart(cartItem)">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>
                     <p class="cartItem__totalSum">
@@ -30,13 +30,13 @@ let cart = {
     data() {
         return {
             cartItems: [],
-            url: '/selectAllCartItems.json'
+            url: '/api/cart'
         }
     },
 
     methods: {
         async getData() {
-            this.$parent.makeGetReq(API_URL + this.url)
+            this.$parent.makeGetReq(this.url)
                 .then(data => {
                     this.cartItems = data;
                 })
@@ -46,13 +46,13 @@ let cart = {
             console.log('Not relized yet');
         },
 
-        /**
-         * Удаляет (совсем) товар из корзины 
-         * @param {Number} indx индекс товара в корзине
-         */
-        delCartItem(indx) {
-            this.cartItems.splice(indx, 1);
-        },
+        // /**
+        //  * Удаляет (совсем) товар из корзины 
+        //  * @param {Number} indx индекс товара в корзине
+        //  */
+        // delCartItem(indx) {
+        //     this.cartItems.splice(indx, 1);
+        // },
 
         /**
          * 
@@ -64,20 +64,71 @@ let cart = {
 
 
         /**
-         * Добавляет товар в корзину 
-         * @param {Object} obj 
+         * Добавляет в корзину определенное количество товаров класса good
+         * @param {Good} good товар который доавляем
+         * @param {Number} amount количество
          */
-        addToCart(good) {
+        addToCart(good, amount = 0) {
             let obj = this.getCartItem(good.id);
-            if (obj != null) {
-                obj.quantity++
-            } else {
+            if (obj != null) { //put  Просто обновляем количество
+                amount = (amount == 0) ? amount = (obj.quantity + 1) : amount; //Если объект пришел извне корзины amount=0 и нужно добавить 1 к уже имеющемуся товару
+                this.$parent.putJson('/api/cart/' + obj.id, {
+                        quantity: amount
+                    })
+                    .then(data => {
+                        if (data.result) {
+                            obj.quantity = amount;
+                        }
+                    });
+            } else { //post . Добавляем принципиально новый объект c количеством amount
                 obj = Object.assign({}, good, {
                     quantity: 1
                 });
-                this.cartItems.push(obj);
+
+                this.$parent.postJson('/api/cart', obj)
+                    .then(data => {
+                        if (data.result) {
+                            this.cartItems.push(obj)
+                        };
+                    });
             }
         },
+
+        // /**
+        //  * Уменьшает товар в корзине на 1. Морально устаревшая функция
+        //  * @param {Good} good 
+        //  */
+        // reduceGoodQnt(good) {
+        //     if (!this.cartItems.includes(good) || good.quantity == 0) {
+        //         alert('Nothing to exclude')
+        //     } else {
+        //         this.$parent.putJson('/api/cart/' + good.id, {
+        //                 quantity: -1
+        //             })
+        //             .then(data => {
+        //                 if (data.result) {
+        //                     good.quantity--;
+        //                 }
+        //             });
+        //     }
+        // },
+
+        /**
+         * Удаляет товар из корзины. Совсем
+         * @param {CartItem} good 
+         */
+        deleteFromCart(good) {
+            let indx = this.cartItems.indexOf(good);
+            if (indx >= 0) {
+                this.$parent.deleteJson('/api/cart/' + good.id)
+                    .then(data => {
+                        if (data.result) {
+                            this.cartItems.splice(indx, 1);
+                        }
+                    });
+            } else throw new Error(`Good ${good} is not in the basket...`);
+        },
+
         /**
          * Удаляет все товары из корзины у которых количество == 0
          */

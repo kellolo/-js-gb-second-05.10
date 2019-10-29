@@ -1,12 +1,18 @@
 {
-  "name": "kevlampiev",
+  "name": "project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server part for eShop (training app on js level2)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon src/server/server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Konstantin Evlampiev",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "nodemon": "^1.19.4"
+  }
 }
