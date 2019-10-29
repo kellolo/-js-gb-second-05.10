@@ -15,7 +15,6 @@ let product = {
 let catalog = {
     data(){
         return {
-            catalogUrl: '/json/basa.json',
             mediaFolder: 'img/',
             products: [],
             filtered: []
@@ -88,15 +87,34 @@ let cart = {
             cartView: false
         }
     },
+
+    mounted () {
+        this.$parent.getJson ('/api/cart')
+            .then (data => {
+                this.products = data.contents
+            })
+    },        
+
     methods: {
         addProdToCart (product) {
             let res = false
             this.cart.forEach(el => {if (el.id === product.id){res = el}})
             if (res){
+                this.$parent.putJson ('/api/cart/' + res.id, {quantity: 1})
+                    .then (data => {
+                        if (data.result) {
+                            res.qty ++
+                        }
+                    })
                 res.qty ++
             } else{
                 let prod = Object.assign({}, product, {"qty": 1})
-                this.cart.push (prod)
+                this.$parent.postJson ('/api/cart', prod)
+                    .then (data => {
+                        if (data.result) {
+                            this.cart.push (prod)
+                        }
+                })
             }
         },
         removeProdFromCart (product) {

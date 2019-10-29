@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 5</title>
+    <style>
+    body {
+        color:grey;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 1em;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <!--Связывание данных-->
+        <input type="text" v-model="name"> <!--Привязка значения name  кполю ввода с помощью v-model-->
+
+        <!--Шаблоны-->
+        <p>Привет, меня зовут {{ name }}</p> <!--Обращение к данным в js, mustache-синтаксис-->
+
+        <!--Условия-->
+        <p v-if = "name.length != 0" >Строка появляется, если вводить данные - {{ name }}</p> <!--Скрываем строку при пустых данных в поле name-->
+
+        <!--Списки-->
+        <ol>
+        <li v-for = "name in names" >{{ name }}</li> <!--Создаем нумерованый список из элементов массива-->
+        </ol>
+
+        <!--События-->
+        <ul>
+        <li v-for = "name in names" v-on:click = "clickHandler">{{ name }}</li> <!--Привяжем вызов метода к клику на элемент, 
+                                                                                можно скоратить заменив v-on на @-->
+        </ul>
+
+        <!--Вычисляемые свойства-->
+        <p >Этот такст будет капсом -  {{ upperCaseName }}</p> <!--Меняем значение в шаблоне, чтобы вывести текст в верхнем регистре-->
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
