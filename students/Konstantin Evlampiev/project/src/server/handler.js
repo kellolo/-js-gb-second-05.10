@@ -1,9 +1,11 @@
 const cart = require('./cart.js');
 const fs = require('fs');
+const actionReg = require('./stats.js');
 
 const actions = {
     add: cart.add,
-    modify: cart.modify
+    modify: cart.modify,
+    delete: cart.remove
 }
 
 let handler = (req, res, action, file) => {
@@ -14,9 +16,8 @@ let handler = (req, res, action, file) => {
                 test: err
             }));
         } else {
-            debugger
-            let newCart = actions[action](JSON.parse(data), req);
-            console.log(newCart);
+            let cartItem = JSON.parse(data);
+            let newCart = actions[action](cartItem, req);
 
             fs.writeFile(file, newCart, err => {
                 if (err) {
