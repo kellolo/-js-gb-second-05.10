@@ -1,0 +1,18 @@
+{
+    "amount": 46600,
+    "countGoods": 2,
+    "contents": [
+        {
+            "id_product": 123,
+            "product_name": "Ноутбук",
+            "price": 45600,
+            "quantity": 1
+        },
+        {
+            "id_product": 121,
+            "product_name": "Поварешка",
+            "price": 100000,
+            "quantity": 1
+        }
+    ]
+}
