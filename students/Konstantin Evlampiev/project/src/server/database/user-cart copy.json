@@ -1,0 +1,25 @@
+[{
+        "id": 1,
+        "title": "leak detector",
+        "price": 12,
+        "img": "1.jpg",
+        "certImg": "1.jpg",
+        "quantity": 1
+    },
+    {
+        "id": 4,
+        "title": "smoke sensor",
+        "price": 14.1,
+        "img": "4.jpg",
+        "certImg": "4.jpg",
+        "quantity": 1
+    },
+    {
+        "id": 7,
+        "title": "termometr",
+        "price": 8,
+        "img": "7.jpg",
+        "certImg": "7.jpg",
+        "quantity": 3
+    }
+]

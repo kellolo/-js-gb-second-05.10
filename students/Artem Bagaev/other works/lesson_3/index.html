@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+function makeGETRequest(url, callback) {
+
+  return new Promise(function(resolve, reject) {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+
+    xhr.onload = function() {
+      if (this.status == 200) {
+        resolve(this.response);
+      } else {
+        var error = new Error(this.statusText);
+        error.code = this.status;
+        reject(error);
+      }
+    };
+
+    xhr.onerror = function() {
+      reject(new Error("Network Error"));
+    };
+
+    xhr.send();
+  });
+
+}
+
+  const API_URL = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+
+  class GoodsList {
+  // ...
+    fetchGoods() {
+      makeGETRequest(`${API_URL}/catalogData.json`, (goods) => {
+        this.goods = JSON.parse(goods);
+      })
+    }
+    render() {
+      let listHtml = '';
+      this.goods.forEach(good => {
+        const goodItem = new GoodsItem(good.product_name, good.price);
+        listHtml += goodItem.render();
+      });
+      document.querySelector('.goods-list').innerHTML = listHtml;
+    }
+  }
+
+  const list = new GoodsList();
+      list.fetchGoods(() => {
+      list.render();
+    });
+
+  class GoodsItem {
+  // ...
+    render() {
+      return `<div class="goods-item"><h3>${this.product_name}</h3><p>${this.price}</p></div>`;
+    }
+  }
+
+//   /catalogData.json – получить список товаров;
+// /getBasket.json – получить содержимое корзины;
+// /addToBasket.json – добавить товар в корзину;
+// /deleteFromBasket.json – удалить товар из корзины.
+
+
+  </script>
+</body>
+</html>

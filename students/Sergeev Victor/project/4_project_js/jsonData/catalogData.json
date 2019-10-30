@@ -1,0 +1,107 @@
+[
+  {
+    "id_product": 0,
+    "product_name": "Перчатки",
+    "price": 150
+  },
+  {
+    "id_product": 1,
+    "product_name": "Скейтборд",
+    "price": 2000
+  },
+  {
+    "id_product": 2,
+    "product_name": "Горнолыжный костюм",
+    "price": 6700
+  },
+  {
+    "id_product": 3,
+    "product_name": "Сноуборд",
+    "price": 2400
+  },
+  {
+    "id_product": 4,
+    "product_name": "Спандер",
+    "price": 250
+  },
+  {
+    "id_product": 5,
+    "product_name": "Кроссовки",
+    "price": 2700
+  },
+  {
+    "id_product": 6,
+    "product_name": "Спортивная сумка",
+    "price": 2500
+  },
+  {
+    "id_product": 7,
+    "product_name": "Спасательный круг",
+    "price": 400
+  },
+  {
+    "id_product": 8,
+    "product_name": "Ласты",
+    "price": 750
+  },
+  {
+    "id_product": 9,
+    "product_name": "Коньки",
+    "price": 3000
+  },
+  {
+    "id_product": 10,
+    "product_name": "Скакалка",
+    "price": 400
+  },
+  {
+    "id_product": 11,
+    "product_name": "Детские лыжи",
+    "price": 1400
+  },
+  {
+    "id_product": 12,
+    "product_name": "Термос",
+    "price": 2200
+  },
+  {
+    "id_product": 13,
+    "product_name": "Ракетка",
+    "price": 1100
+  },
+  {
+    "id_product": 14,
+    "product_name": "Санки",
+    "price": 1700
+  },
+  {
+    "id_product": 15,
+    "product_name": "Шнурки",
+    "price": 50
+  },
+  {
+    "id_product": 16,
+    "product_name": "Бейсбольная бита",
+    "price": 3000
+  },
+  {
+    "id_product": 17,
+    "product_name": "Тросс",
+    "price": 400
+  },
+  {
+    "id_product": 18,
+    "product_name": "Солнцезащитные очки",
+    "price": 920
+  },
+  {
+    "id_product": 19,
+    "product_name": "Спортивные часы",
+    "price": 10000
+  },
+  {
+    "id_product": 20,
+    "product_name": "Гетры",
+    "price": 300
+  }
+]

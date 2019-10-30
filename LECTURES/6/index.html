@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model.lazy="globalText">
+
+        <comp :glob="globalText"></comp>
+        <comp :glob="globalText"></comp>
+        <comp :glob="globalText" ref="target"></comp>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="comp.js"></script>
+    <script>
+        let app = new Vue ({
+            el: '#app',
+            data: {
+                globalText: ''
+            },
+            computed: {
+                
+            },
+            methods: {
+                parentMtd (str) {
+                    console.log ('Hello' + str)
+                }
+            },
+            mounted () {
+                console.log ('Этот компонент')
+                console.log (this)
+                console.log ('Этот компонент в ДОМ')
+                console.dir (this.$el)
+                console.log ('Глобальный корень')
+                console.log (this.$root)
+                console.log ('Рефы ЭТОГО компонента')
+                console.log (this.$refs)
+                //this.$el.querySelector('input').style.background = 'red'
+            }
+        })
+    </script>
+</body>
+</html>
