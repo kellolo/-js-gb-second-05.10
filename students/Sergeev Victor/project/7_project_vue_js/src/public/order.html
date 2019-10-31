@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2Xsport</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/order-form.css">
+</head>
+<body>
+    <div>
+        <header>
+            <a href="index.html"><i class="go-back-btn fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+            <div class="title-2Xsport"><h2>2Xsport shop</h2></div>
+        </header>
+
+        <main>
+            <div class="input-container">
+                <p>Ваша сумма товара(ов) составляет <span class="totalSumOfOrder">0</span><i class="fas fa-ruble-sign"></i></p>
+                <p>Заполните форму для оформления заказа на покупку. <span class="tests"></span></p> 
+                <form action="#" method="POST" class="order-form">    
+                    <div class="flex-order-form">
+                        <div><input type="text" name="surname" placeholder="Ваша Фамилия ..."></div>
+                        <div><input type="text" name="first_name" placeholder="Ваше Имя ..."></div>
+                        <div><input type="text" name="email" placeholder="Ваш Email ..."></div>
+                        <div><input type="text" name="telephone" placeholder="Ваш Телефон ..."></div>
+                        <div><textarea rows="10" name="message" placeholder="Ваш Комментарий ..."></textarea></div>
+                        <div class="btn-submit"><input type="submit" value="Заказать"></div>
+                    </div>
+                </form>
+            </div>    
+        </main>
+
+        <div class="blank"></div>
+        <footer>
+            <p class="copyright">© 2Xsport shop 2019, developed by Victor Sergeev</p>
+        </footer>
+    </div>
+</body>
+    <script src="js/basket.js"></script>
+    <script src="js/goods.js"></script>
+    <script src="js/order.js"></script>
+</html>

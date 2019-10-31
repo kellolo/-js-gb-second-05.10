@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <p id='text'>
+    Lorem aren't ipsum dolor sit amet, consectetur adipisicing elit. Autem architecto natus earum enim quo, commodi hic soluta 'rerum' debitis voluptates. Vitae quaerat 'cupiditate' nulla incidunt mollitia corporis 'vero' facilis
+    dolorum, nobis, molestias repudiandae saepe 'repellendus'. Quisquam, saepe, at. Lauda ntium eum enim ipsum illum adipisci, quisquam veniam deleniti. Exercitationem fugiat, nisi!
+  </p>
+  <script>
+    // тут все понятно
+    const text = document.querySelector('#text');
+    const regexp = /(?<=\s)'|'(?=\s)|^'|'$|'(?=[^A-Za-z0-9])|(?<=[^A-Za-z0-9])'/g;
+
+    let newText = text.innerHTML.replace(regexp, '"');
+    text.innerHTML = newText;
+  </script>
+</body>
+</html>

@@ -3,33 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Интернет-магазин</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <div class = "gallery-window">
-        <div class="gallery-show">
-            
-        </div>
-    </div>
-    <header>
-        <div class="logo">E-shop</div>
-        <div class="cart">
-            <form action="#" class="search-form">
-                <input type="text" class="search-field">
-                <button class="btn-search" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-            </form>
-            <button class="btn-cart" type="button">Корзина</button>
-            <div class="cart-block invisible"></div>
-        </div>
-    </header> 
-    <main>
-        <div class="products">           
-        </div>
-    </main>
-    <!-- <script src="script/gallery.js"></script> -->
-    <script src="script/getData.js"></script>
-    <script src="script/script.js"></script>
+    <div id="app">
+        <header>
+            <div class="logo">E-shop</div>
+            <filter-comp></filter-comp>
+            <cart ref="cart"/>
+        </header> 
+        <main>
+            <catalog ref="cata"/>  
+        </main>
+    </div>    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="scripts/components.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
