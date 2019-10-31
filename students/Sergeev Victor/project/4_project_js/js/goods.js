@@ -14,7 +14,7 @@ class GoodsItem {
 
 class GoodsList {
   constructor() {
-    this.API_url = "https://raw.githubusercontent.com/Essvitex/-js-gb-second-05.10/master/students/Sergeev Victor/project/3/jsonData";
+    this.API_url = "https://raw.githubusercontent.com/Essvitex/-js-gb-second-05.10/master/students/Sergeev%20Victor/project/4_project_js/jsonData";
     this.goods = [];
     this.filteredGoods = [];//поле поиска
   }

@@ -1,0 +1,10 @@
+[{"id":1,"title":"leak detector","price":12,"img":"1.jpg","certImg":"1.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"},
+    {"id":2,"title":"presence sensor","price":10.99,"img":"2.jpg","certImg":"2.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"},
+    {"id":3,"title":"presence sensor","price":7.5,"img":"3.jpg","certImg":"3.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"},
+    {"id":4,"title":"smoke sensor","price":14.1,"img":"4.jpg","certImg":"4.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"},
+    {"id":5,"title":"gas sensor","price":15,"img":"5.jpg","certImg":"5.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"},
+    {"id":6,"title":"open sensor","price":12,"img":"6.jpg","certImg":"6.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"},
+    {"id":7,"title":"termometr","price":8,"img":"7.jpg","certImg":"7.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"},
+    {"id":8,"title":"smth","price":8,"img":"8.jpg","certImg":"8.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"},
+    {"id":9,"title":"main module","price":249.99,"img":"9.jpg","certImg":"9.jpg","description":"Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse atque magnam ducimus unde molestiae"}]
+    
