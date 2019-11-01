@@ -1,3 +1,7 @@
+import cart from './cart'
+import catalog from './catalog'
+import filterComp from './filter'
+
 let app = new Vue({
     el: '#app',
     components: {
@@ -49,3 +53,5 @@ let app = new Vue({
 
     }
 })
+
+export default app

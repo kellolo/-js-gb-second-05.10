@@ -50,3 +50,5 @@ let catalog = {
     product
   }
 }
+
+export default catalog

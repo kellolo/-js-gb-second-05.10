@@ -81,3 +81,5 @@ let cart = {
         'cart-product': cartProduct
     }
 }
+
+export default cart

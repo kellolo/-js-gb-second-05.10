@@ -5,7 +5,7 @@ const cart = require ('./cart-router.js')
 const app = express ()
 
 app.use(express.json())
-app.use('/', express.static('./src/public'))
+app.use('/', express.static('./dist/public'))
 app.use('/api/cart', cart)
 
 app.get('/api/products', (req, res) => {
