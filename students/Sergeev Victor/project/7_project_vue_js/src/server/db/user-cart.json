@@ -4,13 +4,13 @@
             "id_product": 1,
             "product_name": "Скейтборд",
             "price": 2000,
-            "quantity": 3
+            "quantity": 2
         },
         {
             "id_product": 2,
             "product_name": "Горнолыжный костюм",
             "price": 6700,
-            "quantity": 4
+            "quantity": 1
         },
         {
             "id_product": 7,
@@ -19,21 +19,21 @@
             "quantity": 1
         },
         {
-            "id_product": 13,
-            "product_name": "Ракетка",
-            "price": 1100,
-            "quantity": 3
+            "id_product": 0,
+            "product_name": "Перчатки",
+            "price": 150,
+            "quantity": 2
         },
         {
-            "id_product": 20,
-            "product_name": "Гетры",
-            "price": 300,
+            "id_product": 0,
+            "product_name": "Перчатки",
+            "price": 150,
             "quantity": 1
         },
         {
-            "id_product": 18,
-            "product_name": "Солнцезащитные очки",
-            "price": 920,
+            "id_product": 1,
+            "product_name": "Скейтборд",
+            "price": 2000,
             "quantity": 1
         }
     ]

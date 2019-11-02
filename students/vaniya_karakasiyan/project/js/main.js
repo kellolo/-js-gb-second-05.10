@@ -1,4 +1,26 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
+
+let app = new Vue ({
+    el: '#app',
+
+    methods: {
+        getJson (url) {
+            return fetch (`${API + url}`)
+            .then (result => result.json())
+            .catch (err => {
+                console.log (err)
+            })
+        }
+    },
+
+    components: {
+        'cart': cart,
+        'sort': sort,
+        'catalog': catalog
+    }
+})
+
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
 const CART_URL = '/getBasket.json'
 
 let app = new Vue ({
@@ -224,3 +246,4 @@ document.querySelector('.cart-block').addEventListener ('click', (evt) => {
 //оставшиеся задания из третьего урока:
 //1. Переделайте makeGETRequest() так, чтобы она использовала промисы.
 //3* Переделайте GoodsList так, чтобы fetchGoods() возвращал промис, а render() вызывался в обработчике этого промиса.
+

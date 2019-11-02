@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+// Объект XMLHttpRequest
+
+  let xhr = new XMLHttpRequest()
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+    callback(xhr.responseText)
+//функция, которую мы будем вызывать когда получим ответ от сервера
+    }
+  }
+  xhr.open('GET', url, true)
+  xhr.send()
+//запускает запрос
+}
+
+function handler (data) {
+    console.log (data)
+}
+request (urlAPI, handler)
+
+// promis
+
+function promisAjax (url) {
+    return new Promis ((res, rej) => {
+        let xhr = new XMLHttpRequest()
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    res (xhr.responseText)
+                } else {
+                       rej (‘some error’)
+                }
+            }
+        }
+
+
+        xhr.open('GET', url, true)
+        xhr.send()
+})
+}
+function getPromise () {
+   promiseAjax (urlAPI)
+            .then ((data) => {
+               console.log (JSON.parse (data))
+            })
+            .catch ((err) => {
+                console.log (err)
+})
+}
+// res - параметр на выполнение 
+// rej -параметр на отклонение
+
+
+
+
+// fetch
+let data = fetch (urlAPI)
+            .then ((data) => data.json ()).then (dataParsed => {console.log(dataParsed)})
+            .catch ((err) => {
+             console.log (err)
+           })
+  </script>
+</body>
+</html>
