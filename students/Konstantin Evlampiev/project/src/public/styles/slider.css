@@ -1,0 +1,132 @@
+.slider {
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.slider-item {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.hidden-slide {
+  visibility: hidden;
+}
+
+.fas.fa-spinner.fa-spin {
+  font-size: 50px;
+  color: #bbbbbb;
+  position: absolute;
+  left: calc(50% - 25px);
+  top: calc(50% - 25px);
+}
+
+.slider-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.slider-leftArrow,
+.slider-rightArrow {
+  position: absolute;
+  top: 47%;
+  color: #6f7a71;
+  cursor: pointer;
+  font-size: 50px;
+}
+
+.slider-leftArrow {
+  left: 5%;
+  z-index: 15;
+}
+
+.slider-rightArrow {
+  right: 5%;
+  z-index: 15;
+}
+
+/*Новое */
+.slide-right {
+  animation-name: slideRight;
+  animation-duration: 1500ms;
+  z-index: 14;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-105%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.erase-right {
+  animation-name: eraseRight;
+  animation-duration: 1500ms;
+  z-index: 14;
+}
+
+@keyframes eraseRight {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(105%);
+  }
+}
+
+.slide-left {
+  animation-name: slideLeft;
+  animation-duration: 1500ms;
+  z-index: 14;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(105%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.erase-left {
+  animation-name: eraseLeft;
+  animation-duration: 1500ms;
+  z-index: 14;
+}
+
+@keyframes eraseLeft {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-105%);
+  }
+}
+
+.slider__comment {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  width: 37%;
+  height: 30%;
+  border: none;
+  padding: 15px;
+  overflow: hidden;
+  z-index: 15;
+  opacity: 0.6;
+  color: black;
+}

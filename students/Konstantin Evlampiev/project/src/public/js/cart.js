@@ -46,13 +46,6 @@ let cart = {
             console.log('Not relized yet');
         },
 
-        // /**
-        //  * Удаляет (совсем) товар из корзины 
-        //  * @param {Number} indx индекс товара в корзине
-        //  */
-        // delCartItem(indx) {
-        //     this.cartItems.splice(indx, 1);
-        // },
 
         /**
          * 
@@ -69,6 +62,9 @@ let cart = {
          * @param {Number} amount количество
          */
         addToCart(good, amount = 0) {
+
+            let needToShowMessage = (amount === 0);
+
             let obj = this.getCartItem(good.id);
             if (obj != null) { //put  Просто обновляем количество
                 amount = (amount == 0) ? amount = (obj.quantity + 1) : amount; //Если объект пришел извне корзины amount=0 и нужно добавить 1 к уже имеющемуся товару
@@ -92,26 +88,10 @@ let cart = {
                         };
                     });
             }
+
+            this.$root.displayBuyNotification = needToShowMessage;
         },
 
-        // /**
-        //  * Уменьшает товар в корзине на 1. Морально устаревшая функция
-        //  * @param {Good} good 
-        //  */
-        // reduceGoodQnt(good) {
-        //     if (!this.cartItems.includes(good) || good.quantity == 0) {
-        //         alert('Nothing to exclude')
-        //     } else {
-        //         this.$parent.putJson('/api/cart/' + good.id, {
-        //                 quantity: -1
-        //             })
-        //             .then(data => {
-        //                 if (data.result) {
-        //                     good.quantity--;
-        //                 }
-        //             });
-        //     }
-        // },
 
         /**
          * Удаляет товар из корзины. Совсем
@@ -183,3 +163,5 @@ let cart = {
         'cart-item': cartItem
     }
 };
+
+//export default cart

@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const logFile = './src/server/database/stats.json';
 
-let actionReg = (action, good) => {
+let actionReg = (action, name) => {
     fs.readFile(logFile, 'utf-8', (err, data) => {
         if (err) {
             res.sendStatus(404, JSON.stringify({
@@ -13,8 +13,8 @@ let actionReg = (action, good) => {
             let actionArray = JSON.parse(data);
             actionArray.push({
                 operation: action,
-                goodId: good.id,
-                goodName: good.title,
+                //goodId: good.id,
+                goodName: name,
                 operationTime: new Date()
             })
 

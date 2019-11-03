@@ -54,3 +54,5 @@ let goodsList = {
         this.getData();
     }
 };
+
+//export default goodsList

@@ -4,8 +4,11 @@ const actionReg = require('./stats.js');
 let add = (cart, req) => {
     try {
         cart.push(req.body);
-        actionReg('add', req.body);
-        return JSON.stringify(cart, null, 4);
+        //        actionReg('add', req.body);
+        return {
+            basket: cart,
+            name: req.body.title
+        };
     } catch (err) {
         console.log(err);
     }
@@ -20,8 +23,10 @@ let add = (cart, req) => {
 let modify = (cart, req) => {
     let elem = cart.find(el => el.id === Number(req.params.id));
     elem.quantity = Number(req.body.quantity);
-    actionReg('modify', elem);
-    return JSON.stringify(cart, null, 4);
+    return {
+        basket: cart,
+        name: elem.title
+    };
 };
 
 /**
@@ -32,8 +37,11 @@ let modify = (cart, req) => {
 let remove = (cart, req) => {
     let neoCart = cart.filter(el => el.id !== Number(req.params.id));
     let el2 = cart.find(el => el.id === Number(req.params.id));
-    actionReg('remove', el2);
-    return JSON.stringify(neoCart, null, 4);
+    //actionReg('remove', el2);
+    return {
+        basket: neoCart,
+        name: el2.title
+    }
 };
 
 module.exports = {

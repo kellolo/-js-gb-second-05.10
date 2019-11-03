@@ -1,8 +1,15 @@
+//import cart from './cart';
+//import goodsList from './catalog';
+//import notification from './notification';
+//import search from './search';
+
+
 let app = new Vue({
     el: '.container',
     data: {
         isVisibleCart: false,
-        displayNotification: false,
+        displayErrorNotification: false,
+        displayBuyNotification: false,
         notificationMessage: ''
     },
     computed: {},
@@ -14,7 +21,7 @@ let app = new Vue({
             } catch (err) {
                 this.notificationMessage = 'Error while trying to get \n' + url;
                 console.log(err);
-                this.displayNotification = true;
+                this.displayErrorNotification = true;
             }
         },
 
@@ -35,24 +42,10 @@ let app = new Vue({
                 .catch(err => {
                     console.log(err);
                     this.notificationMessage = 'Error while trying to get \n' + url;
-                    this.displayNotification = true;
+                    this.displayErrorNotification = true;
                 })
         },
 
-        // async postJson1(url, data) {
-        //     return await fetch(url, {
-        //             method: 'POST',
-        //             headers: {
-        //                 "Content-type": "application/json"
-        //             },
-        //             body: JSON.stringify(data)
-        //         })
-        //         .then(result => result.json())
-        //         .catch(err => {
-        //             console.log(err);
-        //         })
-
-        // },
 
         /**
          * Функция добавляет принципиально новый товар в корзину 
@@ -72,7 +65,7 @@ let app = new Vue({
             } catch (err) {
                 console.error(err);
                 this.notificationMessage = 'Error while trying to get \n' + url;
-                this.displayNotification = true;
+                this.displayErrorNotification = true;
             }
         },
 
@@ -87,7 +80,7 @@ let app = new Vue({
                 .catch(err => {
                     console.error(err);
                     this.notificationMessage = 'Error while trying to get \n' + url;
-                    this.displayNotification = true;
+                    this.displayErrorNotification = true;
                 })
         }
 
@@ -103,6 +96,10 @@ let app = new Vue({
         'goods-list': goodsList,
         'search': search,
         'cart': cart,
-        'notification': notification
+        'error_notification': errorNotification,
+        'buy_notification': buyNotification,
+        'slider': slider
     }
 });
+
+//export default app

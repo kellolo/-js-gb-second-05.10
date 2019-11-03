@@ -337,3 +337,73 @@ h2 {
   color: white;
   font-size: 18px;
 }
+.buy-notification {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  min-width: 500px;
+  top: 40vh;
+  left: 24vw;
+  width: 50vw;
+  padding: 10px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: 8px 8px 19px 5px rgba(0, 0, 0, 0.43);
+  opacity: 0.9;
+  z-index: 17;
+  font-size: 18px;
+}
+.buy-notification div {
+  margin: 2px;
+  border: 1px solid #777;
+  padding: 10px;
+  overflow: hidden;
+}
+.buy-notification p {
+  width: 100%;
+  text-align: center;
+}
+.buy-notification button {
+  background-color: #777;
+  color: white;
+  width: 8vw;
+  font-size: inherit;
+  height: 40px;
+  margin-left: 40%;
+  border: none;
+  border-radius: 20px;
+}
+.buy-notification button:hover {
+  background-color: #222;
+  color: white;
+  font-size: 18px;
+}
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
