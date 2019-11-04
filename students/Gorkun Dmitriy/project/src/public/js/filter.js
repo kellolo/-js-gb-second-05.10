@@ -13,3 +13,5 @@ let filterComp = {
         </form>
       `
 }
+
+export default filterComp

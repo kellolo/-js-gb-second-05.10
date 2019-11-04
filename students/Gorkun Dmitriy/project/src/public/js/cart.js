@@ -59,10 +59,15 @@ let cart = {
             }
         },
         removeProduct(id) {
-            console.log(id)
-            this.$parent.putJson('/api/cart/'+ id, { quantity: -1 })
-                .then(data => {
-                        console.log(data)
+            const find = this.products.find((item) => item.id_product === id)
+            const index = this.products.findIndex((item) => item.id_product === id)
+            this.$parent.putJson('/api/cart/' + id, { quantity: -1 })
+
+                .then(() => {find.quantity --})
+                .then (()=> {
+                    if (find.quantity < 1) {
+                        this.products.splice(index, 1)
+                    }
                 })
         },
     },
@@ -76,3 +81,5 @@ let cart = {
         'cart-product': cartProduct
     }
 }
+
+export default cart
