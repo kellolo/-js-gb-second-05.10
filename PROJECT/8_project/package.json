@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon dist/server/main.js",
+    "serve": "nodemon src/server/server.js",
     "build": "webpack --mode development --config webpack.config.js && webpack --mode development --config webpack.config.server.js"
   },
   "keywords": [],
