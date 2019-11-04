@@ -55,4 +55,4 @@ let goodsList = {
     }
 };
 
-//export default goodsList
+export default goodsList

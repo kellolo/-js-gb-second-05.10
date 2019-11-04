@@ -1,4 +1,183 @@
-@import "styleModificators.css";
+.slider {
+  height: 50vh;
+  position: relative;
+  overflow: hidden;
+
+}
+
+.slider-item {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.hidden-slide {
+  visibility: hidden;
+}
+
+.fas.fa-spinner.fa-spin {
+  font-size: 50px;
+  color: #bbbbbb;
+  position: absolute;
+  left: calc(50% - 25px);
+  top: calc(50% - 25px);
+}
+
+.slider-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.slider-leftArrow,
+.slider-rightArrow {
+  position: absolute;
+  top: 47%;
+  color: #6f7a71;
+  cursor: pointer;
+  font-size: 50px;
+}
+
+.slider-leftArrow {
+  left: 5%;
+  z-index: 15;
+}
+
+.slider-rightArrow {
+  right: 5%;
+  z-index: 15;
+}
+
+/*Новое */
+.slide-right {
+  animation-name: slideRight;
+  animation-duration: 1500ms;
+  z-index: 14;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-105%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.erase-right {
+  animation-name: eraseRight;
+  animation-duration: 1500ms;
+  z-index: 14;
+}
+
+@keyframes eraseRight {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(105%);
+  }
+}
+
+.slide-left {
+  animation-name: slideLeft;
+  animation-duration: 1500ms;
+  z-index: 14;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(105%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.erase-left {
+  animation-name: eraseLeft;
+  animation-duration: 1500ms;
+  z-index: 14;
+}
+
+@keyframes eraseLeft {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-105%);
+  }
+}
+
+.slider__comment {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  width: 37%;
+  height: 30%;
+  border: none;
+  padding: 15px;
+  overflow: hidden;
+  z-index: 15;
+  opacity: 0.6;
+  color: black;
+}
+.orangeStyled {
+  background-color: #fc6136;
+  color: white;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.yellowStyled {
+  background-color: #fbf2d3;
+  font-size: 16px;
+  color: #7d7253;
+  line-height: 1.5;
+}
+.grayStyled {
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #a7a49c;
+  line-height: 1.5;
+}
+.darkGrayStyled {
+  background-color: #636363;
+  color: #ffffff;
+  line-height: 1.333;
+}
+.cyanStyled {
+  background-color: #95d4d2;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.5;
+}
+.grayImg {
+  filter: grayscale(50%) sepia(0.2);
+}
+.centered {
+  margin: 0 auto;
+}
+.grayTitle {
+  color: #555;
+  background: linear-gradient(#fff 50%, #f1f1f1 0);
+  /*размер повторяющегося фона*/
+  background-size: 10% 5px;
+}
+.bottomYellowBordered {
+  border-bottom: 5px solid #d4ccb0;
+}
+.bottomGrayBordered {
+  border-bottom: 5px solid #5c5c5c;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -407,3 +586,4 @@ h2 {
     opacity: 1;
   }
 }
+

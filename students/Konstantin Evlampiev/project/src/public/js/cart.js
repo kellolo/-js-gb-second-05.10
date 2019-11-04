@@ -57,17 +57,19 @@ let cart = {
 
 
         /**
-         * Добавляет в корзину определенное количество товаров класса good
+         * Устанавливаем в корзине новое количество товара или добавляем новый 
          * @param {Good} good товар который доавляем
          * @param {Number} amount количество
          */
-        addToCart(good, amount = 0) {
+        addToCart(good, amount = null) {
 
-            let needToShowMessage = (amount === 0);
+            let needToShowMessage = (amount === null);
+
 
             let obj = this.getCartItem(good.id);
             if (obj != null) { //put  Просто обновляем количество
-                amount = (amount == 0) ? amount = (obj.quantity + 1) : amount; //Если объект пришел извне корзины amount=0 и нужно добавить 1 к уже имеющемуся товару
+                amount = (amount === null) ? amount = (obj.quantity + 1) : amount; //Если объект пришел извне корзины amount==NULL и нужно добавить 1 к уже имеющемуся товару
+                amount = (amount < 0) ? 0 : amount; //заглушка против глупостей 
                 this.$parent.putJson('/api/cart/' + obj.id, {
                         quantity: amount
                     })
@@ -164,4 +166,4 @@ let cart = {
     }
 };
 
-//export default cart
+export default cart

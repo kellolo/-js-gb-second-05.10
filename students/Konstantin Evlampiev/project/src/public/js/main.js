@@ -1,7 +1,9 @@
-//import cart from './cart';
-//import goodsList from './catalog';
-//import notification from './notification';
-//import search from './search';
+import cart from './cart'
+import goodsList from './catalog'
+import errorNotification from './error_notification'
+import buyNotification from './buy_notification'
+import slider from './slider'
+import search from './search'
 
 
 let app = new Vue({
@@ -100,6 +102,6 @@ let app = new Vue({
         'buy_notification': buyNotification,
         'slider': slider
     }
-});
+})
 
-//export default app
+export default app

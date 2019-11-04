@@ -10,4 +10,4 @@ let errorNotification = {
 };
 
 
-//export default notification
+export default errorNotification

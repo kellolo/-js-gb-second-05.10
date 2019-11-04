@@ -298,5 +298,15 @@
         "operation": "modify",
         "goodName": "gas sensor",
         "operationTime": "2019-11-04T13:18:22.042Z"
+    },
+    {
+        "operation": "modify",
+        "goodName": "presence sensor",
+        "operationTime": "2019-11-04T14:15:58.469Z"
+    },
+    {
+        "operation": "add",
+        "goodName": "presence sensor",
+        "operationTime": "2019-11-04T14:16:09.304Z"
     }
 ]

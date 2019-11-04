@@ -10,4 +10,4 @@ let buyNotification = {
 };
 
 
-//export default notification
+export default buyNotification

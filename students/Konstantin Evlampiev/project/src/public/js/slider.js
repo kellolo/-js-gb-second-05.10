@@ -1,3 +1,5 @@
+import '../styles/slider.css';
+
 let sliderItem = {
     props: ['slide'],
     data() {
@@ -101,8 +103,8 @@ let slider = {
     beforeMount() {
         this.getData();
         this.intervalID = setInterval(this.nextSlideRight, 10000);
-        readyToSlide = true;
+        this.readyToSlide = true;
     }
 }
 
-//export default slider
+export default slider
