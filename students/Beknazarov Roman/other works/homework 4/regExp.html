@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>regExp</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+
+
+<script>
+
+    /*
+    1. Дан большой текст, в котором для оформления прямой речи используются одинарные кавычки.
+    Придумать шаблон, который заменяет одинарные кавычки на двойные.
+    2. Улучшить шаблон так, чтобы в конструкциях типа aren't одинарная кавычка не заменялась на двойную.
+    */
+
+    let string = `'Copyright i'll 'hand' someone 'capable' doctor's aren't speakers anyone does 'additionally' coffee sounds shock small ghost' `;
+
+    let text2 = string.replace(/'/g, `\"`);
+    console.log(text2);
+    let text3 = text2.replace(/(\b"\b)/g, `\'`);
+    console.log(text3);
+
+    //Another solution
+    let string1 = string.replace(/(\b'\b)|'/g, (p1, p2) => p2 ? "\'" : "\"");
+    console.log(string1);
+
+    //Another solution
+    const regexp4 = /\B'\b|\b'\B/gi;
+    const string4 = string.replace(regexp4, '"');
+    console.log(`Оригинал:\n${string}\nПосле обработки:\n${string4}`);
+
+    //Простое решение от Сергея Твардовского.
+    let regexp = /\B'|'\B/g;
+    let text4 = string.replace(regexp, `\"`);
+    console.log(text4);
+</script>
+</body>
+</html>

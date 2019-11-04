@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2Xsport</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/triangle-spinner.css">
+</head>
+<body>
+    <div id="app">
+        <div class="wrapper">
+            <header>
+                <i class="basket-button fa fa-shopping-cart" aria-hidden="true" @click="showBasket"></i>
+                <filter-of-goods></filter-of-goods>
+                <div class="title-2Xsport"><h2>2Xsport shop</h2></div>
+
+                <basket ref="basketCart"></basket>
+            </header>
+
+            <main>
+                <goods-list ref="catalog"/> 
+            </main>
+
+            <div class="blank">
+                <spinner></spinner><!-- loading or 404-->
+            </div>
+
+            <footer>
+                <p class="copyright">© 2Xsport shop 2019, developed by Victor Sergeev</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</body>
+    <script src="js/goods.js"></script>
+    <script src="js/basket.js"></script>
+    <script src="js/filterOfGoods.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/main.js"></script>
+</html>
