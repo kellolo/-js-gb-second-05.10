@@ -1,107 +1,272 @@
 [
-    {},
     {
-        "time": "October 28th 2019, 5:19:40 pm",
-        "prod_name": "Перчатки",
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 4:58:33 pm",
         "action": "add"
     },
     {
-        "time": "October 28th 2019, 5:19:44 pm",
-        "prod_name": "Перчатки",
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 4:58:35 pm",
         "action": "del"
     },
     {
-        "time": "October 28th 2019, 5:19:46 pm",
-        "prod_name": "Перчатки",
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 4:58:41 pm",
         "action": "add"
     },
     {
-        "time": "October 28th 2019, 5:19:47 pm",
-        "action": "changePlus"
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 4:58:42 pm",
+        "action": "change"
     },
     {
-        "time": "October 28th 2019, 5:19:48 pm",
-        "action": "changeMinus"
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 4:58:43 pm",
+        "action": "change"
     },
     {
-        "time": "October 28th 2019, 5:19:49 pm",
-        "prod_name": "Перчатки",
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 4:58:43 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 4:58:47 pm",
         "action": "del"
     },
     {
-        "time": "October 28th 2019, 5:20:05 pm",
-        "prod_name": "Скейтборд",
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 4:58:51 pm",
         "action": "add"
     },
     {
-        "time": "October 28th 2019, 5:20:06 pm",
-        "prod_name": "Горнолыжный костюм",
-        "action": "add"
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 4:58:52 pm",
+        "action": "change"
     },
     {
-        "time": "October 28th 2019, 5:20:06 pm",
-        "action": "changePlus"
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 4:58:53 pm",
+        "action": "change"
     },
     {
-        "time": "October 28th 2019, 5:20:06 pm",
-        "action": "changePlus"
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 4:58:54 pm",
+        "action": "change"
     },
     {
-        "time": "October 28th 2019, 5:20:08 pm",
-        "action": "changePlus"
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 4:58:55 pm",
+        "action": "change"
     },
     {
-        "time": "October 28th 2019, 5:20:12 pm",
-        "prod_name": "Сноуборд",
-        "action": "add"
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 4:58:56 pm",
+        "action": "change"
     },
     {
-        "time": "October 28th 2019, 5:20:14 pm",
-        "prod_name": "Сноуборд",
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 4:59:01 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 4:59:03 pm",
         "action": "del"
     },
     {
-        "time": "October 28th 2019, 5:20:16 pm",
-        "action": "changePlus"
-    },
-    {
-        "time": "October 28th 2019, 5:20:16 pm",
-        "action": "changePlus"
-    },
-    {
-        "time": "October 28th 2019, 5:20:19 pm",
-        "prod_name": "Спасательный круг",
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 4:59:06 pm",
         "action": "add"
     },
     {
-        "time": "October 28th 2019, 5:20:20 pm",
-        "prod_name": "Ракетка",
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 4:59:07 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Сноуборд",
+        "time": "November 3rd 2019, 4:59:08 pm",
         "action": "add"
     },
     {
-        "time": "October 28th 2019, 5:20:21 pm",
-        "action": "changePlus"
-    },
-    {
-        "time": "October 28th 2019, 5:20:26 pm",
-        "action": "changeMinus"
-    },
-    {
-        "time": "October 28th 2019, 5:20:28 pm",
-        "prod_name": "Гетры",
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 4:59:09 pm",
         "action": "add"
     },
     {
-        "time": "October 28th 2019, 5:20:29 pm",
-        "prod_name": "Солнцезащитные очки",
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 4:59:10 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Сноуборд",
+        "time": "November 3rd 2019, 4:59:11 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 4:59:12 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 4:59:13 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 4:59:39 pm",
         "action": "add"
     },
     {
-        "time": "October 28th 2019, 5:20:30 pm",
-        "action": "changePlus"
+        "product_name": "Перчатки",
+        "time": "November 3rd 2019, 5:00:00 pm",
+        "action": "del"
     },
     {
-        "time": "October 28th 2019, 5:20:31 pm",
-        "action": "changePlus"
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 5:00:01 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 5:00:03 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 5:00:04 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 5:00:05 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 5:00:06 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 5:00:07 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Горнолыжный костюм",
+        "time": "November 3rd 2019, 5:00:08 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Скейтборд",
+        "time": "November 3rd 2019, 5:00:09 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Сноуборд",
+        "time": "November 3rd 2019, 5:00:10 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Кроссовки",
+        "time": "November 3rd 2019, 5:00:13 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Кроссовки",
+        "time": "November 3rd 2019, 5:00:14 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Кроссовки",
+        "time": "November 3rd 2019, 5:00:15 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Кроссовки",
+        "time": "November 3rd 2019, 5:00:15 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Кроссовки",
+        "time": "November 3rd 2019, 5:00:17 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 5th 2019, 12:26:28 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 5th 2019, 12:26:30 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 5th 2019, 12:27:02 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Кроссовки",
+        "time": "November 5th 2019, 12:27:04 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 5th 2019, 12:27:05 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 5th 2019, 12:27:06 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 5th 2019, 12:27:07 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 5th 2019, 12:27:08 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Перчатки",
+        "time": "November 5th 2019, 12:27:08 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Спандер",
+        "time": "November 5th 2019, 12:27:15 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Спандер",
+        "time": "November 5th 2019, 12:27:17 pm",
+        "action": "del"
+    },
+    {
+        "product_name": "Спандер",
+        "time": "November 5th 2019, 12:27:20 pm",
+        "action": "add"
+    },
+    {
+        "product_name": "Спандер",
+        "time": "November 5th 2019, 12:27:22 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Спандер",
+        "time": "November 5th 2019, 12:27:23 pm",
+        "action": "change"
+    },
+    {
+        "product_name": "Спандер",
+        "time": "November 5th 2019, 12:27:23 pm",
+        "action": "del"
     }
 ]

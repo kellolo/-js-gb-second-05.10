@@ -39,7 +39,7 @@ let basket = {
         addProduct (good) {
             let findClickedProduct = this.basketProducts.find(item => item.id_product === good.id_product);
             if(findClickedProduct){
-                this.$parent.putJson ('/api/basket/plus/' + findClickedProduct.id_product, {quantity: 1})
+                this.$parent.putJson ('/api/basket/' + findClickedProduct.id_product, {quantity: 1})
                 .then (data => {
                     if (data.result) {
                         findClickedProduct.quantity ++
@@ -58,20 +58,18 @@ let basket = {
         },
 
         removeProduct (good) {
-            let findClickedProduct = this.basketProducts.find(item => item.id_product === good.id_product);
-            if(findClickedProduct.quantity > 1){
-                this.$parent.putJson ('/api/basket/minus/' + findClickedProduct.id_product, {quantity: 1})
+            if(good.quantity > 1){
+                this.$parent.putJson ('/api/basket/' + good.id_product, {quantity: -1})
                 .then (data => {
                     if (data.result) {
-                        findClickedProduct.quantity --
+                        good.quantity --
                     }
                 })
             } else { 
-                this.basketProducts.splice(this.basketProducts.indexOf(findClickedProduct), 1) 
-                this.$parent.deleteJson ('/api/basket', findClickedProduct)
+                this.$parent.deleteJson ('/api/basket/' + good.id_product)
                     .then (data => {
                         if (data.result) {
-                            this.basketProducts.pop (findClickedProduct)
+                            this.basketProducts.splice (this.basketProducts.indexOf (good), 1)
                         }
                     })
             }

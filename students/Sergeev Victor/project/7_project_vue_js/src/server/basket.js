@@ -1,25 +1,20 @@
 let add = (basket, req) => {
     basket.contents.push (req.body)
-    return JSON.stringify (basket, null, 4) 
+    return {newCart: JSON.stringify (basket, null, 4), name: req.body.product_name} 
 }
 
-let changePlus = (basket, req) => {
+let change = (basket, req) => {
     let find = basket.contents.find (el => el.id_product === +req.params.id)
     find.quantity += +req.body.quantity
-    return JSON.stringify (basket, null, 4) 
+    return {newCart: JSON.stringify (basket, null, 4), name: find.product_name} 
 }
 
-let changeMinus = (basket, req) => {
+let remove = (basket, req) => {
     let find = basket.contents.find (el => el.id_product === +req.params.id)
-    find.quantity -= +req.body.quantity
-    return JSON.stringify (basket, null, 4) 
-}
-
-let del = (basket, req) => {
-    basket.contents.pop (req.body)
-    return JSON.stringify (basket, null, 4) 
+    basket.contents.splice (basket.contents.indexOf (find), 1)
+    return {newCart: JSON.stringify (basket, null, 4), name: find.product_name}
 }
 
 module.exports = {
-    add, changePlus, changeMinus, del
+    add, change, remove
 }

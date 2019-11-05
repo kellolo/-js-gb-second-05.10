@@ -18,15 +18,11 @@ router.post ('/', (req, res) => {
     handler (req, res, 'add', './src/server/db/user-cart.json')
 })
 
-router.put ('/plus/:id', (req, res) => {
-    handler (req, res, 'changePlus', './src/server/db/user-cart.json')
+router.put ('/:id', (req, res) => {
+    handler (req, res, 'change', './src/server/db/user-cart.json')
 })
 
-router.put ('/minus/:id', (req, res) => {
-    handler (req, res, 'changeMinus', './src/server/db/user-cart.json')
-})
-
-router.delete ('/', (req, res) => {
+router.delete ('/:id', (req, res) => {
     handler (req, res, 'del', './src/server/db/user-cart.json')
 })
 

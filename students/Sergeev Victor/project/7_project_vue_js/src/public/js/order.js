@@ -74,8 +74,6 @@ orderbtn.addEventListener('click', function (event) {
         alert("Корзина товаров пуста!");
     }
 });
-    
-
 
 
  
