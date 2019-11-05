@@ -1,0 +1,42 @@
+[
+    {
+        "time": "June 21st 2019, 8:21:33 pm",
+        "prod_name": "Ноутбук",
+        "action": "change"
+    },
+    {
+        "time": "June 21st 2019, 8:21:37 pm",
+        "prod_name": "Keyboard",
+        "action": "remove"
+    },
+    {
+        "time": "June 21st 2019, 8:21:39 pm",
+        "prod_name": "Мышка",
+        "action": "remove"
+    },
+    {
+        "time": "June 21st 2019, 8:21:40 pm",
+        "prod_name": "Gamepad",
+        "action": "add"
+    },
+    {
+        "time": "June 21st 2019, 8:21:41 pm",
+        "prod_name": "Мышка",
+        "action": "add"
+    },
+    {
+        "time": "June 21st 2019, 8:21:43 pm",
+        "prod_name": "Gamepad",
+        "action": "change"
+    },
+    {
+        "time": "June 21st 2019, 8:21:43 pm",
+        "prod_name": "Gamepad",
+        "action": "change"
+    },
+    {
+        "time": "June 21st 2019, 8:21:43 pm",
+        "prod_name": "Gamepad",
+        "action": "change"
+    }
+]

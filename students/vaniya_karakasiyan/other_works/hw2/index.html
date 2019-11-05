@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="">
+        Размер бургера:
+        <br>
+            <input type="radio" name="isBig" value="true" checked> Большой<br>
+            <input type="radio" name="isBig" value="false"> Маленький<br>
+        <br>
+        Начинка:
+        <br>
+            <select name="stuffing">
+                <option value="0">Без начинки</option>
+                <option value="1">Сыр</option>
+                <option value="2">Салат</option>
+                <option value="3">Батат</option>
+            </select>
+        <br>
+        <br>
+        Дополнительно:
+        <br>
+            <input type="checkbox" name="spiced" value="true"> Со специями <br>
+            <input type="checkbox" name="mayo" value="true"> C майонезом <br>
+        <br>
+        <input type="submit" value="Сформировать заказ">
+        <br>
+        <br>
+        <button class="calculateButton">Показать заказ</button>
+    </form>
+    <script>
+
+        const processFormValues = () => {
+            
+            let formValues, isBig, stuffing, spiced, mayo
+            formValues = window.location.search
+
+            if (formValues.includes('isBig=true')) {
+                isBig = true
+            } else isBig = false
+
+            if (formValues.includes('stuffing=1')) {
+                stuffing = 1
+            } else if (formValues.includes('stuffing=2')) {
+                stuffing = 2
+            } else if (formValues.includes('stuffing=3')) {
+                stuffing = 3
+            }
+
+
+            if (formValues.includes('spiced=true')) {
+                spiced = true
+            }
+
+
+            if (formValues.includes('mayo=true')) {
+                mayo = true
+            }
+                
+            const order = new Burger (isBig, stuffing, spiced, mayo)
+
+            order.calculate ()
+
+            alert("Вы заказали " + order.fullTitle + ". Он стоит " + order.price + " руб. и содержит " + order.calories + " ккал.")
+        }
+
+        document.querySelector(".calculateButton").addEventListener("click", processFormValues)
+
+        class Burger {
+            
+            constructor (isBig, stuffing, spiced, mayo) {
+                this.isBig = isBig
+                this.stuffing = stuffing
+                this.spiced = spiced
+                this.mayo = mayo
+                this.price = null
+                this.calories = null
+                this.fullTitle = ""
+            }
+
+            calculate () {
+
+                if (this.isBig === true) {
+                    this.price += 100
+                    this.calories += 40
+                    this.fullTitle += "большой бургер"
+                } else {
+                    this.price += 50
+                    this.calories += 20
+                    this.fullTitle += "маленький бургер"
+                }
+
+                if (this.stuffing === 1) {
+                    this.price += 10
+                    this.calories += 20
+                    this.fullTitle += " с сыром"
+                } else if (this.stuffing === 2) {
+                    this.price += 20
+                    this.calories += 5
+                    this.fullTitle += " с салатом"
+                } else if (this.stuffing === 3) {
+                    this.price += 15
+                    this.calories += 10
+                    this.fullTitle += " с бататом"
+                }
+
+                if (this.mayo === true && this.spiced === true) {
+                    this.price += 35
+                    this.calories += 5
+                    this.fullTitle += ", дополненный домашним майонезом и приправленный специями"
+                } else if (this.spiced === true) {
+                    this.price += 15
+                    this.fullTitle += ", приправленный специями"
+                } else if (this.mayo === true) {
+                    this.price += 20
+                    this.calories += 5
+                    this.fullTitle += ", дополненный домашним майонезом"
+
+                }
+                
+            }
+
+        }
+    </script>
+</body>
+</html>

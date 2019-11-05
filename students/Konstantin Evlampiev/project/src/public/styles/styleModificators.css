@@ -1,0 +1,47 @@
+.orangeStyled {
+  background-color: #fc6136;
+  color: white;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.yellowStyled {
+  background-color: #fbf2d3;
+  font-size: 16px;
+  color: #7d7253;
+  line-height: 1.5;
+}
+.grayStyled {
+  background-color: #f9f9f9;
+  font-size: 16px;
+  color: #a7a49c;
+  line-height: 1.5;
+}
+.darkGrayStyled {
+  background-color: #636363;
+  color: #ffffff;
+  line-height: 1.333;
+}
+.cyanStyled {
+  background-color: #95d4d2;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.5;
+}
+.grayImg {
+  filter: grayscale(50%) sepia(0.2);
+}
+.centered {
+  margin: 0 auto;
+}
+.grayTitle {
+  color: #555;
+  background: linear-gradient(#fff 50%, #f1f1f1 0);
+  /*размер повторяющегося фона*/
+  background-size: 10% 5px;
+}
+.bottomYellowBordered {
+  border-bottom: 5px solid #d4ccb0;
+}
+.bottomGrayBordered {
+  border-bottom: 5px solid #5c5c5c;
+}

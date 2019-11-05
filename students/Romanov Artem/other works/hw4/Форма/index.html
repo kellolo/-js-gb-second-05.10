@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Validation form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css?family=Comfortaa|Press+Start+2P" rel="stylesheet">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+	<div class="container">
+		<form class="registration" id="registration">
+			<h1>Напишите нам</h1>
+
+			<label for="username">
+				<span>Имя</span>
+
+				<input type="text" id="username" minlength="3" required>
+
+				<ul class="input-requirements">
+					<li>Должно содержать только русские буквы</li>
+					</ul>
+			</label>
+
+			<label for="phone">
+				<span>Телефон</span>
+
+				<input type="tel" id="phone" maxlength="15" minlength="15" required>
+
+				<ul class="input-requirements">
+					<li>Телефон должен быть в формате +7(123)123-4567</li>
+				</ul>
+			</label>
+			<label for="email">
+				<span>Адрес электронной почты</span>
+				<input type="email" id="email" required>
+				<ul class="input-requirements">
+					<li>E-mail имеет вид mymail@mail.ru</li>
+				</ul>
+			</label>
+			<label for="text">
+				<span>Текст</span>
+
+				<input type="text" id="text" minlength="3" required>
+
+				<ul class="input-requirements">
+					<li>Пишите что хотите</li>
+								</ul>
+			</label>
+
+
+			<br>
+
+			<input type="submit">
+
+		</form>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // МНОЖЕСТВА и ПОДМНОЖЕСТВА
+
+        // Люди, Василий и Студенты
+        //ЛЮДИ  Класс ()
+                //Студенты  Класс ()
+                            //Вася {объект}
+        class Planet {
+            constructor () {
+                this.people = []
+            }
+            createHuman (name, age, gender) {
+                this.people.push (new Human (name, age, gender))
+            }
+        }
+
+        class Human {
+            constructor (name, age, gender = 'm') {
+                this.name = name
+                this.age = age
+                this.gender = gender
+            }
+            // methods (prototype)
+            getOlder () {
+                this.age++
+            }
+
+            becomeMother () {
+                if (this.gender === 'f') {
+                    console.log(this.name + ' becomes mother')
+                } else {
+                    console.log(this.name + ' can not become mother')
+                }
+            }
+        } 
+
+        // let vasya = new Human ('Vasily', 32)
+        
+        // let sofa = new Human ('Sophia', 24, 'f')
+
+    </script>
+</body>
+</html>

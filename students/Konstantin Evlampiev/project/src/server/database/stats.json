@@ -1,0 +1,195 @@
+[
+    {
+        "id": 1
+    },
+    {
+        "operation": "modify",
+        "operationTime": "2019-10-29T12:05:27.854Z"
+    },
+    {
+        "operation": "modify",
+        "operationTime": "2019-10-29T12:08:30.474Z"
+    },
+    {
+        "operation": "modify",
+        "operationTime": "2019-10-29T12:09:34.470Z"
+    },
+    {
+        "operation": "modify",
+        "operationTime": "2019-10-29T12:16:47.634Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 4,
+        "goodName": "smoke sensor",
+        "operationTime": "2019-10-29T12:30:29.944Z"
+    },
+    {
+        "operation": "remove",
+        "goodId": 4,
+        "goodName": "smoke sensor",
+        "operationTime": "2019-10-29T12:33:27.231Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 1,
+        "goodName": "leak detector",
+        "operationTime": "2019-10-29T12:39:43.457Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T12:39:44.815Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T12:39:47.467Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T12:44:01.252Z"
+    },
+    {
+        "operation": "add",
+        "goodId": 3,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T12:45:04.828Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T12:45:09.059Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T12:45:13.298Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 1,
+        "goodName": "leak detector",
+        "operationTime": "2019-10-29T19:10:35.104Z"
+    },
+    {
+        "operation": "add",
+        "goodId": 2,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:36.236Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 3,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:37.726Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 3,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:38.195Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 3,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:38.652Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 1,
+        "goodName": "leak detector",
+        "operationTime": "2019-10-29T19:10:44.585Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 1,
+        "goodName": "leak detector",
+        "operationTime": "2019-10-29T19:10:45.373Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 1,
+        "goodName": "leak detector",
+        "operationTime": "2019-10-29T19:10:46.865Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 1,
+        "goodName": "leak detector",
+        "operationTime": "2019-10-29T19:10:47.317Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T19:10:48.696Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T19:10:49.187Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T19:10:50.325Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T19:10:50.817Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 5,
+        "goodName": "gas sensor",
+        "operationTime": "2019-10-29T19:10:51.532Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 2,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:52.248Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 2,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:52.274Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 2,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:52.999Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 2,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:53.165Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 2,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:55.375Z"
+    },
+    {
+        "operation": "modify",
+        "goodId": 2,
+        "goodName": "presence sensor",
+        "operationTime": "2019-10-29T19:10:56.441Z"
+    }
+]
