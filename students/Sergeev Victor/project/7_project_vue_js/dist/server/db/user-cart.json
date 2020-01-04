@@ -1,0 +1,16 @@
+{
+    "contents": [
+        {
+            "id_product": 3,
+            "product_name": "Сноуборд",
+            "price": 2400,
+            "quantity": 1
+        },
+        {
+            "id_product": 5,
+            "product_name": "Кроссовки",
+            "price": 2700,
+            "quantity": 3
+        }
+    ]
+}

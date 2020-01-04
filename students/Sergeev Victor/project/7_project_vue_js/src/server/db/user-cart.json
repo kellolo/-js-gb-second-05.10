@@ -1,12 +1,6 @@
 {
     "contents": [
         {
-            "id_product": 1,
-            "product_name": "Скейтборд",
-            "price": 2000,
-            "quantity": 2
-        },
-        {
             "id_product": 2,
             "product_name": "Горнолыжный костюм",
             "price": 6700,
