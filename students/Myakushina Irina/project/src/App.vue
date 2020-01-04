@@ -1,4 +1,96 @@
-body{
+<template>
+  <div id="app">
+    <header>
+        <div class="logo">E-shop</div>
+        <!-- ЭТО -->
+        <filter-comp></filter-comp>
+        <div class="cart">
+            <cart ref="cart"></cart>
+        </div>
+
+    </header>
+    <main>
+      <catalog ref="cata"/>  
+    </main>
+  </div>
+</template>
+
+<script>
+
+import catalog from './components/catalog'
+import cart from './components/CartComp'
+import filterComp from './components/FilterComp'
+
+export default {
+  name: 'app',
+  data: function () {
+    return {
+
+    }
+  },
+  methods: {
+    getJson (url) {
+        return fetch (url)
+        .then (result => result.json())
+        .catch (err => {
+            console.log (err)
+        })
+    },
+    postJson (url, data) {
+        return fetch (url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify (data)
+        })
+        .then (result => result.json())
+        .catch (err => {
+            console.log (err)
+        })
+    },
+    putJson (url, data) {
+        return fetch (url, {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify (data)
+        })
+        .then (result => result.json())
+        .catch (err => {
+            console.log (err)
+        })
+    },
+    deleteJson (url) {
+        return fetch (url, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then (result => result.json())
+        .catch (err => {
+            console.log (err)
+        })
+    },
+    addProduct (product) {
+        console.log (`Куплен ${product.product_name}`)
+    }
+  },
+  mounted () {
+      
+  },
+  components: {
+    'catalog': catalog,
+    'cart': cart,
+    'filter-comp': filterComp
+  }
+}
+</script>
+
+<style>
+  body{
     font-family: 'SF Pro Display', sans-serif;
 }
 header{
@@ -169,3 +261,6 @@ img {
     border: none;
     border-bottom: 2px solid #fafafa;
 }
+
+
+</style>
